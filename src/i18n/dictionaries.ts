@@ -44,6 +44,11 @@ export interface Dictionary {
     sectionTitle: string;
     description: string;
     viewAll: string;
+    images: Array<{
+      category: string;
+      title: string;
+      alt: string;
+    }>;
   };
   cta: {
     title: string;

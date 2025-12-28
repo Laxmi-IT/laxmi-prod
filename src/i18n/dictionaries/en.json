@@ -59,7 +59,39 @@
     "sectionLabel": "Our Portfolio",
     "sectionTitle": "Ispirazioni",
     "description": "A curated collection of interior spaces that embody the essence of Italian luxury and timeless elegance.",
-    "viewAll": "View All Collections"
+    "viewAll": "View All Collections",
+    "images": [
+      {
+        "category": "Living Room",
+        "title": "Serene Elegance",
+        "alt": "Luxury living room with sage green velvet curved sofa and arched windows"
+      },
+      {
+        "category": "Bedroom",
+        "title": "Tranquil Haven",
+        "alt": "Minimalist luxury bedroom with cream tones and natural light"
+      },
+      {
+        "category": "Foyer",
+        "title": "Timeless Welcome",
+        "alt": "Grand foyer with elegant arched doorways and marble floors"
+      },
+      {
+        "category": "Villa",
+        "title": "Italian Grandeur",
+        "alt": "Italian villa living space with high ceilings and natural materials"
+      },
+      {
+        "category": "Interior",
+        "title": "Warm Sophistication",
+        "alt": "Open concept luxury interior with warm tones"
+      },
+      {
+        "category": "Dining",
+        "title": "Refined Dining",
+        "alt": "Elegant dining area with designer furniture and brass accents"
+      }
+    ]
   },
   "cta": {
     "title": "Begin Your Journey",

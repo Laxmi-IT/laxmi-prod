@@ -359,7 +359,7 @@ export default async function Home({
             <div className="gold-line w-24 mx-auto mt-8" />
           </div>
 
-          <LuxuryGallery />
+          <LuxuryGallery images={dict.gallery.images} />
 
           <div className="text-center mt-12">
             <Link

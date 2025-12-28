@@ -59,7 +59,39 @@
     "sectionLabel": "Il Nostro Portfolio",
     "sectionTitle": "Ispirazioni",
     "description": "Una collezione curata di spazi interni che incarnano l'essenza del lusso italiano e dell'eleganza senza tempo.",
-    "viewAll": "Vedi Tutte le Collezioni"
+    "viewAll": "Vedi Tutte le Collezioni",
+    "images": [
+      {
+        "category": "Soggiorno",
+        "title": "Eleganza Serena",
+        "alt": "Soggiorno di lusso con divano curvo in velluto verde salvia e finestre ad arco"
+      },
+      {
+        "category": "Camera da Letto",
+        "title": "Rifugio Tranquillo",
+        "alt": "Camera da letto minimalista di lusso con toni crema e luce naturale"
+      },
+      {
+        "category": "Ingresso",
+        "title": "Accoglienza Senza Tempo",
+        "alt": "Grande ingresso con eleganti archi e pavimenti in marmo"
+      },
+      {
+        "category": "Villa",
+        "title": "Grandezza Italiana",
+        "alt": "Spazio abitativo di villa italiana con soffitti alti e materiali naturali"
+      },
+      {
+        "category": "Interni",
+        "title": "Sofisticatezza Calda",
+        "alt": "Interni di lusso open concept con toni caldi"
+      },
+      {
+        "category": "Sala da Pranzo",
+        "title": "Pranzo Raffinato",
+        "alt": "Elegante zona pranzo con mobili di design e accenti in ottone"
+      }
+    ]
   },
   "cta": {
     "title": "Inizia il Tuo Viaggio",

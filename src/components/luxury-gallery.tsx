@@ -3,71 +3,45 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-interface GalleryImage {
-  id: string
-  src: string
-  alt: string
+interface GalleryImageTranslation {
   category: string
   title: string
+  alt: string
 }
 
-const galleryImages: GalleryImage[] = [
-  {
-    id: '1',
-    src: '/images/hero-main.jpg',
-    alt: 'Luxury living room with sage green velvet curved sofa and arched windows',
-    category: 'Living Room',
-    title: 'Serene Elegance',
-  },
-  {
-    id: '2',
-    src: '/images/gallery-1.jpg',
-    alt: 'Minimalist luxury bedroom with cream tones and natural light',
-    category: 'Bedroom',
-    title: 'Tranquil Haven',
-  },
-  {
-    id: '3',
-    src: '/images/gallery-2.jpg',
-    alt: 'Grand foyer with elegant arched doorways and marble floors',
-    category: 'Foyer',
-    title: 'Timeless Welcome',
-  },
-  {
-    id: '4',
-    src: '/images/gallery-3.jpg',
-    alt: 'Italian villa living space with high ceilings and natural materials',
-    category: 'Villa',
-    title: 'Italian Grandeur',
-  },
-  {
-    id: '5',
-    src: '/images/gallery-4.jpg',
-    alt: 'Open concept luxury interior with warm tones',
-    category: 'Interior',
-    title: 'Warm Sophistication',
-  },
-  {
-    id: '6',
-    src: '/images/gallery-5.jpg',
-    alt: 'Elegant dining area with designer furniture and brass accents',
-    category: 'Dining',
-    title: 'Refined Dining',
-  },
+interface LuxuryGalleryProps {
+  images: GalleryImageTranslation[]
+}
+
+const imageSources = [
+  '/images/hero-main.jpg',
+  '/images/gallery-1.jpg',
+  '/images/gallery-2.jpg',
+  '/images/gallery-3.jpg',
+  '/images/gallery-4.jpg',
+  '/images/gallery-5.jpg',
 ]
 
-export function LuxuryGallery() {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
+export function LuxuryGallery({ images }: LuxuryGalleryProps) {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+
+  const galleryItems = images.map((img, index) => ({
+    ...img,
+    src: imageSources[index] || imageSources[0],
+    id: String(index + 1),
+  }))
+
+  const selectedImage = selectedIndex !== null ? galleryItems[selectedIndex] : null
 
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages.map((image, index) => (
+        {galleryItems.map((image, index) => (
           <div
             key={image.id}
             className="group relative aspect-[4/3] overflow-hidden cursor-pointer animate-fade-in-up"
             style={{ animationDelay: `${index * 100}ms` }}
-            onClick={() => setSelectedImage(image)}
+            onClick={() => setSelectedIndex(index)}
           >
             {/* Image */}
             <Image
@@ -111,7 +85,7 @@ export function LuxuryGallery() {
       {selectedImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-laxmi-espresso/95 backdrop-blur-sm animate-fade-in"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
           <div
             className="relative max-w-5xl w-full aspect-[4/3] overflow-hidden"
@@ -128,7 +102,7 @@ export function LuxuryGallery() {
 
             {/* Close button */}
             <button
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedIndex(null)}
               className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
