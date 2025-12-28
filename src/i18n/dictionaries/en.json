@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "title": "LAXMI | Luxury Italian Furniture Consulting Made in Italy",
+    "titleTemplate": "%s | LAXMI Luxury Furniture",
+    "description": "Exclusive luxury Italian furniture consulting. LAXMI guides discerning connoisseurs in selecting Made in Italy pieces: artisanal quality, unique design, timeless elegance. Milan.",
+    "keywords": "luxury furniture, Italian furniture, furniture consulting Milan, luxury interior design, Made in Italy, designer furniture, exclusive furniture, consulenza arredamento, luxury furniture Italy",
+    "ogTitle": "LAXMI — Luxury Italian Furniture Consulting Made in Italy",
+    "ogDescription": "Exclusive experience in selecting high-end Italian furniture. Professionalism, quality, authenticity."
+  },
+  "nav": {
+    "home": "Home",
+    "consulting": "Consulting",
+    "collections": "Collections",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline1": "Luxury Furniture Consulting",
+    "tagline2": "& Boutique Reseller",
+    "description": "Crafted for connoisseurs.",
+    "madeInItaly": "Made in Italy.",
+    "cta": "Request a Consultation"
+  },
+  "values": {
+    "sectionLabel": "Our Philosophy",
+    "sectionTitle": "Valori",
+    "vision": {
+      "title": "Vision",
+      "description": "To bring beauty, light, personality, and luxury into people's homes."
+    },
+    "mission": {
+      "title": "Mission",
+      "description": "To ensure people feel supported and guided in furnishing their homes."
+    },
+    "values": {
+      "title": "Values",
+      "description": "Professionalism, quality, authenticity, uniqueness, and",
+      "highlight": "Made in Italy"
+    }
+  },
+  "services": {
+    "sectionLabel": "What We Offer",
+    "sectionTitle": "Servizi",
+    "service1": {
+      "title": "Furniture Consulting",
+      "description": "Personalized guidance to select the perfect pieces for your space."
+    },
+    "service2": {
+      "title": "Boutique Reselling",
+      "description": "Curated collection of authentic Italian luxury furniture."
+    },
+    "service3": {
+      "title": "Interior Styling",
+      "description": "Complete styling services to bring your vision to life."
+    },
+    "discoverMore": "Discover More"
+  },
+  "gallery": {
+    "sectionLabel": "Our Portfolio",
+    "sectionTitle": "Ispirazioni",
+    "description": "A curated collection of interior spaces that embody the essence of Italian luxury and timeless elegance.",
+    "viewAll": "View All Collections"
+  },
+  "cta": {
+    "title": "Begin Your Journey",
+    "description": "Let us guide you in creating a space that reflects your unique taste and the timeless elegance of Italian craftsmanship.",
+    "button": "Schedule a Consultation"
+  },
+  "footer": {
+    "description": "Luxury Furniture Consulting & Boutique Reseller. Crafted for connoisseurs. Made in Italy.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "quote": "\"Goddess of wealth, fortune, prosperity, beauty and light\"",
+    "copyright": "All rights reserved."
+  },
+  "booking": {
+    "title": "Request a Consultation",
+    "subtitle": "By Appointment Only",
+    "description": "Share your vision with us and our concierge will personally reach out to arrange your exclusive consultation.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Your name",
+      "email": "Email Address",
+      "emailPlaceholder": "Your email",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Your number",
+      "date": "Preferred Date",
+      "time": "Preferred Time",
+      "projectType": "Project Type",
+      "projectTypes": {
+        "residential": "Residential",
+        "commercial": "Commercial",
+        "yacht": "Yacht & Marine",
+        "renovation": "Renovation",
+        "newBuild": "New Construction"
+      },
+      "message": "Tell Us About Your Project",
+      "messagePlaceholder": "Describe your vision, preferred style, space requirements...",
+      "submit": "REQUEST CONSULTATION"
+    },
+    "experience": {
+      "title": "The Experience",
+      "steps": {
+        "request": {
+          "title": "Request",
+          "description": "Submit your consultation request with project details"
+        },
+        "connect": {
+          "title": "Connect",
+          "description": "Our concierge reaches out within 24-48 hours"
+        },
+        "consult": {
+          "title": "Consult",
+          "description": "Personalized meeting to understand your vision"
+        },
+        "curate": {
+          "title": "Curate",
+          "description": "We curate a bespoke proposal of exclusive pieces"
+        },
+        "deliver": {
+          "title": "Deliver",
+          "description": "Complete management through final installation"
+        }
+      }
+    },
+    "contact": {
+      "phone": "+39 000 000 0000",
+      "email": "thelaxmii07@gmail.com",
+      "address": "Milan, Italy"
+    }
+  },
+  "common": {
+    "madeInItaly": "Made in Italy",
+    "byAppointmentOnly": "By Appointment Only",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us"
+  }
+}

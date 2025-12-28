@@ -1,0 +1,18 @@
+# LAXMI - Luxury Italian Furniture Consulting
+# https://laxmi.it
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://laxmi.it/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block access to API routes
+Disallow: /api/
+
+# Allow all language versions
+Allow: /it/
+Allow: /en/

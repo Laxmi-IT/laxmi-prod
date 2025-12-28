@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "title": "LAXMI | Consulenza Arredamento di Lusso Made in Italy",
+    "titleTemplate": "%s | LAXMI Luxury Furniture",
+    "description": "Consulenza esclusiva per arredamento di lusso italiano. LAXMI guida i connoisseur nella selezione di mobili Made in Italy: qualità artigianale, design unico, eleganza senza tempo. Milano.",
+    "keywords": "arredamento di lusso, mobili italiani, consulenza arredamento Milano, interior design lusso, Made in Italy, mobili di design, arredamento esclusivo, furniture consulting, luxury furniture Italy",
+    "ogTitle": "LAXMI — Consulenza Arredamento di Lusso Made in Italy",
+    "ogDescription": "Esperienza esclusiva nella selezione di arredamento italiano di alta gamma. Professionalità, qualità, autenticità."
+  },
+  "nav": {
+    "home": "Home",
+    "consulting": "Consulenza",
+    "collections": "Collezioni",
+    "about": "Chi Siamo",
+    "contact": "Contatti"
+  },
+  "hero": {
+    "tagline1": "Consulenza Arredamento di Lusso",
+    "tagline2": "& Boutique Reseller",
+    "description": "Creato per intenditori.",
+    "madeInItaly": "Made in Italy.",
+    "cta": "Richiedi una Consulenza"
+  },
+  "values": {
+    "sectionLabel": "La Nostra Filosofia",
+    "sectionTitle": "Valori",
+    "vision": {
+      "title": "Visione",
+      "description": "Portare nelle case delle persone bellezza, luce, personalità e lusso."
+    },
+    "mission": {
+      "title": "Missione",
+      "description": "Far sì che le persone si sentano sostenute e guidate nell'arredare la propria casa."
+    },
+    "values": {
+      "title": "Valori",
+      "description": "Professionalità, qualità, autenticità, unicità e",
+      "highlight": "Made in Italy"
+    }
+  },
+  "services": {
+    "sectionLabel": "I Nostri Servizi",
+    "sectionTitle": "Servizi",
+    "service1": {
+      "title": "Consulenza Arredamento",
+      "description": "Guida personalizzata per selezionare i pezzi perfetti per i tuoi spazi."
+    },
+    "service2": {
+      "title": "Boutique Reselling",
+      "description": "Collezione curata di autentici mobili italiani di lusso."
+    },
+    "service3": {
+      "title": "Interior Styling",
+      "description": "Servizi completi di styling per dare vita alla tua visione."
+    },
+    "discoverMore": "Scopri di Più"
+  },
+  "gallery": {
+    "sectionLabel": "Il Nostro Portfolio",
+    "sectionTitle": "Ispirazioni",
+    "description": "Una collezione curata di spazi interni che incarnano l'essenza del lusso italiano e dell'eleganza senza tempo.",
+    "viewAll": "Vedi Tutte le Collezioni"
+  },
+  "cta": {
+    "title": "Inizia il Tuo Viaggio",
+    "description": "Lasciati guidare nella creazione di uno spazio che rifletta il tuo gusto unico e l'eleganza senza tempo dell'artigianato italiano.",
+    "button": "Prenota una Consulenza"
+  },
+  "footer": {
+    "description": "Consulenza Arredamento di Lusso & Boutique Reseller. Creato per intenditori. Made in Italy.",
+    "navigation": "Navigazione",
+    "contact": "Contatti",
+    "quote": "\"Dea della ricchezza, della fortuna, della prosperità, della bellezza e della luce\"",
+    "copyright": "Tutti i diritti riservati."
+  },
+  "booking": {
+    "title": "Richiedi una Consulenza",
+    "subtitle": "Solo su Appuntamento",
+    "description": "Condividi con noi la tua visione e i nostri concierge ti contatteranno personalmente per organizzare la tua consulenza esclusiva.",
+    "form": {
+      "name": "Nome Completo",
+      "namePlaceholder": "Il tuo nome",
+      "email": "Indirizzo Email",
+      "emailPlaceholder": "La tua email",
+      "phone": "Numero di Telefono",
+      "phonePlaceholder": "Il tuo numero",
+      "date": "Data Preferita",
+      "time": "Orario Preferito",
+      "projectType": "Tipo di Progetto",
+      "projectTypes": {
+        "residential": "Residenziale",
+        "commercial": "Commerciale",
+        "yacht": "Yacht & Nautica",
+        "renovation": "Ristrutturazione",
+        "newBuild": "Nuova Costruzione"
+      },
+      "message": "Parlaci del Tuo Progetto",
+      "messagePlaceholder": "Descrivi la tua visione, lo stile preferito, i requisiti di spazio...",
+      "submit": "RICHIEDI CONSULENZA"
+    },
+    "experience": {
+      "title": "L'Esperienza",
+      "steps": {
+        "request": {
+          "title": "Richiesta",
+          "description": "Invia la tua richiesta di consulenza con i dettagli del progetto"
+        },
+        "connect": {
+          "title": "Contatto",
+          "description": "Il nostro concierge ti contatta entro 24-48 ore"
+        },
+        "consult": {
+          "title": "Consulenza",
+          "description": "Incontro personalizzato per comprendere la tua visione"
+        },
+        "curate": {
+          "title": "Selezione",
+          "description": "Curiamo una proposta su misura di pezzi esclusivi"
+        },
+        "deliver": {
+          "title": "Consegna",
+          "description": "Gestione completa fino all'installazione finale"
+        }
+      }
+    },
+    "contact": {
+      "phone": "+39 000 000 0000",
+      "email": "thelaxmii07@gmail.com",
+      "address": "Milano, Italia"
+    }
+  },
+  "common": {
+    "madeInItaly": "Made in Italy",
+    "byAppointmentOnly": "Solo su Appuntamento",
+    "learnMore": "Scopri di Più",
+    "contactUs": "Contattaci"
+  }
+}
