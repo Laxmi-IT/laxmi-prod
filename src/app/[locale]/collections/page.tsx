@@ -117,8 +117,8 @@ export default async function CollectionsPage({
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center pt-16 md:pt-20">
-        {/* Background Image with Overlay */}
+      <section className="relative min-h-[75vh] md:min-h-[85vh] flex items-center pt-16 md:pt-20">
+        {/* Background Image with Enhanced Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src={heroImage.src}
@@ -128,55 +128,78 @@ export default async function CollectionsPage({
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-laxmi-espresso/90 via-laxmi-espresso/70 to-laxmi-espresso/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/60 via-transparent to-transparent" />
+          {/* Enhanced gradient overlays for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-laxmi-espresso/95 via-laxmi-espresso/80 to-laxmi-espresso/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/70 via-laxmi-espresso/20 to-laxmi-espresso/30" />
+          {/* Subtle noise texture for depth */}
+          <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
         </div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
           <div className="max-w-2xl animate-fade-in-up">
-            {/* Label */}
-            <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-laxmi-champagne/80 mb-4">
-              {dict.common.madeInItaly}
-            </p>
+            {/* Label with improved visibility */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-px bg-laxmi-gold" />
+              <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+                {dict.common.madeInItaly}
+              </p>
+            </div>
 
-            {/* Title */}
-            <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 md:mb-6">
+            {/* Title with text-shadow for enhanced readability */}
+            <h1 className="font-serif font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-6 md:mb-8 [text-shadow:_0_2px_40px_rgba(0,0,0,0.3)]">
               {t.heroTitle}
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-laxmi-champagne/90 font-light mb-6 md:mb-8">
+            {/* Subtitle with better contrast */}
+            <p className="text-xl md:text-2xl text-white font-light mb-6 md:mb-8 tracking-wide [text-shadow:_0_1px_20px_rgba(0,0,0,0.2)]">
               {t.heroSubtitle}
             </p>
 
-            {/* Gold line */}
-            <div className="w-20 h-px bg-laxmi-gold/60 mb-6 md:mb-8" />
+            {/* Decorative gold line */}
+            <div className="w-24 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/40 mb-8 md:mb-10" />
 
-            {/* Description */}
-            <p className="text-sm md:text-base text-white/70 font-light leading-relaxed max-w-lg">
+            {/* Description with improved readability */}
+            <p className="text-base md:text-lg text-white/90 font-light leading-relaxed max-w-xl [text-shadow:_0_1px_10px_rgba(0,0,0,0.2)]">
               {t.heroDescription}
             </p>
 
-            {/* Scroll indicator */}
-            <div className="mt-10 md:mt-16 flex items-center gap-3 text-white/50">
-              <div className="w-px h-8 bg-laxmi-gold/40" />
-              <span className="text-xs tracking-widest uppercase">{t.exploreButton}</span>
+            {/* Enhanced scroll indicator */}
+            <div className="mt-12 md:mt-20 flex items-center gap-4">
+              <div className="w-px h-12 bg-gradient-to-b from-laxmi-gold to-transparent" />
+              <div className="flex flex-col gap-1">
+                <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold/80">{t.exploreButton}</span>
+                <span className="text-[10px] tracking-wider text-white/40">↓</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Decorative elements */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+        {/* Enhanced decorative bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
+
+        {/* Decorative corner accent */}
+        <div className="absolute top-24 right-8 md:right-16 w-20 h-20 opacity-20 z-10 hidden md:block">
+          <div className="absolute top-0 right-0 w-full h-px bg-laxmi-gold/50" />
+          <div className="absolute top-0 right-0 h-full w-px bg-laxmi-gold/50" />
+        </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 md:py-24 lg:py-32 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          {/* Section header */}
-          <div className="text-center mb-10 md:mb-16 animate-fade-in-up">
-            <p className="text-spaced text-laxmi-gold mb-4">{t.filterLabel}</p>
-            <div className="gold-line w-24 mx-auto" />
+      <section className="py-20 md:py-28 lg:py-36 relative bg-gradient-to-b from-background via-laxmi-cream/5 to-background">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          {/* Section header with enhanced styling */}
+          <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
+            <div className="flex items-center justify-center gap-6 mb-6">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-laxmi-gold/50" />
+              <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+                {t.filterLabel}
+              </p>
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-laxmi-gold/50" />
+            </div>
+            <h2 className="font-serif font-light text-2xl md:text-3xl lg:text-4xl text-laxmi-espresso dark:text-foreground">
+              {locale === 'it' ? 'La Nostra Selezione' : 'Our Selection'}
+            </h2>
           </div>
 
           {/* Premium Gallery */}
@@ -191,20 +214,42 @@ export default async function CollectionsPage({
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 lg:py-32 relative bg-laxmi-cream/20 dark:bg-card/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+      {/* CTA Section - Enhanced with luxury feel */}
+      <section className="py-24 md:py-32 lg:py-40 relative overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-laxmi-cream/30 via-laxmi-cream/50 to-laxmi-cream/30 dark:from-card/20 dark:via-card/30 dark:to-card/20" />
+
+        {/* Decorative lines */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-laxmi-gold/30" />
+
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
-            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 text-laxmi-gold mx-auto mb-6 md:mb-8" />
-            <h2 className="font-serif font-light mb-4 md:mb-6">{dict.cta.title}</h2>
-            <p className="text-base md:text-lg text-muted-foreground font-light mb-8 md:mb-10 max-w-xl mx-auto">
+            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 text-laxmi-gold mx-auto mb-8 md:mb-10" />
+
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 md:mb-8">
+              {dict.cta.title}
+            </h2>
+
+            <div className="w-16 h-px bg-laxmi-gold/50 mx-auto mb-6 md:mb-8" />
+
+            <p className="text-base md:text-lg text-muted-foreground font-light mb-10 md:mb-12 max-w-xl mx-auto leading-relaxed">
               {dict.cta.description}
             </p>
-            <Link href={`/${locale}/book`} className="btn-luxury-filled w-full sm:w-auto">
+
+            <Link
+              href={`/${locale}/book`}
+              className="inline-flex items-center gap-3 px-10 py-4 bg-laxmi-espresso text-white text-sm tracking-[0.15em] uppercase hover:bg-laxmi-espresso/90 transition-all duration-300 hover:shadow-lg group"
+            >
               {dict.cta.button}
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
         </div>
+
+        {/* Bottom decorative line */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-24 bg-gradient-to-t from-transparent to-laxmi-gold/30" />
       </section>
 
       {/* Footer */}
