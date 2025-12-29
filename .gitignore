@@ -40,3 +40,23 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# Python scripts (local tools - contains sensitive credentials)
+*.py
+*.pyc
+__pycache__/
+
+# ARREXLAB Photos - Only keep FOTO_PER_INTERNET for web
+# Exclude high-resolution files (too large for git/web)
+public/images/ARREXLAB_PHOTOS/FOTO_ALTA_RISOLUZIONE/
+*.tif
+
+# Exclude unused photo collections
+public/images/ARREXLAB_PHOTOS/FOTO_OUTDOOR_COLLECTIONS/
+public/images/ARREXLAB_PHOTOS/FOTO_REPORTAGE_SALONE_2024/
+public/images/ARREXLAB_PHOTOS/FOTO_SPECIALE_ANTE_TELAIO/
+public/images/ARREXLAB_PHOTOS/FOTO_SPECIALE_SUPERMATT/
+
+# Exclude download manifest/reports
+public/images/ARREXLAB_PHOTOS/MANIFEST.csv
+public/images/ARREXLAB_PHOTOS/REPORT.txt

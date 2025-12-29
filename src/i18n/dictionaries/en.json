@@ -166,5 +166,21 @@
     "byAppointmentOnly": "By Appointment Only",
     "learnMore": "Learn More",
     "contactUs": "Contact Us"
+  },
+  "collections": {
+    "heroTitle": "Collections",
+    "heroSubtitle": "A curated selection of Italian kitchen excellence",
+    "heroDescription": "Discover our exclusive collection of premium Italian kitchens, where artisanal craftsmanship meets contemporary design. Each piece tells a story of passion, precision, and timeless elegance.",
+    "filterLabel": "Filter by environment",
+    "showingCount": "Showing {count} pieces",
+    "noResults": "No pieces found in this category",
+    "exploreButton": "Explore Gallery",
+    "categories": {
+      "all": "All Collections",
+      "cucina": "Kitchen",
+      "living": "Living",
+      "dispensa": "Pantry",
+      "dettagli": "Details"
+    }
   }
 }

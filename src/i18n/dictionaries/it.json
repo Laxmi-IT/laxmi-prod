@@ -166,5 +166,21 @@
     "byAppointmentOnly": "Solo su Appuntamento",
     "learnMore": "Scopri di Più",
     "contactUs": "Contattaci"
+  },
+  "collections": {
+    "heroTitle": "Collezioni",
+    "heroSubtitle": "Una selezione curata dell'eccellenza italiana",
+    "heroDescription": "Scopri la nostra collezione esclusiva di cucine italiane premium, dove l'artigianato incontra il design contemporaneo. Ogni pezzo racconta una storia di passione, precisione ed eleganza senza tempo.",
+    "filterLabel": "Filtra per ambiente",
+    "showingCount": "Mostrando {count} pezzi",
+    "noResults": "Nessun pezzo trovato in questa categoria",
+    "exploreButton": "Esplora la Galleria",
+    "categories": {
+      "all": "Tutte le Collezioni",
+      "cucina": "Cucina",
+      "living": "Living",
+      "dispensa": "Dispensa",
+      "dettagli": "Dettagli"
+    }
   }
 }
