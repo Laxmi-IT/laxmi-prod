@@ -80,21 +80,21 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
       {/* Menu Panel - rendered via portal to escape stacking context */}
       {mounted && createPortal(
         <nav
-          className={`fixed inset-0 z-[9999] md:hidden transition-all duration-200 ease-out ${
+          className={`fixed inset-0 z-[9999] md:hidden transition-opacity duration-200 ease-out ${
             isOpen
               ? 'opacity-100 pointer-events-auto'
               : 'opacity-0 pointer-events-none'
           }`}
-          style={{ willChange: 'opacity' }}
           aria-label="Mobile navigation"
           aria-hidden={!isOpen}
         >
-          {/* Blurred backdrop */}
+          {/* Glassmorphism backdrop - semi-transparent with strong blur */}
           <div
-            className="absolute inset-0 backdrop-blur-2xl"
+            className="absolute inset-0"
             style={{
-              backgroundColor: 'rgba(255, 250, 231, 0.85)',
-              willChange: 'backdrop-filter',
+              backgroundColor: 'rgba(255, 250, 231, 0.65)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
             }}
           />
 
@@ -102,7 +102,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'linear-gradient(180deg, rgba(245, 219, 185, 0.15) 0%, transparent 30%, rgba(245, 219, 185, 0.1) 100%)',
+              background: 'linear-gradient(180deg, rgba(255, 250, 231, 0.3) 0%, transparent 40%, rgba(245, 219, 185, 0.2) 100%)',
             }}
           />
 

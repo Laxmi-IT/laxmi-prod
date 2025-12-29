@@ -76,18 +76,24 @@ export function CollectionSlideshow({
   return (
     <div
       className="fixed inset-0 z-[100] flex flex-col"
-      style={{
-        backgroundColor: '#FFFAE7',
-        willChange: 'opacity',
-      }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Glassmorphism backdrop - semi-transparent with strong blur */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundColor: 'rgba(255, 250, 231, 0.7)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
+        }}
+      />
+
       {/* Subtle warm gradient for depth */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(245, 219, 185, 0.2), transparent 50%, rgba(245, 219, 185, 0.3))',
+          background: 'linear-gradient(to bottom, rgba(255, 250, 231, 0.25) 0%, transparent 40%, rgba(245, 219, 185, 0.2) 100%)',
         }}
       />
 
