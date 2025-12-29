@@ -109,6 +109,87 @@ export interface Dictionary {
     learnMore: string;
     contactUs: string;
   };
+  collections: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroDescription: string;
+    filterLabel: string;
+    showingCount: string;
+    noResults: string;
+    exploreButton: string;
+    categories: {
+      all: string;
+      cucina: string;
+      living: string;
+      dispensa: string;
+      dettagli: string;
+    };
+  };
+  consulting: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroDescription: string;
+    heroQuote: string;
+    philosophyTitle: string;
+    philosophyText: string;
+    processTitle: string;
+    processSubtitle: string;
+    steps: {
+      questionnaire: { number: string; title: string; description: string };
+      materials: { number: string; title: string; description: string };
+      consultation: { number: string; title: string; description: string };
+      creation: { number: string; title: string; description: string };
+      refinement: { number: string; title: string; description: string };
+    };
+    servicesTitle: string;
+    servicesSubtitle: string;
+    services: {
+      express: {
+        name: string;
+        tagline: string;
+        price: string;
+        description: string;
+        features: string[];
+        ideal: string;
+      };
+      singleRoom: {
+        name: string;
+        tagline: string;
+        price: string;
+        description: string;
+        features: string[];
+        ideal: string;
+      };
+      fullHouse: {
+        name: string;
+        tagline: string;
+        price: string;
+        priceNote: string;
+        description: string;
+        features: string[];
+        ideal: string;
+      };
+    };
+    deliverablesTitle: string;
+    deliverables: {
+      layouts: string;
+      moodboards: string;
+      furniture: string;
+      lighting: string;
+      renders: string;
+      coordination: string;
+    };
+    promiseTitle: string;
+    promiseText: string;
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
+    trustBadges: {
+      experience: string;
+      projects: string;
+      satisfaction: string;
+    };
+  };
 }
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

@@ -182,5 +182,111 @@
       "dispensa": "Dispensa",
       "dettagli": "Dettagli"
     }
+  },
+  "consulting": {
+    "heroTitle": "Consulenza Online",
+    "heroSubtitle": "La Tua Visione, Interpretata con Maestria",
+    "heroDescription": "Ogni grande spazio nasce da una storia. La tua. Trasformiamo le tue aspirazioni in ambienti che parlano di chi sei, dove ogni dettaglio è una dichiarazione di stile e ogni scelta riflette la tua unicità.",
+    "heroQuote": "Non arrediamo case. Creiamo scenografie per vite straordinarie.",
+    "philosophyTitle": "La Nostra Filosofia",
+    "philosophyText": "Crediamo che la tua casa debba essere il riflesso più autentico di chi sei. Non un catalogo di tendenze, ma un santuario costruito attorno alla tua essenza. Un luogo dove ogni mattina ti svegli circondato dalla bellezza che hai scelto, e ogni sera torni in uno spazio che ti appartiene profondamente.",
+    "processTitle": "Il Processo",
+    "processSubtitle": "Un Viaggio Insieme",
+    "steps": {
+      "questionnaire": {
+        "number": "01",
+        "title": "La Scoperta",
+        "description": "Un questionario dettagliato per comprendere il tuo stile di vita, le tue abitudini e i tuoi sogni. Perché ogni progetto inizia dall'ascolto."
+      },
+      "materials": {
+        "number": "02",
+        "title": "La Documentazione",
+        "description": "Foto e misure dei tuoi spazi. Ogni angolo racconta una possibilità, ogni dimensione nasconde un potenziale."
+      },
+      "consultation": {
+        "number": "03",
+        "title": "L'Incontro",
+        "description": "Una video call dedicata dove la tua visione incontra la nostra esperienza. Un dialogo, non un monologo."
+      },
+      "creation": {
+        "number": "04",
+        "title": "La Creazione",
+        "description": "Sviluppiamo il tuo progetto con layout, moodboard e proposte di arredo curate con ossessiva attenzione ai dettagli."
+      },
+      "refinement": {
+        "number": "05",
+        "title": "La Perfezione",
+        "description": "Revisioni fino a quando ogni elemento non risuona con la tua approvazione. La perfezione non ha fretta."
+      }
+    },
+    "servicesTitle": "I Nostri Percorsi",
+    "servicesSubtitle": "Scegli l'Esperienza che Merita il Tuo Spazio",
+    "services": {
+      "express": {
+        "name": "Consulenza Express",
+        "tagline": "Il primo passo verso la trasformazione",
+        "price": "120",
+        "description": "Una sessione intensiva per chi cerca direzione. Perfetta per validare idee, risolvere dubbi e ricevere consigli mirati che illumineranno il percorso.",
+        "features": [
+          "Video call di 60 minuti",
+          "Analisi del tuo spazio attuale",
+          "Consigli stilistici personalizzati",
+          "Prime indicazioni di arredo",
+          "Palette colori suggerita"
+        ],
+        "ideal": "Ideale per chi inizia il viaggio"
+      },
+      "singleRoom": {
+        "name": "Ambiente Singolo",
+        "tagline": "Una stanza, infinite possibilità",
+        "price": "390",
+        "description": "La trasformazione completa di uno spazio. Ogni dettaglio studiato, ogni elemento scelto con cura. Il risultato? Una stanza che diventa il tuo rifugio personale.",
+        "features": [
+          "Tutto incluso in Express, più:",
+          "Layout 2D personalizzato",
+          "Moodboard esclusivo",
+          "Lista arredo con link diretti",
+          "Studio illuminotecnico",
+          "1 revisione inclusa"
+        ],
+        "ideal": "Ideale per trasformazioni mirate"
+      },
+      "fullHouse": {
+        "name": "Casa Completa",
+        "tagline": "La metamorfosi totale",
+        "price": "1.200",
+        "priceNote": "Prezzo base per 3 ambienti",
+        "description": "L'esperienza definitiva. Ogni ambiente della tua casa ripensato come parte di una narrazione coerente. Non stanze separate, ma capitoli di un'unica storia: la tua.",
+        "features": [
+          "Tutto incluso in Ambiente Singolo, più:",
+          "Progettazione fino a 3 ambienti",
+          "Render 3D fotorealistici",
+          "Coordinamento stilistico totale",
+          "Proposte arredo complete",
+          "2 revisioni incluse",
+          "Ambienti aggiuntivi: €350 cad."
+        ],
+        "ideal": "Ideale per chi non scende a compromessi"
+      }
+    },
+    "deliverablesTitle": "Cosa Riceverai",
+    "deliverables": {
+      "layouts": "Layout 2D Professionali",
+      "moodboards": "Moodboard Esclusivi",
+      "furniture": "Lista Arredo Curata",
+      "lighting": "Studio Illuminotecnico",
+      "renders": "Render 3D Fotorealistici",
+      "coordination": "Coordinamento Stilistico"
+    },
+    "promiseTitle": "La Nostra Promessa",
+    "promiseText": "Non ti consegneremo mai un progetto che non ci renderebbe orgogliosi di firmare. Il tuo spazio porterà la nostra firma invisibile: quella ossessione per i dettagli, quella ricerca della perfezione, quel rifiuto del compromesso che definisce tutto ciò che facciamo.",
+    "ctaTitle": "Inizia la Trasformazione",
+    "ctaText": "Il primo passo verso la casa che hai sempre immaginato è una semplice conversazione. Contattaci per scoprire quale percorso è perfetto per te.",
+    "ctaButton": "Richiedi Informazioni",
+    "trustBadges": {
+      "experience": "10+ Anni di Esperienza",
+      "projects": "200+ Progetti Completati",
+      "satisfaction": "100% Clienti Soddisfatti"
+    }
   }
 }

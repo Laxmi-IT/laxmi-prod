@@ -182,5 +182,111 @@
       "dispensa": "Pantry",
       "dettagli": "Details"
     }
+  },
+  "consulting": {
+    "heroTitle": "Online Consulting",
+    "heroSubtitle": "Your Vision, Masterfully Interpreted",
+    "heroDescription": "Every great space begins with a story. Yours. We transform your aspirations into environments that speak of who you are, where every detail is a statement of style and every choice reflects your uniqueness.",
+    "heroQuote": "We don't furnish homes. We create stages for extraordinary lives.",
+    "philosophyTitle": "Our Philosophy",
+    "philosophyText": "We believe your home should be the most authentic reflection of who you are. Not a catalog of trends, but a sanctuary built around your essence. A place where every morning you wake surrounded by the beauty you chose, and every evening you return to a space that deeply belongs to you.",
+    "processTitle": "The Process",
+    "processSubtitle": "A Journey Together",
+    "steps": {
+      "questionnaire": {
+        "number": "01",
+        "title": "Discovery",
+        "description": "A detailed questionnaire to understand your lifestyle, habits, and dreams. Because every project begins with listening."
+      },
+      "materials": {
+        "number": "02",
+        "title": "Documentation",
+        "description": "Photos and measurements of your spaces. Every corner tells a possibility, every dimension hides potential."
+      },
+      "consultation": {
+        "number": "03",
+        "title": "The Meeting",
+        "description": "A dedicated video call where your vision meets our expertise. A dialogue, not a monologue."
+      },
+      "creation": {
+        "number": "04",
+        "title": "Creation",
+        "description": "We develop your project with layouts, moodboards, and furniture proposals curated with obsessive attention to detail."
+      },
+      "refinement": {
+        "number": "05",
+        "title": "Perfection",
+        "description": "Revisions until every element resonates with your approval. Perfection is not rushed."
+      }
+    },
+    "servicesTitle": "Our Experiences",
+    "servicesSubtitle": "Choose the Experience Your Space Deserves",
+    "services": {
+      "express": {
+        "name": "Express Consultation",
+        "tagline": "The first step toward transformation",
+        "price": "120",
+        "description": "An intensive session for those seeking direction. Perfect for validating ideas, resolving doubts, and receiving targeted advice that will illuminate the path forward.",
+        "features": [
+          "60-minute video call",
+          "Analysis of your current space",
+          "Personalized style advice",
+          "Initial furniture guidance",
+          "Suggested color palette"
+        ],
+        "ideal": "Ideal for those beginning the journey"
+      },
+      "singleRoom": {
+        "name": "Single Room",
+        "tagline": "One room, infinite possibilities",
+        "price": "390",
+        "description": "The complete transformation of one space. Every detail studied, every element carefully chosen. The result? A room that becomes your personal sanctuary.",
+        "features": [
+          "Everything in Express, plus:",
+          "Custom 2D layout",
+          "Exclusive moodboard",
+          "Furniture list with direct links",
+          "Lighting study",
+          "1 revision included"
+        ],
+        "ideal": "Ideal for targeted transformations"
+      },
+      "fullHouse": {
+        "name": "Complete Home",
+        "tagline": "The total metamorphosis",
+        "price": "1,200",
+        "priceNote": "Base price for 3 rooms",
+        "description": "The ultimate experience. Every room in your home reimagined as part of a coherent narrative. Not separate rooms, but chapters of a single story: yours.",
+        "features": [
+          "Everything in Single Room, plus:",
+          "Design for up to 3 rooms",
+          "Photorealistic 3D renders",
+          "Total style coordination",
+          "Complete furniture proposals",
+          "2 revisions included",
+          "Additional rooms: €350 each"
+        ],
+        "ideal": "Ideal for those who don't compromise"
+      }
+    },
+    "deliverablesTitle": "What You'll Receive",
+    "deliverables": {
+      "layouts": "Professional 2D Layouts",
+      "moodboards": "Exclusive Moodboards",
+      "furniture": "Curated Furniture List",
+      "lighting": "Lighting Study",
+      "renders": "Photorealistic 3D Renders",
+      "coordination": "Style Coordination"
+    },
+    "promiseTitle": "Our Promise",
+    "promiseText": "We will never deliver a project we wouldn't be proud to sign. Your space will carry our invisible signature: that obsession with details, that pursuit of perfection, that refusal to compromise that defines everything we do.",
+    "ctaTitle": "Begin the Transformation",
+    "ctaText": "The first step toward the home you've always imagined is a simple conversation. Contact us to discover which experience is perfect for you.",
+    "ctaButton": "Request Information",
+    "trustBadges": {
+      "experience": "10+ Years Experience",
+      "projects": "200+ Projects Completed",
+      "satisfaction": "100% Client Satisfaction"
+    }
   }
 }
