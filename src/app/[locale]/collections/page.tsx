@@ -138,8 +138,8 @@ export default async function CollectionsPage({
         {/* Content with frosted glass panel for maximum readability */}
         <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
           <div className="max-w-2xl animate-fade-in-up">
-            {/* Frosted glass content panel */}
-            <div className="relative bg-laxmi-espresso/80 backdrop-blur-md rounded-lg p-6 md:p-10 lg:p-12 border border-white/10 shadow-2xl">
+            {/* Frosted glass content panel - highly visible for maximum readability */}
+            <div className="relative bg-laxmi-espresso/95 backdrop-blur-xl rounded-xl p-6 md:p-10 lg:p-12 border border-laxmi-gold/20 shadow-2xl">
               {/* Decorative gold corner accents */}
               <div className="absolute top-4 left-4 w-6 h-6">
                 <div className="absolute top-0 left-0 w-full h-px bg-laxmi-gold/60" />
@@ -171,8 +171,8 @@ export default async function CollectionsPage({
               {/* Decorative gold line */}
               <div className="w-20 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/30 mb-5 md:mb-6" />
 
-              {/* Description - perfectly readable */}
-              <p className="text-sm md:text-base lg:text-lg text-white/90 font-light leading-relaxed">
+              {/* Description - perfectly readable with pure white */}
+              <p className="text-sm md:text-base lg:text-lg text-white font-light leading-relaxed">
                 {t.heroDescription}
               </p>
 
