@@ -190,6 +190,54 @@ export interface Dictionary {
       satisfaction: string;
     };
   };
+  contactPage: {
+    label: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    infoLabel: string;
+    infoTitle: string;
+    infoDescription: string;
+    formTitle: string;
+    formSubmit: string;
+    subjects: {
+      consulting: string;
+      boutique: string;
+      collaboration: string;
+      other: string;
+    };
+  };
+  aboutPage: {
+    label: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    nameSection: {
+      label: string;
+      title: string;
+      paragraph1: string;
+      paragraph2: string;
+    };
+    essenceTitle: string;
+    valuesTitle: string;
+    values: {
+      quality: { title: string; description: string };
+      authenticity: { title: string; description: string };
+      uniqueness: { title: string; description: string };
+      professionalism: { title: string; description: string };
+    };
+    madeInItaly: {
+      title: string;
+      description: string;
+      badges: {
+        craftsmanship: string;
+        design: string;
+        materials: string;
+      };
+    };
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaServices: string;
+    ctaContact: string;
+  };
 }
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

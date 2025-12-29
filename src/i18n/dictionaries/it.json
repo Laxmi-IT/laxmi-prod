@@ -288,5 +288,65 @@
       "projects": "200+ Progetti Completati",
       "satisfaction": "100% Clienti Soddisfatti"
     }
+  },
+  "contactPage": {
+    "label": "Parliamo",
+    "heroTitle": "Contattaci",
+    "heroSubtitle": "Siamo qui per trasformare la tua visione in realtà",
+    "infoLabel": "I Nostri Riferimenti",
+    "infoTitle": "Inizia una Conversazione",
+    "infoDescription": "Ogni grande progetto inizia con una semplice conversazione. Che tu abbia una visione chiara o stia cercando ispirazione, siamo qui per guidarti nel tuo percorso verso l'eccellenza.",
+    "formTitle": "Inviaci un Messaggio",
+    "formSubmit": "Invia Messaggio",
+    "subjects": {
+      "consulting": "Consulenza Arredamento",
+      "boutique": "Boutique",
+      "collaboration": "Collaborazione",
+      "other": "Altro"
+    }
+  },
+  "aboutPage": {
+    "label": "La Nostra Storia",
+    "heroTitle": "Chi Siamo",
+    "heroSubtitle": "Dove la passione per il design italiano incontra l'eccellenza artigianale",
+    "nameSection": {
+      "label": "Il Nome",
+      "title": "Il Significato di LAXMI",
+      "paragraph1": "LAXMI prende il nome dalla dea induista della ricchezza, della fortuna, della prosperità, della bellezza e della luce. Questo nome racchiude la nostra missione: portare prosperità e bellezza negli spazi in cui le persone vivono.",
+      "paragraph2": "Come la dea illumina la vita di coloro che la venerano, noi aspiriamo a illuminare le case dei nostri clienti con design raffinati, materiali pregiati e un'attenzione maniacale ai dettagli."
+    },
+    "essenceTitle": "La Nostra Essenza",
+    "valuesTitle": "Cosa Ci Guida",
+    "values": {
+      "quality": {
+        "title": "Qualità",
+        "description": "Solo materiali pregiati e lavorazioni artigianali d'eccellenza per creare pezzi che durano nel tempo."
+      },
+      "authenticity": {
+        "title": "Autenticità",
+        "description": "Ogni pezzo racconta una storia di tradizione italiana, passione e maestria artigianale."
+      },
+      "uniqueness": {
+        "title": "Unicità",
+        "description": "Soluzioni personalizzate che riflettono la tua personalità e il tuo stile di vita unico."
+      },
+      "professionalism": {
+        "title": "Professionalità",
+        "description": "Un servizio impeccabile dalla prima consulenza fino all'installazione finale."
+      }
+    },
+    "madeInItaly": {
+      "title": "Orgogliosamente Made in Italy",
+      "description": "L'Italia è sinonimo di eccellenza nel design e nell'artigianato. Ogni pezzo che selezioniamo porta con sé secoli di tradizione, innovazione e quella passione inconfondibile che solo il Made in Italy può offrire.",
+      "badges": {
+        "craftsmanship": "Artigianato d'Eccellenza",
+        "design": "Design Senza Tempo",
+        "materials": "Materiali Pregiati"
+      }
+    },
+    "ctaTitle": "Inizia il Tuo Viaggio",
+    "ctaDescription": "Scopri come possiamo trasformare i tuoi spazi in un riflesso della tua personalità e del tuo stile.",
+    "ctaServices": "Scopri i Servizi",
+    "ctaContact": "Contattaci"
   }
 }

@@ -288,5 +288,65 @@
       "projects": "200+ Projects Completed",
       "satisfaction": "100% Client Satisfaction"
     }
+  },
+  "contactPage": {
+    "label": "Let's Talk",
+    "heroTitle": "Contact Us",
+    "heroSubtitle": "We're here to transform your vision into reality",
+    "infoLabel": "Our Details",
+    "infoTitle": "Start a Conversation",
+    "infoDescription": "Every great project begins with a simple conversation. Whether you have a clear vision or are seeking inspiration, we're here to guide you on your journey to excellence.",
+    "formTitle": "Send Us a Message",
+    "formSubmit": "Send Message",
+    "subjects": {
+      "consulting": "Furniture Consulting",
+      "boutique": "Boutique",
+      "collaboration": "Collaboration",
+      "other": "Other"
+    }
+  },
+  "aboutPage": {
+    "label": "Our Story",
+    "heroTitle": "About Us",
+    "heroSubtitle": "Where passion for Italian design meets artisanal excellence",
+    "nameSection": {
+      "label": "The Name",
+      "title": "The Meaning of LAXMI",
+      "paragraph1": "LAXMI is named after the Hindu goddess of wealth, fortune, prosperity, beauty, and light. This name embodies our mission: to bring prosperity and beauty into the spaces where people live.",
+      "paragraph2": "Just as the goddess illuminates the lives of those who honor her, we aspire to illuminate our clients' homes with refined design, premium materials, and meticulous attention to detail."
+    },
+    "essenceTitle": "Our Essence",
+    "valuesTitle": "What Guides Us",
+    "values": {
+      "quality": {
+        "title": "Quality",
+        "description": "Only premium materials and exceptional craftsmanship to create pieces that stand the test of time."
+      },
+      "authenticity": {
+        "title": "Authenticity",
+        "description": "Every piece tells a story of Italian tradition, passion, and artisanal mastery."
+      },
+      "uniqueness": {
+        "title": "Uniqueness",
+        "description": "Personalized solutions that reflect your personality and unique lifestyle."
+      },
+      "professionalism": {
+        "title": "Professionalism",
+        "description": "Impeccable service from the first consultation to the final installation."
+      }
+    },
+    "madeInItaly": {
+      "title": "Proudly Made in Italy",
+      "description": "Italy is synonymous with excellence in design and craftsmanship. Every piece we select carries centuries of tradition, innovation, and that unmistakable passion that only Made in Italy can offer.",
+      "badges": {
+        "craftsmanship": "Excellence in Craftsmanship",
+        "design": "Timeless Design",
+        "materials": "Premium Materials"
+      }
+    },
+    "ctaTitle": "Begin Your Journey",
+    "ctaDescription": "Discover how we can transform your spaces into a reflection of your personality and style.",
+    "ctaServices": "Discover Services",
+    "ctaContact": "Contact Us"
   }
 }
