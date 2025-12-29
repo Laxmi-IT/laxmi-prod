@@ -169,20 +169,52 @@ export default async function Home({
           </svg>
         </div>
 
-        {/* Mobile Hero Image */}
-        <div className="lg:hidden absolute inset-0 top-16">
-          <Image
-            src="/images/hero-italian.jpg"
-            alt={locale === "it"
-              ? "Soggiorno di lusso italiano"
-              : "Luxury Italian living room"
-            }
-            fill
-            className="object-cover opacity-20"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        {/* Mobile Hero - Arch Frame Design */}
+        <div className="lg:hidden absolute inset-x-0 top-20 flex justify-center px-6 pt-4">
+          <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
+            {/* Outer gold border */}
+            <div
+              className="absolute -inset-2 border border-laxmi-gold/40"
+              style={{ borderRadius: "140px 140px 0 0" }}
+            />
+            {/* Image container with arch shape */}
+            <div
+              className="relative aspect-[3/4] overflow-hidden"
+              style={{ borderRadius: "130px 130px 0 0" }}
+            >
+              <Image
+                src="/images/hero-italian.jpg"
+                alt={locale === "it"
+                  ? "Soggiorno di lusso italiano"
+                  : "Luxury Italian living room"
+                }
+                fill
+                className="object-cover"
+                style={{ objectPosition: "center 30%" }}
+                priority
+                sizes="320px"
+              />
+              {/* Subtle gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/40 via-transparent to-transparent" />
+            </div>
+            {/* Decorative corner accents */}
+            <div className="absolute -top-4 -left-4 w-6 h-6">
+              <div className="absolute top-0 left-0 w-full h-px bg-laxmi-gold/60" />
+              <div className="absolute top-0 left-0 h-full w-px bg-laxmi-gold/60" />
+            </div>
+            <div className="absolute -top-4 -right-4 w-6 h-6">
+              <div className="absolute top-0 right-0 w-full h-px bg-laxmi-gold/60" />
+              <div className="absolute top-0 right-0 h-full w-px bg-laxmi-gold/60" />
+            </div>
+            <div className="absolute -bottom-2 -left-4 w-6 h-6">
+              <div className="absolute bottom-0 left-0 w-full h-px bg-laxmi-gold/60" />
+              <div className="absolute bottom-0 left-0 h-full w-px bg-laxmi-gold/60" />
+            </div>
+            <div className="absolute -bottom-2 -right-4 w-6 h-6">
+              <div className="absolute bottom-0 right-0 w-full h-px bg-laxmi-gold/60" />
+              <div className="absolute bottom-0 right-0 h-full w-px bg-laxmi-gold/60" />
+            </div>
+          </div>
         </div>
 
         {/* Content */}
@@ -190,7 +222,8 @@ export default async function Home({
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
             <div className="hidden lg:block" />
 
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 md:space-y-8 animate-fade-in-up pt-8 lg:pt-0">
+            {/* Mobile: Add top padding to account for arch image, Desktop: normal layout */}
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-5 md:space-y-8 animate-fade-in-up pt-[340px] sm:pt-[400px] lg:pt-0">
               {/* Main heading with sunburst above the I */}
               <h1 className="font-serif font-light text-foreground tracking-[0.15em] md:tracking-[0.25em] flex items-end justify-center lg:justify-start text-4xl sm:text-5xl md:text-6xl">
                 <span>LAXM</span>
