@@ -135,41 +135,54 @@ export default async function CollectionsPage({
           <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
         </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
+        {/* Content with frosted glass panel for maximum readability */}
+        <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
           <div className="max-w-2xl animate-fade-in-up">
-            {/* Label with improved visibility */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-px bg-laxmi-gold" />
-              <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                {dict.common.madeInItaly}
+            {/* Frosted glass content panel */}
+            <div className="relative bg-laxmi-espresso/80 backdrop-blur-md rounded-lg p-6 md:p-10 lg:p-12 border border-white/10 shadow-2xl">
+              {/* Decorative gold corner accents */}
+              <div className="absolute top-4 left-4 w-6 h-6">
+                <div className="absolute top-0 left-0 w-full h-px bg-laxmi-gold/60" />
+                <div className="absolute top-0 left-0 h-full w-px bg-laxmi-gold/60" />
+              </div>
+              <div className="absolute bottom-4 right-4 w-6 h-6">
+                <div className="absolute bottom-0 right-0 w-full h-px bg-laxmi-gold/60" />
+                <div className="absolute bottom-0 right-0 h-full w-px bg-laxmi-gold/60" />
+              </div>
+
+              {/* Label with improved visibility */}
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-10 h-px bg-laxmi-gold" />
+                <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+                  {dict.common.madeInItaly}
+                </p>
+              </div>
+
+              {/* Title - now highly readable */}
+              <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-5 md:mb-6">
+                {t.heroTitle}
+              </h1>
+
+              {/* Subtitle with excellent contrast */}
+              <p className="text-lg md:text-xl lg:text-2xl text-laxmi-champagne font-light mb-5 md:mb-6 tracking-wide">
+                {t.heroSubtitle}
               </p>
-            </div>
 
-            {/* Title with text-shadow for enhanced readability */}
-            <h1 className="font-serif font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-6 md:mb-8 [text-shadow:_0_2px_40px_rgba(0,0,0,0.3)]">
-              {t.heroTitle}
-            </h1>
+              {/* Decorative gold line */}
+              <div className="w-20 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/30 mb-5 md:mb-6" />
 
-            {/* Subtitle with better contrast */}
-            <p className="text-xl md:text-2xl text-white font-light mb-6 md:mb-8 tracking-wide [text-shadow:_0_1px_20px_rgba(0,0,0,0.2)]">
-              {t.heroSubtitle}
-            </p>
+              {/* Description - perfectly readable */}
+              <p className="text-sm md:text-base lg:text-lg text-white/90 font-light leading-relaxed">
+                {t.heroDescription}
+              </p>
 
-            {/* Decorative gold line */}
-            <div className="w-24 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/40 mb-8 md:mb-10" />
-
-            {/* Description with improved readability */}
-            <p className="text-base md:text-lg text-white/90 font-light leading-relaxed max-w-xl [text-shadow:_0_1px_10px_rgba(0,0,0,0.2)]">
-              {t.heroDescription}
-            </p>
-
-            {/* Enhanced scroll indicator */}
-            <div className="mt-12 md:mt-20 flex items-center gap-4">
-              <div className="w-px h-12 bg-gradient-to-b from-laxmi-gold to-transparent" />
-              <div className="flex flex-col gap-1">
-                <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold/80">{t.exploreButton}</span>
-                <span className="text-[10px] tracking-wider text-white/40">↓</span>
+              {/* Scroll indicator inside panel */}
+              <div className="mt-8 md:mt-10 flex items-center gap-3">
+                <div className="w-px h-10 bg-gradient-to-b from-laxmi-gold to-transparent" />
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs tracking-[0.2em] uppercase text-laxmi-gold">{t.exploreButton}</span>
+                  <span className="text-xs text-white/50">↓</span>
+                </div>
               </div>
             </div>
           </div>

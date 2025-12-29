@@ -29,14 +29,14 @@ export function CollectionSlideshow({
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % images.length);
-    setTimeout(() => setIsTransitioning(false), 500);
+    setTimeout(() => setIsTransitioning(false), 400);
   }, [images.length, isTransitioning]);
 
   const goToPrev = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    setTimeout(() => setIsTransitioning(false), 500);
+    setTimeout(() => setIsTransitioning(false), 400);
   }, [images.length, isTransitioning]);
 
   // Keyboard navigation
@@ -75,52 +75,53 @@ export function CollectionSlideshow({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-laxmi-espresso/98 backdrop-blur-md flex flex-col animate-fade-in"
+      className="fixed inset-0 z-50 bg-black/95 flex flex-col animate-fade-in"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
+      {/* Header with prominent controls */}
+      <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-black/50 to-transparent">
         {/* Series and counter */}
         <div className="flex items-center gap-3 md:gap-6">
-          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-laxmi-champagne/80">
+          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-laxmi-gold font-medium">
             {currentImage.series}
           </span>
-          <span className="text-xs text-white/40">
-            {currentIndex + 1} / {images.length}
+          <div className="hidden sm:block w-px h-4 bg-white/30" />
+          <span className="text-sm md:text-base text-white font-medium">
+            {currentIndex + 1} <span className="text-white/50">/ {images.length}</span>
           </span>
         </div>
 
-        {/* Close button */}
+        {/* Close button - HIGHLY VISIBLE */}
         <button
           onClick={onClose}
-          className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/10 transition-colors duration-300"
+          className="w-12 h-12 md:w-14 md:h-14 min-w-[48px] min-h-[48px] rounded-full bg-white text-laxmi-espresso flex items-center justify-center hover:bg-laxmi-gold hover:text-white transition-all duration-300 shadow-lg"
           aria-label="Close slideshow"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-4 md:px-16 pb-4 md:pb-8 gap-6 md:gap-12">
-        {/* Navigation - Previous (desktop only) */}
+      <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-4 md:px-16 pb-4 md:pb-8 gap-4 md:gap-8 relative">
+        {/* Navigation - Previous (desktop) - PROMINENT */}
         <button
           onClick={goToPrev}
-          className="hidden md:flex w-14 h-14 rounded-full bg-white/5 backdrop-blur-sm items-center justify-center text-white hover:bg-white/10 transition-colors duration-300 shrink-0"
+          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 backdrop-blur-sm items-center justify-center text-laxmi-espresso hover:bg-laxmi-gold hover:text-white transition-all duration-300 shrink-0 shadow-lg"
           aria-label="Previous image"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         {/* Image container */}
         <div className="relative flex-1 w-full max-w-5xl aspect-[4/3] md:aspect-[16/10]">
           <div
-            className={`relative w-full h-full transition-opacity duration-500 ${
-              isTransitioning ? 'opacity-0' : 'opacity-100'
+            className={`relative w-full h-full transition-all duration-400 ${
+              isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
             }`}
           >
             <Image
@@ -133,58 +134,58 @@ export function CollectionSlideshow({
             />
           </div>
 
-          {/* Decorative border */}
-          <div className="absolute inset-0 border border-laxmi-gold/10 pointer-events-none" />
+          {/* Elegant border frame */}
+          <div className="absolute inset-0 border border-laxmi-gold/20 pointer-events-none" />
         </div>
 
-        {/* Navigation - Next (desktop only) */}
+        {/* Navigation - Next (desktop) - PROMINENT */}
         <button
           onClick={goToNext}
-          className="hidden md:flex w-14 h-14 rounded-full bg-white/5 backdrop-blur-sm items-center justify-center text-white hover:bg-white/10 transition-colors duration-300 shrink-0"
+          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 backdrop-blur-sm items-center justify-center text-laxmi-espresso hover:bg-laxmi-gold hover:text-white transition-all duration-300 shrink-0 shadow-lg"
           aria-label="Next image"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
-      {/* Caption section */}
-      <div className="px-4 md:px-8 pb-6 md:pb-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-xl md:text-3xl text-white mb-3">
+      {/* Caption section with better readability */}
+      <div className="px-4 md:px-8 pb-4 md:pb-6">
+        <div className="max-w-3xl mx-auto text-center bg-black/40 backdrop-blur-sm rounded-lg p-4 md:p-6">
+          <h2 className="font-serif text-xl md:text-2xl lg:text-3xl text-white mb-2 md:mb-3">
             {title}
           </h2>
-          <p className="text-sm md:text-base text-white/60 font-light italic leading-relaxed">
+          <p className="text-sm md:text-base text-white/80 font-light italic leading-relaxed">
             &ldquo;{description}&rdquo;
           </p>
         </div>
       </div>
 
-      {/* Mobile navigation */}
-      <div className="md:hidden flex items-center justify-center gap-4 pb-6">
+      {/* Mobile navigation - HIGHLY VISIBLE */}
+      <div className="md:hidden flex items-center justify-center gap-6 pb-4">
         <button
           onClick={goToPrev}
-          className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white/5 flex items-center justify-center text-white"
+          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-white text-laxmi-espresso flex items-center justify-center shadow-lg active:bg-laxmi-gold active:text-white transition-colors"
           aria-label="Previous image"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        {/* Dot indicators */}
-        <div className="flex gap-1.5 max-w-[200px] overflow-hidden">
-          {images.slice(Math.max(0, currentIndex - 3), Math.min(images.length, currentIndex + 4)).map((_, i) => {
-            const actualIndex = Math.max(0, currentIndex - 3) + i;
+        {/* Dot indicators - more visible */}
+        <div className="flex gap-2 items-center">
+          {images.slice(Math.max(0, currentIndex - 2), Math.min(images.length, currentIndex + 3)).map((_, i) => {
+            const actualIndex = Math.max(0, currentIndex - 2) + i;
             return (
               <button
                 key={actualIndex}
                 onClick={() => setCurrentIndex(actualIndex)}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-300 rounded-full ${
                   actualIndex === currentIndex
-                    ? 'bg-laxmi-gold w-4'
-                    : 'bg-white/30'
+                    ? 'bg-laxmi-gold w-6 h-2'
+                    : 'bg-white/60 w-2 h-2 hover:bg-white'
                 }`}
                 aria-label={`Go to image ${actualIndex + 1}`}
               />
@@ -194,18 +195,18 @@ export function CollectionSlideshow({
 
         <button
           onClick={goToNext}
-          className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white/5 flex items-center justify-center text-white"
+          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-white text-laxmi-espresso flex items-center justify-center shadow-lg active:bg-laxmi-gold active:text-white transition-colors"
           aria-label="Next image"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
-      {/* Swipe hint on mobile */}
-      <p className="md:hidden text-center text-[10px] tracking-wider uppercase text-white/30 pb-4">
-        Swipe to navigate
+      {/* Swipe hint on mobile - more visible */}
+      <p className="md:hidden text-center text-xs tracking-wider uppercase text-white/60 pb-4">
+        {locale === 'it' ? 'Scorri per navigare' : 'Swipe to navigate'}
       </p>
     </div>
   );

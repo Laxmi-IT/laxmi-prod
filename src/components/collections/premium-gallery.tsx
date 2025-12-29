@@ -21,26 +21,18 @@ function FeaturedCard({
   index,
   locale,
   onClick,
-  size = 'large',
 }: {
   image: CollectionImage;
   index: number;
   locale: string;
   onClick: () => void;
-  size?: 'large' | 'tall' | 'wide';
 }) {
   const title = locale === 'it' ? image.title.it : image.title.en;
   const description = locale === 'it' ? image.description.it : image.description.en;
 
-  const sizeClasses = {
-    large: 'col-span-2 row-span-2 aspect-square md:aspect-auto',
-    tall: 'col-span-1 row-span-2 aspect-[3/4]',
-    wide: 'col-span-2 row-span-1 aspect-[16/9]',
-  };
-
   return (
     <div
-      className={`group relative overflow-hidden cursor-pointer animate-fade-in-up ${sizeClasses[size]}`}
+      className="group relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden cursor-pointer animate-fade-in-up"
       style={{ animationDelay: `${index * 100}ms` }}
       onClick={onClick}
     >
@@ -50,13 +42,13 @@ function FeaturedCard({
         alt={title}
         fill
         className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
-        sizes={size === 'large' ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 50vw'}
+        sizes="(max-width: 768px) 100vw, 66vw"
         loading={index < 3 ? 'eager' : 'lazy'}
         quality={90}
       />
 
       {/* Gradient overlay - always visible but stronger on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/90 via-laxmi-espresso/30 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/90 via-laxmi-espresso/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
 
       {/* Content overlay - always visible */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
@@ -166,19 +158,6 @@ export function PremiumGallery({ locale, translations }: PremiumGalleryProps) {
     setSelectedImageIndex(null);
   };
 
-  // Determine layout pattern based on number of images
-  const getLayoutPattern = (images: CollectionImage[]) => {
-    if (images.length === 0) return { featured: [], standard: [] };
-
-    // First image is always featured large
-    const featured = images.slice(0, 1);
-    const standard = images.slice(1);
-
-    return { featured, standard };
-  };
-
-  const { featured, standard } = getLayoutPattern(filteredImages);
-
   return (
     <div className="space-y-12 md:space-y-16">
       {/* Filter section with improved spacing */}
@@ -199,61 +178,24 @@ export function PremiumGallery({ locale, translations }: PremiumGalleryProps) {
         </div>
       </div>
 
-      {/* Gallery grid with masonry-style layout */}
+      {/* Gallery grid - Simple uniform layout that works */}
       {filteredImages.length > 0 ? (
         <div className="space-y-6 md:space-y-8">
-          {/* Featured section - first image large */}
-          {featured.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              {/* Large featured image */}
-              <div className="md:col-span-2">
-                <FeaturedCard
-                  image={featured[0]}
-                  index={0}
-                  locale={locale}
-                  onClick={() => handleImageClick(0)}
-                  size="large"
-                />
-              </div>
-
-              {/* Two standard cards on the right (if available) */}
-              <div className="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-6">
-                {standard.slice(0, 2).map((image, idx) => (
-                  <StandardCard
-                    key={image.id}
-                    image={image}
-                    index={idx + 1}
-                    locale={locale}
-                    onClick={() => handleImageClick(idx + 1)}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* First row: Featured large image */}
+          {filteredImages.length > 0 && (
+            <FeaturedCard
+              image={filteredImages[0]}
+              index={0}
+              locale={locale}
+              onClick={() => handleImageClick(0)}
+            />
           )}
 
-          {/* Remaining images in a varied grid */}
-          {standard.length > 2 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-              {standard.slice(2).map((image, idx) => {
-                const actualIndex = idx + 3; // Account for featured + first 2 standard
-
-                // Every 7th image (after the first) gets a wide layout on desktop
-                const isWide = idx > 0 && idx % 7 === 0;
-
-                if (isWide) {
-                  return (
-                    <div key={image.id} className="sm:col-span-2">
-                      <FeaturedCard
-                        image={image}
-                        index={actualIndex}
-                        locale={locale}
-                        onClick={() => handleImageClick(actualIndex)}
-                        size="wide"
-                      />
-                    </div>
-                  );
-                }
-
+          {/* Remaining images in a clean grid */}
+          {filteredImages.length > 1 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {filteredImages.slice(1).map((image, idx) => {
+                const actualIndex = idx + 1;
                 return (
                   <StandardCard
                     key={image.id}
