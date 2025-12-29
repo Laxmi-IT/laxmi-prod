@@ -35,7 +35,7 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {galleryItems.map((image, index) => (
           <div
             key={image.id}
@@ -57,7 +57,7 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <span className="text-xs tracking-[0.2em] uppercase text-laxmi-champagne/80 mb-2">
+              <span className="text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase text-laxmi-champagne/80 mb-2">
                 {image.category}
               </span>
               <h3 className="font-serif text-xl text-white">
@@ -103,7 +103,8 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
             {/* Close button */}
             <button
               onClick={() => setSelectedIndex(null)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
+              className="absolute top-4 right-4 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
+              aria-label="Close lightbox"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
@@ -112,7 +113,7 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
 
             {/* Image info */}
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-laxmi-espresso/90 to-transparent">
-              <span className="text-xs tracking-[0.2em] uppercase text-laxmi-champagne/80 mb-2 block">
+              <span className="text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase text-laxmi-champagne/80 mb-2 block">
                 {selectedImage.category}
               </span>
               <h3 className="font-serif text-2xl text-white mb-2">

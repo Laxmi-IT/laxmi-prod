@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LuxuryGallery } from "@/components/luxury-gallery";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale } from "@/i18n/config";
 
@@ -71,11 +72,11 @@ export default async function Home({
     <div className="min-h-screen bg-background overflow-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
-        <div className="container mx-auto flex h-20 items-center justify-between px-6 lg:px-12">
+        <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex flex-col items-center group">
-            <SunburstLogo className="w-10 h-6 text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
-            <span className="text-xl tracking-[0.3em] font-serif font-light mt-1">
+            <SunburstLogo className="w-8 h-5 md:w-10 md:h-6 text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
+            <span className="text-lg md:text-xl tracking-[0.25em] md:tracking-[0.3em] font-serif font-light mt-0.5 md:mt-1">
               LAXMI
             </span>
           </Link>
@@ -89,18 +90,28 @@ export default async function Home({
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
 
-          {/* Theme Toggle & Language Switcher */}
-          <div className="flex items-center gap-4">
+          {/* Theme Toggle, Language Switcher & Mobile Nav */}
+          <div className="flex items-center gap-2 md:gap-4">
             <LanguageSwitcher locale={locale} />
             <ThemeToggle />
+            <MobileNav
+              locale={locale}
+              navItems={[
+                { href: `/${locale}`, label: dict.nav.home },
+                { href: `/${locale}/consulting`, label: dict.nav.consulting },
+                { href: `/${locale}/collections`, label: dict.nav.collections },
+                { href: `/${locale}/about`, label: dict.nav.about },
+                { href: `/${locale}/contact`, label: dict.nav.contact },
+              ]}
+            />
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        {/* Single S-Curve Image Layout */}
-        <div className="absolute left-0 top-[80px] w-[52%] h-[calc(100vh-80px)]">
+      <section className="relative min-h-screen flex items-center pt-16 md:pt-20">
+        {/* Single S-Curve Image Layout - Hidden on mobile */}
+        <div className="hidden lg:block absolute left-0 top-[80px] w-[52%] h-[calc(100vh-80px)]">
           <svg className="absolute" width="0" height="0">
             <defs>
               <clipPath id="hero-s-curve" clipPathUnits="objectBoundingBox">
@@ -158,17 +169,33 @@ export default async function Home({
           </svg>
         </div>
 
+        {/* Mobile Hero Image */}
+        <div className="lg:hidden absolute inset-0 top-16">
+          <Image
+            src="/images/hero-italian.jpg"
+            alt={locale === "it"
+              ? "Soggiorno di lusso italiano"
+              : "Luxury Italian living room"
+            }
+            fill
+            className="object-cover opacity-20"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        </div>
+
         {/* Content */}
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
             <div className="hidden lg:block" />
 
-            <div className="flex flex-col items-start lg:items-start space-y-8 animate-fade-in-up">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 md:space-y-8 animate-fade-in-up pt-8 lg:pt-0">
               {/* Main heading with sunburst above the I */}
-              <h1 className="font-serif font-light text-foreground tracking-[0.25em] flex items-end">
+              <h1 className="font-serif font-light text-foreground tracking-[0.15em] md:tracking-[0.25em] flex items-end justify-center lg:justify-start text-4xl sm:text-5xl md:text-6xl">
                 <span>LAXM</span>
                 <span className="flex flex-col items-center">
-                  <SunburstLogo className="w-12 h-10 text-laxmi-gold -mb-1" />
+                  <SunburstLogo className="w-10 h-8 md:w-12 md:h-10 text-laxmi-gold -mb-1" />
                   <span>I</span>
                 </span>
               </h1>
@@ -185,13 +212,13 @@ export default async function Home({
 
               <DecorativeLine className="w-32 text-laxmi-gold opacity-60" />
 
-              <p className="text-lg text-muted-foreground max-w-md leading-relaxed font-light">
+              <p className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed font-light mx-auto lg:mx-0">
                 {dict.hero.description} <span className="text-laxmi-bronze font-normal">{dict.hero.madeInItaly}</span>
               </p>
 
               <Link
                 href={`/${locale}/book`}
-                className="btn-luxury text-laxmi-bronze border-laxmi-bronze hover:bg-laxmi-bronze hover:text-laxmi-cream mt-4"
+                className="btn-luxury text-laxmi-bronze border-laxmi-bronze hover:bg-laxmi-bronze hover:text-laxmi-cream mt-4 w-full sm:w-auto"
               >
                 {dict.hero.cta}
               </Link>
@@ -205,15 +232,15 @@ export default async function Home({
       </section>
 
       {/* Values Section */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-20 animate-fade-in-up">
+      <section className="py-16 md:py-24 lg:py-32 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-10 md:mb-16 lg:mb-20 animate-fade-in-up">
             <p className="text-spaced text-laxmi-gold mb-4">{dict.values.sectionLabel}</p>
             <h2 className="font-serif font-light">{dict.values.sectionTitle}</h2>
-            <div className="gold-line w-24 mx-auto mt-8" />
+            <div className="gold-line w-24 mx-auto mt-6 md:mt-8" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
             {/* Vision */}
             <div className="card-luxury text-center group animate-fade-in-up delay-100">
               <div className="w-12 h-12 mx-auto mb-6 rounded-full bg-laxmi-champagne/50 flex items-center justify-center group-hover:bg-laxmi-gold/20 transition-colors duration-500">
@@ -258,13 +285,13 @@ export default async function Home({
       </section>
 
       {/* Services Section */}
-      <section className="py-32 bg-laxmi-cream/30 dark:bg-card/30 relative overflow-hidden">
-        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-laxmi-champagne/20 blur-3xl pointer-events-none" />
+      <section className="py-16 md:py-24 lg:py-32 bg-laxmi-cream/30 dark:bg-card/30 relative overflow-hidden">
+        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-laxmi-champagne/20 blur-3xl pointer-events-none hidden md:block" />
 
-        <div className="container mx-auto px-6 lg:px-12 relative">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative animate-fade-in-up">
-              <div className="aspect-[4/5] relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            <div className="relative animate-fade-in-up order-2 lg:order-1">
+              <div className="aspect-[4/5] relative mx-auto max-w-sm lg:max-w-none">
                 <div
                   className="absolute inset-0 border border-laxmi-gold/30"
                   style={{ borderRadius: "120px 120px 0 0" }}
@@ -296,10 +323,10 @@ export default async function Home({
               </div>
             </div>
 
-            <div className="space-y-8 animate-fade-in-up delay-200">
-              <p className="text-spaced text-laxmi-gold">{dict.services.sectionLabel}</p>
-              <h2 className="font-serif font-light">{dict.services.sectionTitle}</h2>
-              <div className="gold-line w-16" />
+            <div className="space-y-6 md:space-y-8 animate-fade-in-up delay-200 order-1 lg:order-2">
+              <p className="text-spaced text-laxmi-gold text-center lg:text-left">{dict.services.sectionLabel}</p>
+              <h2 className="font-serif font-light text-center lg:text-left">{dict.services.sectionTitle}</h2>
+              <div className="gold-line w-16 mx-auto lg:mx-0" />
 
               <div className="space-y-6 pt-4">
                 <div className="flex gap-4 group">
@@ -335,7 +362,7 @@ export default async function Home({
 
               <Link
                 href={`/${locale}/services`}
-                className="inline-flex items-center gap-2 text-laxmi-bronze hover:text-laxmi-espresso transition-colors duration-300 mt-4"
+                className="inline-flex items-center justify-center lg:justify-start gap-2 text-laxmi-bronze hover:text-laxmi-espresso transition-colors duration-300 mt-4 min-h-[44px] py-2 w-full lg:w-auto"
               >
                 <span className="text-spaced text-sm">{dict.services.discoverMore}</span>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -348,9 +375,9 @@ export default async function Home({
       </section>
 
       {/* Gallery Section */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16 animate-fade-in-up">
+      <section className="py-16 md:py-24 lg:py-32 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-10 md:mb-16 animate-fade-in-up">
             <p className="text-spaced text-laxmi-gold mb-4">{dict.gallery.sectionLabel}</p>
             <h2 className="font-serif font-light">{dict.gallery.sectionTitle}</h2>
             <p className="text-muted-foreground font-light mt-6 max-w-xl mx-auto">
@@ -361,10 +388,10 @@ export default async function Home({
 
           <LuxuryGallery images={dict.gallery.images} />
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 md:mt-12">
             <Link
               href={`/${locale}/collections`}
-              className="inline-flex items-center gap-2 text-laxmi-bronze hover:text-laxmi-espresso transition-colors duration-300"
+              className="inline-flex items-center gap-2 text-laxmi-bronze hover:text-laxmi-espresso transition-colors duration-300 min-h-[44px] py-2"
             >
               <span className="text-spaced text-sm">{dict.gallery.viewAll}</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -376,15 +403,15 @@ export default async function Home({
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative bg-laxmi-cream/20 dark:bg-card/20">
-        <div className="container mx-auto px-6 lg:px-12">
+      <section className="py-16 md:py-24 lg:py-32 relative bg-laxmi-cream/20 dark:bg-card/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
-            <SunburstLogo className="w-20 h-12 text-laxmi-gold mx-auto mb-8" />
-            <h2 className="font-serif font-light mb-6">{dict.cta.title}</h2>
-            <p className="text-lg text-muted-foreground font-light mb-10 max-w-xl mx-auto">
+            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 text-laxmi-gold mx-auto mb-6 md:mb-8" />
+            <h2 className="font-serif font-light mb-4 md:mb-6">{dict.cta.title}</h2>
+            <p className="text-base md:text-lg text-muted-foreground font-light mb-8 md:mb-10 max-w-xl mx-auto">
               {dict.cta.description}
             </p>
-            <Link href={`/${locale}/contact`} className="btn-luxury-filled">
+            <Link href={`/${locale}/contact`} className="btn-luxury-filled w-full sm:w-auto">
               {dict.cta.button}
             </Link>
           </div>
@@ -392,12 +419,12 @@ export default async function Home({
       </section>
 
       {/* Footer */}
-      <footer className="py-16 border-t border-border/30">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div className="md:col-span-2">
-              <div className="flex flex-col items-start">
-                <SunburstLogo className="w-12 h-8 text-laxmi-bronze mb-2" />
+      <footer className="py-10 md:py-12 lg:py-16 border-t border-border/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
+            <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
+              <div className="flex flex-col items-center sm:items-start">
+                <SunburstLogo className="w-10 h-6 md:w-12 md:h-8 text-laxmi-bronze mb-2" />
                 <span className="text-lg tracking-[0.3em] font-serif font-light">LAXMI</span>
               </div>
               <p className="text-muted-foreground font-light mt-4 max-w-sm">
@@ -405,33 +432,33 @@ export default async function Home({
               </p>
             </div>
 
-            <div>
-              <h4 className="text-spaced text-xs mb-6 text-laxmi-bronze">{dict.footer.navigation}</h4>
-              <ul className="space-y-3">
-                <li><Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors font-light">{dict.nav.home}</Link></li>
-                <li><Link href={`/${locale}/consulting`} className="text-muted-foreground hover:text-foreground transition-colors font-light">{dict.nav.consulting}</Link></li>
-                <li><Link href={`/${locale}/collections`} className="text-muted-foreground hover:text-foreground transition-colors font-light">{dict.nav.collections}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-muted-foreground hover:text-foreground transition-colors font-light">{dict.nav.about}</Link></li>
+            <div className="text-center sm:text-left">
+              <h4 className="text-spaced text-xs mb-4 md:mb-6 text-laxmi-bronze">{dict.footer.navigation}</h4>
+              <ul className="space-y-1">
+                <li><Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.home}</Link></li>
+                <li><Link href={`/${locale}/consulting`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.consulting}</Link></li>
+                <li><Link href={`/${locale}/collections`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.collections}</Link></li>
+                <li><Link href={`/${locale}/about`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.about}</Link></li>
               </ul>
             </div>
 
-            <div>
-              <h4 className="text-spaced text-xs mb-6 text-laxmi-bronze">{dict.footer.contact}</h4>
-              <ul className="space-y-3 text-muted-foreground font-light">
-                <li>thelaxmii07@gmail.com</li>
-                <li>+39 000 000 0000</li>
-                <li>{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+            <div className="text-center sm:text-left">
+              <h4 className="text-spaced text-xs mb-4 md:mb-6 text-laxmi-bronze">{dict.footer.contact}</h4>
+              <ul className="space-y-2 text-muted-foreground font-light">
+                <li className="py-1">thelaxmii07@gmail.com</li>
+                <li className="py-1">+39 000 000 0000</li>
+                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
               </ul>
             </div>
           </div>
 
-          <div className="gold-line mt-12 mb-8" />
+          <div className="gold-line mt-8 md:mt-12 mb-6 md:mb-8" />
 
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground font-light">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <p className="text-sm text-muted-foreground font-light order-2 md:order-1">
               &copy; {new Date().getFullYear()} LAXMI. {dict.footer.copyright}
             </p>
-            <p className="text-sm text-muted-foreground font-light italic">
+            <p className="text-sm text-muted-foreground font-light italic order-1 md:order-2">
               {dict.footer.quote}
             </p>
           </div>

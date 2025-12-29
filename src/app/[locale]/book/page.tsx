@@ -189,14 +189,14 @@ export default function BookPage() {
     <main className="min-h-screen bg-laxmi-cream dark:bg-background transition-colors duration-300">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-laxmi-cream/95 dark:bg-background/95 backdrop-blur-md border-b border-laxmi-gold/10">
-        <div className="container mx-auto flex h-20 items-center justify-between px-6 lg:px-12">
-          <Link href={`/${locale}`} className="text-xl tracking-[0.3em] font-serif font-light text-foreground">
+        <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
+          <Link href={`/${locale}`} className="text-lg md:text-xl tracking-[0.25em] md:tracking-[0.3em] font-serif font-light text-foreground">
             LAXMI
           </Link>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             <Link
               href={`/${locale}`}
-              className="text-sm tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm tracking-wider text-muted-foreground hover:text-foreground transition-colors min-h-[44px] flex items-center"
             >
               {t.back}
             </Link>
@@ -206,22 +206,22 @@ export default function BookPage() {
         </div>
       </header>
 
-      <div className="pt-32 pb-20 px-6 lg:px-12">
+      <div className="pt-24 md:pt-28 lg:pt-32 pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-12">
         <div className="max-w-5xl mx-auto">
           {/* Page Title */}
-          <div className="text-center mb-16">
-            <p className="text-spaced text-laxmi-bronze mb-4">{t.subtitle}</p>
-            <h1 className="font-serif font-light text-4xl md:text-5xl mb-6 text-foreground">
+          <div className="text-center mb-10 md:mb-12 lg:mb-16">
+            <p className="text-spaced text-laxmi-bronze mb-3 md:mb-4">{t.subtitle}</p>
+            <h1 className="font-serif font-light text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6 text-foreground">
               {t.title}
             </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
               {t.description}
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-5 gap-12">
+          <div className="grid lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12">
             {/* Booking Form - 3 columns */}
-            <div className="lg:col-span-3 bg-white dark:bg-card rounded-xl p-8 md:p-10 shadow-sm border border-laxmi-gold/10">
+            <div className="lg:col-span-3 bg-white dark:bg-card rounded-xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-sm border border-laxmi-gold/10">
               {submitStatus === 'success' ? (
                 <div className="text-center py-12">
                   <div className="w-20 h-20 bg-laxmi-gold/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -266,7 +266,7 @@ export default function BookPage() {
                     </div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                     {/* Name */}
                     <div>
                       <label className="block text-sm font-medium mb-2 text-foreground">{t.form.name}</label>
@@ -275,13 +275,13 @@ export default function BookPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
+                        className="w-full px-4 py-3.5 min-h-[48px] text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
                         placeholder={t.form.namePlaceholder}
                       />
                     </div>
 
                     {/* Email & Phone */}
-                    <div className="grid md:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div>
                         <label className="block text-sm font-medium mb-2 text-foreground">{t.form.email}</label>
                         <input
@@ -289,7 +289,7 @@ export default function BookPage() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
+                          className="w-full px-4 py-3.5 min-h-[48px] text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
                           placeholder={t.form.emailPlaceholder}
                         />
                       </div>
@@ -299,14 +299,14 @@ export default function BookPage() {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
+                          className="w-full px-4 py-3.5 min-h-[48px] text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
                           placeholder={t.form.phonePlaceholder}
                         />
                       </div>
                     </div>
 
                     {/* Date & Time */}
-                    <div className="grid md:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div>
                         <label className="block text-sm font-medium mb-2 text-foreground">{t.form.date}</label>
                         <input
@@ -316,7 +316,7 @@ export default function BookPage() {
                           max={getMaxDate()}
                           value={formData.date}
                           onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                          className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
+                          className="w-full px-4 py-3.5 min-h-[48px] text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
                         />
                       </div>
                       <div>
@@ -325,7 +325,7 @@ export default function BookPage() {
                           required
                           value={formData.time}
                           onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                          className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
+                          className="w-full px-4 py-3.5 min-h-[48px] text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all"
                         >
                           <option value="">{t.form.timeSelect}</option>
                           {TIME_SLOTS.map((slot) => (
@@ -344,7 +344,7 @@ export default function BookPage() {
                         rows={4}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3.5 border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all resize-none"
+                        className="w-full px-4 py-3.5 text-base border border-laxmi-gold/20 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-laxmi-gold/30 focus:border-laxmi-gold/40 transition-all resize-none"
                         placeholder={t.form.messagePlaceholder}
                       />
                     </div>
@@ -353,7 +353,7 @@ export default function BookPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-laxmi-bronze text-white font-medium tracking-wider rounded-lg hover:bg-laxmi-espresso transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-4 min-h-[52px] text-base bg-laxmi-bronze text-white font-medium tracking-wider rounded-lg hover:bg-laxmi-espresso transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
@@ -373,9 +373,9 @@ export default function BookPage() {
             </div>
 
             {/* Sidebar - 2 columns */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-5 md:space-y-6">
               {/* The Experience */}
-              <div className="bg-laxmi-gold/5 dark:bg-card/50 rounded-xl p-8 border border-laxmi-gold/10">
+              <div className="bg-laxmi-gold/5 dark:bg-card/50 rounded-xl p-5 sm:p-6 md:p-8 border border-laxmi-gold/10">
                 <h3 className="font-serif text-xl mb-6 text-foreground">{t.experience.title}</h3>
                 <ul className="space-y-5">
                   {t.experience.steps.map((item, i) => (
@@ -393,7 +393,7 @@ export default function BookPage() {
               </div>
 
               {/* Contact Info */}
-              <div className="bg-white dark:bg-card rounded-xl p-8 shadow-sm border border-laxmi-gold/10">
+              <div className="bg-white dark:bg-card rounded-xl p-5 sm:p-6 md:p-8 shadow-sm border border-laxmi-gold/10">
                 <h3 className="font-serif text-xl mb-6 text-foreground">{t.contact.title}</h3>
                 <div className="space-y-4">
                   <a

@@ -32,7 +32,7 @@ export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 px-3 text-sm font-light tracking-wide hover:bg-laxmi-champagne/30 transition-colors"
+          className="h-11 min-h-[44px] px-3 text-sm font-light tracking-wide hover:bg-laxmi-champagne/30 transition-colors"
         >
           <span className="mr-2">{localeFlags[locale]}</span>
           <span className="hidden sm:inline">{localeNames[locale]}</span>

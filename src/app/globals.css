@@ -223,8 +223,9 @@
 @layer components {
   /* Elegant Button Styles */
   .btn-luxury {
-    @apply relative inline-flex items-center justify-center px-8 py-3;
-    @apply font-light tracking-[0.2em] uppercase text-sm;
+    @apply relative inline-flex items-center justify-center px-6 py-3.5 md:px-8 md:py-3;
+    @apply min-h-[44px] md:min-h-[48px];
+    @apply font-light tracking-[0.15em] md:tracking-[0.2em] uppercase text-sm;
     @apply border border-current;
     @apply transition-all duration-500 ease-out;
     @apply overflow-hidden;
@@ -243,8 +244,9 @@
   }
 
   .btn-luxury-filled {
-    @apply relative inline-flex items-center justify-center px-8 py-3;
-    @apply font-light tracking-[0.2em] uppercase text-sm;
+    @apply relative inline-flex items-center justify-center px-6 py-3.5 md:px-8 md:py-3;
+    @apply min-h-[44px] md:min-h-[48px];
+    @apply font-light tracking-[0.15em] md:tracking-[0.2em] uppercase text-sm;
     @apply border transition-all duration-500 ease-out overflow-hidden;
     background-color: var(--laxmi-bronze);
     color: var(--laxmi-cream);
@@ -286,7 +288,7 @@
 
   /* Luxury Card */
   .card-luxury {
-    @apply relative bg-card p-8;
+    @apply relative bg-card p-5 sm:p-6 md:p-8;
     @apply border border-border/50;
     @apply transition-all duration-500 ease-out;
     box-shadow: 0 4px 40px rgba(46, 30, 24, 0.04);
@@ -324,14 +326,15 @@
   }
 
   .text-spaced {
-    @apply uppercase tracking-[0.25em] text-sm font-light;
+    @apply uppercase tracking-[0.15em] md:tracking-[0.25em] text-sm font-light;
   }
 
   /* Navigation Link */
   .nav-link {
-    @apply relative text-sm tracking-[0.15em] uppercase;
+    @apply relative text-sm tracking-[0.1em] md:tracking-[0.15em] uppercase;
     @apply text-foreground/70 hover:text-foreground;
     @apply transition-colors duration-300;
+    @apply py-2 min-h-[44px] inline-flex items-center;
   }
 
   .nav-link::after {
@@ -374,6 +377,20 @@
    ANIMATIONS
    ============================================ */
 @layer utilities {
+  /* Simple Fade In */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   /* Fade In Up */
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;

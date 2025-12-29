@@ -21,7 +21,7 @@ export function ThemeToggle() {
         <Button
           variant="ghost"
           size="icon"
-          className="relative w-10 h-10 rounded-full border border-border/50 bg-transparent hover:bg-laxmi-champagne/20 hover:border-laxmi-gold/30 transition-all duration-300"
+          className="relative w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-border/50 bg-transparent hover:bg-laxmi-champagne/20 hover:border-laxmi-gold/30 transition-all duration-300"
         >
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all duration-500 text-laxmi-gold dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all duration-500 text-laxmi-gold dark:rotate-0 dark:scale-100" />
