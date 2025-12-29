@@ -75,12 +75,15 @@ export function CollectionSlideshow({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-laxmi-espresso/98 flex flex-col animate-fade-in"
+      className="fixed inset-0 z-50 bg-laxmi-espresso flex flex-col animate-fade-in"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Solid background layer to ensure no content bleeds through */}
+      <div className="absolute inset-0 bg-laxmi-espresso" />
+
       {/* Header with prominent controls */}
-      <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-laxmi-espresso/50 to-transparent">
+      <div className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-laxmi-espresso/50 to-transparent">
         {/* Series and counter */}
         <div className="flex items-center gap-3 md:gap-6">
           <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-laxmi-gold font-light">
@@ -105,7 +108,7 @@ export function CollectionSlideshow({
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-4 md:px-16 pb-4 md:pb-8 gap-4 md:gap-8 relative">
+      <div className="relative z-10 flex-1 flex flex-col md:flex-row items-center justify-center px-4 md:px-16 pb-4 md:pb-8 gap-4 md:gap-8">
         {/* Navigation - Previous (desktop) - PROMINENT */}
         <button
           onClick={goToPrev}
@@ -151,7 +154,7 @@ export function CollectionSlideshow({
       </div>
 
       {/* Caption section with better readability */}
-      <div className="px-4 md:px-8 pb-4 md:pb-6">
+      <div className="relative z-10 px-4 md:px-8 pb-4 md:pb-6">
         <div className="max-w-3xl mx-auto text-center bg-laxmi-espresso/60 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-laxmi-gold/10">
           <h2 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-laxmi-cream mb-2 md:mb-3">
             {title}
@@ -163,7 +166,7 @@ export function CollectionSlideshow({
       </div>
 
       {/* Mobile navigation - HIGHLY VISIBLE */}
-      <div className="md:hidden flex items-center justify-center gap-6 pb-4">
+      <div className="relative z-10 md:hidden flex items-center justify-center gap-6 pb-4">
         <button
           onClick={goToPrev}
           className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-white text-laxmi-espresso flex items-center justify-center shadow-lg active:bg-laxmi-gold active:text-white transition-colors"
@@ -205,7 +208,7 @@ export function CollectionSlideshow({
       </div>
 
       {/* Swipe hint on mobile - more visible */}
-      <p className="md:hidden text-center text-xs tracking-wider uppercase text-laxmi-cream/60 pb-4 font-light">
+      <p className="relative z-10 md:hidden text-center text-xs tracking-wider uppercase text-laxmi-cream/60 pb-4 font-light">
         {locale === 'it' ? 'Scorri per navigare' : 'Swipe to navigate'}
       </p>
     </div>

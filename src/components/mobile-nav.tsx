@@ -68,18 +68,18 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
       </button>
 
-      {/* Overlay */}
+      {/* Overlay - Strong blur for readability */}
       <div
-        className={`fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-laxmi-cream/95 dark:bg-background/95 backdrop-blur-xl z-40 md:hidden transition-opacity duration-300 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
         aria-hidden="true"
       />
 
-      {/* Menu Panel */}
+      {/* Menu Panel - Full width on mobile with solid background */}
       <nav
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-background border-l border-border/30 z-50 md:hidden transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 bottom-0 w-full bg-laxmi-cream dark:bg-background border-l border-border/30 z-50 md:hidden transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-label="Mobile navigation"
