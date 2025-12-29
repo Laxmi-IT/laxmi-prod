@@ -373,13 +373,19 @@ export default async function CollectionsPage({
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Subtitle badge */}
+            {/* Subtitle badge - Premium Glassmorphism Gold */}
             <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-px bg-laxmi-gold" />
-              <span className="text-xs md:text-sm tracking-[0.25em] uppercase text-laxmi-gold font-medium px-4 py-2 border border-laxmi-gold/30 rounded-full">
-                {t.story3Subtitle}
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-laxmi-gold" />
+              <span className="relative text-xs md:text-sm tracking-[0.25em] uppercase text-laxmi-gold font-medium px-6 py-2.5 rounded-full overflow-hidden">
+                {/* Glassmorphism background */}
+                <span className="absolute inset-0 bg-laxmi-gold/15 backdrop-blur-md" />
+                <span className="absolute inset-0 bg-gradient-to-br from-laxmi-gold/20 via-laxmi-gold/10 to-transparent" />
+                <span className="absolute inset-0 border border-laxmi-gold/40 rounded-full" />
+                <span className="absolute inset-0 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)]" />
+                {/* Text */}
+                <span className="relative z-10">{t.story3Subtitle}</span>
               </span>
-              <div className="w-12 h-px bg-laxmi-gold" />
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-laxmi-gold" />
             </div>
 
             {/* Title */}

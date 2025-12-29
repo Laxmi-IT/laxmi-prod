@@ -58,12 +58,12 @@ function FeaturedCard({
         </span>
 
         {/* Title */}
-        <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-white mb-2 md:mb-3 group-hover:translate-x-2 transition-transform duration-500">
+        <h3 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-laxmi-cream mb-2 md:mb-3 group-hover:translate-x-2 transition-transform duration-500">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm md:text-base text-white/80 font-light line-clamp-2 max-w-md opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+        <p className="text-sm md:text-base text-laxmi-cream/80 font-light line-clamp-2 max-w-md opacity-80 group-hover:opacity-100 transition-opacity duration-500">
           {description}
         </p>
 
@@ -106,7 +106,7 @@ function StandardCard({
   return (
     <div
       className="group relative aspect-[4/3] overflow-hidden cursor-pointer animate-fade-in-up"
-      style={{ animationDelay: `${(index % 12) * 80}ms` }}
+      style={{ animationDelay: `${(index % 12) * 100}ms` }}
       onClick={onClick}
     >
       {/* Image */}
@@ -130,7 +130,7 @@ function StandardCard({
         </span>
 
         {/* Title */}
-        <h3 className="font-serif text-lg md:text-xl text-white">
+        <h3 className="font-serif font-light text-lg md:text-xl text-laxmi-cream">
           {title}
         </h3>
       </div>

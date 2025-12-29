@@ -18,9 +18,9 @@ export function CategoryFilter({ activeCategory, onCategoryChange, locale }: Cat
             <button
               key={cat.value}
               onClick={() => onCategoryChange(cat.value)}
-              className={`relative px-6 py-3 text-sm tracking-[0.12em] uppercase transition-all duration-300 rounded-full ${
+              className={`relative px-6 py-3 text-sm tracking-[0.12em] uppercase transition-all duration-300 rounded-full font-light ${
                 activeCategory === cat.value
-                  ? 'bg-laxmi-espresso text-white shadow-lg'
+                  ? 'bg-laxmi-espresso text-laxmi-cream shadow-lg'
                   : 'text-laxmi-espresso/60 hover:text-laxmi-espresso hover:bg-white/50'
               }`}
             >
@@ -42,11 +42,11 @@ export function CategoryFilter({ activeCategory, onCategoryChange, locale }: Cat
               <button
                 key={cat.value}
                 onClick={() => onCategoryChange(cat.value)}
-                className={`relative px-4 py-4 rounded-xl text-sm tracking-[0.08em] uppercase transition-all duration-300 min-h-[52px] font-medium border flex items-center justify-center gap-2 ${
+                className={`relative px-4 py-4 rounded-xl text-sm tracking-[0.08em] uppercase transition-all duration-300 min-h-[52px] font-light border flex items-center justify-center gap-2 ${
                   isAll ? 'col-span-2' : ''
                 } ${
                   isActive
-                    ? 'bg-laxmi-espresso text-white border-laxmi-espresso shadow-md'
+                    ? 'bg-laxmi-espresso text-laxmi-cream border-laxmi-espresso shadow-md'
                     : 'bg-white dark:bg-card border-laxmi-espresso/10 text-laxmi-espresso/70 active:bg-laxmi-cream/50'
                 }`}
               >

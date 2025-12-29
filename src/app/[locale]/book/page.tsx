@@ -269,7 +269,7 @@ export default function BookPage() {
                   <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                     {/* Name */}
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-foreground">{t.form.name}</label>
+                      <label className="block text-sm font-light mb-2 text-foreground">{t.form.name}</label>
                       <input
                         type="text"
                         required
@@ -283,7 +283,7 @@ export default function BookPage() {
                     {/* Email & Phone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">{t.form.email}</label>
+                        <label className="block text-sm font-light mb-2 text-foreground">{t.form.email}</label>
                         <input
                           type="email"
                           required
@@ -294,7 +294,7 @@ export default function BookPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">{t.form.phone}</label>
+                        <label className="block text-sm font-light mb-2 text-foreground">{t.form.phone}</label>
                         <input
                           type="tel"
                           value={formData.phone}
@@ -308,7 +308,7 @@ export default function BookPage() {
                     {/* Date & Time */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">{t.form.date}</label>
+                        <label className="block text-sm font-light mb-2 text-foreground">{t.form.date}</label>
                         <input
                           type="date"
                           required
@@ -320,7 +320,7 @@ export default function BookPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-foreground">{t.form.time}</label>
+                        <label className="block text-sm font-light mb-2 text-foreground">{t.form.time}</label>
                         <select
                           required
                           value={formData.time}
@@ -339,7 +339,7 @@ export default function BookPage() {
 
                     {/* Message */}
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-foreground">{t.form.message}</label>
+                      <label className="block text-sm font-light mb-2 text-foreground">{t.form.message}</label>
                       <textarea
                         rows={4}
                         value={formData.message}
@@ -353,7 +353,7 @@ export default function BookPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 min-h-[52px] text-base bg-laxmi-bronze text-white font-medium tracking-wider rounded-lg hover:bg-laxmi-espresso transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-4 min-h-[52px] text-base bg-laxmi-bronze text-laxmi-cream font-light tracking-wider rounded-lg hover:bg-laxmi-espresso transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
@@ -381,10 +381,10 @@ export default function BookPage() {
                   {t.experience.steps.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="w-6 h-6 rounded-full bg-laxmi-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-laxmi-bronze text-xs font-medium">{i + 1}</span>
+                        <span className="text-laxmi-bronze text-xs font-normal">{i + 1}</span>
                       </span>
                       <div>
-                        <span className="text-foreground font-medium">{item.step}</span>
+                        <span className="text-foreground font-normal">{item.step}</span>
                         <p className="text-muted-foreground text-sm">{item.desc}</p>
                       </div>
                     </li>
@@ -421,7 +421,7 @@ export default function BookPage() {
 
               {/* Hours */}
               <div className="text-center text-sm text-muted-foreground py-4">
-                <p className="font-medium text-foreground mb-1">{t.hours.title}</p>
+                <p className="font-normal text-foreground mb-1">{t.hours.title}</p>
                 <p>{t.hours.days}</p>
                 <p>{t.hours.time}</p>
               </div>

@@ -75,20 +75,20 @@ export function CollectionSlideshow({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/95 flex flex-col animate-fade-in"
+      className="fixed inset-0 z-50 bg-laxmi-espresso/98 flex flex-col animate-fade-in"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Header with prominent controls */}
-      <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-black/50 to-transparent">
+      <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-laxmi-espresso/50 to-transparent">
         {/* Series and counter */}
         <div className="flex items-center gap-3 md:gap-6">
-          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-laxmi-gold font-medium">
+          <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-laxmi-gold font-light">
             {currentImage.series}
           </span>
-          <div className="hidden sm:block w-px h-4 bg-white/30" />
-          <span className="text-sm md:text-base text-white font-medium">
-            {currentIndex + 1} <span className="text-white/50">/ {images.length}</span>
+          <div className="hidden sm:block w-px h-4 bg-laxmi-cream/30" />
+          <span className="text-sm md:text-base text-laxmi-cream font-light">
+            {currentIndex + 1} <span className="text-laxmi-cream/50">/ {images.length}</span>
           </span>
         </div>
 
@@ -152,11 +152,11 @@ export function CollectionSlideshow({
 
       {/* Caption section with better readability */}
       <div className="px-4 md:px-8 pb-4 md:pb-6">
-        <div className="max-w-3xl mx-auto text-center bg-black/40 backdrop-blur-sm rounded-lg p-4 md:p-6">
-          <h2 className="font-serif text-xl md:text-2xl lg:text-3xl text-white mb-2 md:mb-3">
+        <div className="max-w-3xl mx-auto text-center bg-laxmi-espresso/60 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-laxmi-gold/10">
+          <h2 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-laxmi-cream mb-2 md:mb-3">
             {title}
           </h2>
-          <p className="text-sm md:text-base text-white/80 font-light italic leading-relaxed">
+          <p className="text-sm md:text-base text-laxmi-cream/80 font-light italic leading-relaxed">
             &ldquo;{description}&rdquo;
           </p>
         </div>
@@ -205,7 +205,7 @@ export function CollectionSlideshow({
       </div>
 
       {/* Swipe hint on mobile - more visible */}
-      <p className="md:hidden text-center text-xs tracking-wider uppercase text-white/60 pb-4">
+      <p className="md:hidden text-center text-xs tracking-wider uppercase text-laxmi-cream/60 pb-4 font-light">
         {locale === 'it' ? 'Scorri per navigare' : 'Swipe to navigate'}
       </p>
     </div>
