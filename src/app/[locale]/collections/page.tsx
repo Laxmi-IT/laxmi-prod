@@ -351,33 +351,81 @@ export default async function CollectionsPage({
         </div>
       </section>
 
-      {/* Storytelling Section 3: Your Vision */}
+      {/* Storytelling Section 3: Your Vision - Premium CTA with Image Background */}
       <section className="py-20 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso to-laxmi-espresso/95" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={heroImage.src}
+            alt="LAXMI Kitchen Design"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-laxmi-espresso/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso/95 via-laxmi-espresso/85 to-black/80" />
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-laxmi-gold/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-laxmi-gold/30 to-transparent" />
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-10 h-px bg-laxmi-gold" />
-              <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+            {/* Subtitle badge */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="w-12 h-px bg-laxmi-gold" />
+              <span className="text-xs md:text-sm tracking-[0.25em] uppercase text-laxmi-gold font-medium px-4 py-2 border border-laxmi-gold/30 rounded-full">
                 {t.story3Subtitle}
               </span>
-              <div className="w-10 h-px bg-laxmi-gold" />
+              <div className="w-12 h-px bg-laxmi-gold" />
             </div>
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-white mb-8 leading-tight">
+
+            {/* Title */}
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white mb-8 leading-tight">
               {t.story3Title}
             </h2>
-            <p className="text-base md:text-lg lg:text-xl text-white/80 font-light leading-relaxed max-w-3xl mx-auto mb-10">
+
+            {/* Description */}
+            <p className="text-base md:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto mb-12">
               {t.story3Text}
             </p>
+
+            {/* CTA Button */}
             <Link
               href={`/${locale}/book`}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.15em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
+              className="inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-laxmi-gold text-laxmi-espresso text-sm md:text-base tracking-[0.15em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
             >
               {dict.cta.button}
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
+
+            {/* Trust indicators */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-white/60 text-xs md:text-sm tracking-wider uppercase">
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  {locale === 'it' ? 'Consulenza Gratuita' : 'Free Consultation'}
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  {locale === 'it' ? 'Design Su Misura' : 'Custom Design'}
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Made in Italy
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
