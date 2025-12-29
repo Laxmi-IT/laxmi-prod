@@ -148,7 +148,7 @@ export default async function Home({
             <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-transparent" />
           </div>
 
-          {/* Gold S-Curve Accent Line */}
+          {/* Gold S-Curve Accent Line - Animated Draw Effect */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none z-10"
             viewBox="0 0 520 1000"
@@ -164,7 +164,7 @@ export default async function Home({
               fill="none"
               stroke="#B8956E"
               strokeWidth="1.5"
-              opacity="0.6"
+              className="animate-draw-s-curve"
             />
           </svg>
         </div>
