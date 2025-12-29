@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { type Locale } from '@/i18n/config'
 
@@ -17,6 +17,9 @@ interface MobileNavProps {
 export function MobileNav({ locale, navItems }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Memoized close handler for better performance
+  const handleClose = useCallback(() => setIsOpen(false), [])
+
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
@@ -31,14 +34,13 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
 
   // Close menu on escape key
   useEffect(() => {
+    if (!isOpen) return
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false)
-      }
+      if (e.key === 'Escape') handleClose()
     }
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
+  }, [isOpen, handleClose])
 
   return (
     <>
@@ -68,24 +70,39 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
       </button>
 
-      {/* Menu Panel - full screen with solid cream background */}
-      {isOpen && (
-        <nav
-          className="fixed top-0 left-0 right-0 bottom-0 z-[100] md:hidden"
+      {/* Menu Panel - glassmorphism blur effect */}
+      <nav
+        className={`fixed inset-0 z-[100] md:hidden transition-all duration-200 ease-out ${
+          isOpen
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ willChange: 'opacity' }}
+        aria-label="Mobile navigation"
+        aria-hidden={!isOpen}
+      >
+        {/* Blurred backdrop */}
+        <div
+          className="absolute inset-0 backdrop-blur-2xl"
           style={{
-            backgroundColor: '#FFFAE7',
-            width: '100vw',
-            height: '100vh',
-            minHeight: '100%',
+            backgroundColor: 'rgba(255, 250, 231, 0.85)',
+            willChange: 'backdrop-filter',
           }}
-          aria-label="Mobile navigation"
-        >
+        />
+
+        {/* Subtle gradient overlay for depth */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(180deg, rgba(245, 219, 185, 0.15) 0%, transparent 30%, rgba(245, 219, 185, 0.1) 100%)',
+          }}
+        />
 
         {/* Close button at top */}
         <div className="relative z-10 h-16 flex items-center justify-end px-4">
           <button
-            onClick={() => setIsOpen(false)}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-laxmi-champagne/30 transition-colors duration-300"
+            onClick={handleClose}
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-laxmi-champagne/30 transition-colors duration-150"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -94,17 +111,19 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <div className="relative z-10 flex flex-col px-6 py-4">
-          {navItems.map((item, index) => (
+        {/* Navigation Links - no staggered delays for instant feel */}
+        <div
+          className={`relative z-10 flex flex-col px-6 py-4 transition-transform duration-200 ease-out ${
+            isOpen ? 'translate-y-0' : '-translate-y-4'
+          }`}
+          style={{ willChange: 'transform' }}
+        >
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center min-h-[52px] py-3 text-lg font-light tracking-wide text-foreground hover:text-laxmi-bronze transition-colors duration-300 border-b border-border/20 ${
-                isOpen ? 'animate-fade-in-up' : ''
-              }`}
-              style={{ animationDelay: `${index * 50}ms` }}
+              onClick={handleClose}
+              className="flex items-center min-h-[52px] py-3 text-lg font-light tracking-wide text-foreground hover:text-laxmi-bronze transition-colors duration-150 border-b border-border/20"
             >
               {item.label}
             </Link>
@@ -115,7 +134,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         <div className="relative z-10 px-6 mt-8">
           <Link
             href={`/${locale}/book`}
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="btn-luxury-filled w-full text-center"
           >
             {locale === 'it' ? 'Richiedi Consulenza' : 'Request Consultation'}
@@ -129,8 +148,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
             {locale === 'it' ? 'Milano, Italia' : 'Milan, Italy'}
           </p>
         </div>
-        </nav>
-      )}
+      </nav>
     </>
   )
 }

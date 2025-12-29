@@ -29,14 +29,14 @@ export function CollectionSlideshow({
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % images.length);
-    setTimeout(() => setIsTransitioning(false), 400);
+    setTimeout(() => setIsTransitioning(false), 200);
   }, [images.length, isTransitioning]);
 
   const goToPrev = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    setTimeout(() => setIsTransitioning(false), 400);
+    setTimeout(() => setIsTransitioning(false), 200);
   }, [images.length, isTransitioning]);
 
   // Keyboard navigation
@@ -75,17 +75,15 @@ export function CollectionSlideshow({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col animate-fade-in"
+      className="fixed inset-0 z-[100] flex flex-col"
       style={{
         backgroundColor: '#FFFAE7',
-        width: '100vw',
-        height: '100vh',
-        minHeight: '100%',
+        willChange: 'opacity',
       }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Subtle warm gradient for depth - on top of solid cream background */}
+      {/* Subtle warm gradient for depth */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -109,7 +107,7 @@ export function CollectionSlideshow({
         {/* Close button - elegant on light background */}
         <button
           onClick={onClose}
-          className="w-12 h-12 md:w-14 md:h-14 min-w-[48px] min-h-[48px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center hover:bg-laxmi-bronze transition-all duration-300 shadow-lg"
+          className="w-12 h-12 md:w-14 md:h-14 min-w-[48px] min-h-[48px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center hover:bg-laxmi-bronze transition-colors duration-150 shadow-lg"
           aria-label="Close slideshow"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -123,7 +121,7 @@ export function CollectionSlideshow({
         {/* Navigation - Previous (desktop) */}
         <button
           onClick={goToPrev}
-          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-laxmi-espresso/90 backdrop-blur-sm items-center justify-center text-laxmi-cream hover:bg-laxmi-gold transition-all duration-300 shrink-0 shadow-lg"
+          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-laxmi-espresso/90 items-center justify-center text-laxmi-cream hover:bg-laxmi-gold transition-colors duration-150 shrink-0 shadow-lg"
           aria-label="Previous image"
         >
           <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -134,9 +132,10 @@ export function CollectionSlideshow({
         {/* Image container with subtle shadow */}
         <div className="relative flex-1 w-full max-w-5xl aspect-[4/3] md:aspect-[16/10]">
           <div
-            className={`relative w-full h-full transition-all duration-400 ${
-              isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+            className={`relative w-full h-full transition-opacity duration-200 ease-out ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
+            style={{ willChange: 'opacity' }}
           >
             <Image
               src={currentImage.src}
@@ -155,7 +154,7 @@ export function CollectionSlideshow({
         {/* Navigation - Next (desktop) */}
         <button
           onClick={goToNext}
-          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-laxmi-espresso/90 backdrop-blur-sm items-center justify-center text-laxmi-cream hover:bg-laxmi-gold transition-all duration-300 shrink-0 shadow-lg"
+          className="hidden md:flex w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-laxmi-espresso/90 items-center justify-center text-laxmi-cream hover:bg-laxmi-gold transition-colors duration-150 shrink-0 shadow-lg"
           aria-label="Next image"
         >
           <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -166,7 +165,7 @@ export function CollectionSlideshow({
 
       {/* Caption section - elegant on cream background */}
       <div className="relative z-10 px-4 md:px-8 pb-4 md:pb-6">
-        <div className="max-w-3xl mx-auto text-center bg-white/60 backdrop-blur-md rounded-lg p-4 md:p-6 border border-laxmi-gold/20 shadow-sm">
+        <div className="max-w-3xl mx-auto text-center bg-white/60 rounded-lg p-4 md:p-6 border border-laxmi-gold/20 shadow-sm">
           <h2 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-laxmi-espresso mb-2 md:mb-3">
             {title}
           </h2>
@@ -180,7 +179,7 @@ export function CollectionSlideshow({
       <div className="relative z-10 md:hidden flex items-center justify-center gap-6 pb-4">
         <button
           onClick={goToPrev}
-          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center shadow-lg active:bg-laxmi-gold transition-colors"
+          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center shadow-lg active:bg-laxmi-gold transition-colors duration-100"
           aria-label="Previous image"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -196,7 +195,7 @@ export function CollectionSlideshow({
               <button
                 key={actualIndex}
                 onClick={() => setCurrentIndex(actualIndex)}
-                className={`transition-all duration-300 rounded-full ${
+                className={`transition-all duration-150 rounded-full ${
                   actualIndex === currentIndex
                     ? 'bg-laxmi-gold w-6 h-2'
                     : 'bg-laxmi-espresso/40 w-2 h-2 hover:bg-laxmi-espresso/60'
@@ -209,7 +208,7 @@ export function CollectionSlideshow({
 
         <button
           onClick={goToNext}
-          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center shadow-lg active:bg-laxmi-gold transition-colors"
+          className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-laxmi-espresso text-laxmi-cream flex items-center justify-center shadow-lg active:bg-laxmi-gold transition-colors duration-100"
           aria-label="Next image"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
