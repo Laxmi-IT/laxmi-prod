@@ -127,8 +127,8 @@ function StructuredData({ locale }: { locale: Locale }) {
     "@type": "FurnitureStore",
     name: "LAXMI",
     description: isItalian
-      ? "Consulenza arredamento di lusso e boutique reseller di mobili italiani Made in Italy"
-      : "Luxury furniture consulting and boutique reseller of Italian Made in Italy furniture",
+      ? "Consulenza arredamento di lusso e boutique di mobili italiani Made in Italy"
+      : "Luxury furniture consulting and boutique of Italian Made in Italy furniture",
     url: siteUrl,
     telephone: "+39-000-000-0000",
     email: "thelaxmii07@gmail.com",

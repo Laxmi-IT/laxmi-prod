@@ -16,7 +16,7 @@
   },
   "hero": {
     "tagline1": "Luxury Furniture Consulting",
-    "tagline2": "& Boutique Reseller",
+    "tagline2": "& Boutique",
     "description": "Crafted for connoisseurs.",
     "madeInItaly": "Made in Italy.",
     "cta": "Request a Consultation"
@@ -99,7 +99,7 @@
     "button": "Schedule a Consultation"
   },
   "footer": {
-    "description": "Luxury Furniture Consulting & Boutique Reseller. Crafted for connoisseurs. Made in Italy.",
+    "description": "Luxury Furniture Consulting & Boutique. Crafted for connoisseurs. Made in Italy.",
     "navigation": "Navigation",
     "contact": "Contact",
     "quote": "\"Goddess of wealth, fortune, prosperity, beauty and light\"",

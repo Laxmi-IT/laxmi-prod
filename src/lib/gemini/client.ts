@@ -31,7 +31,7 @@ export function getImagenModel(): GenerativeModel {
 
 // LAXMI Brand Context for consistent styling
 export const LAXMI_BRAND_CONTEXT = `
-You are a luxury interior design AI assistant for LAXMI, a premium Italian furniture consulting and boutique reseller brand.
+You are a luxury interior design AI assistant for LAXMI, a premium Italian furniture consulting and boutique brand.
 
 BRAND IDENTITY:
 - LAXMI is named after the Hindu goddess of wealth, fortune, prosperity, beauty, and light

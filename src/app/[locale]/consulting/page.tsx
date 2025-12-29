@@ -158,22 +158,11 @@ export default async function ConsultingPage({
                 </p>
 
                 {/* Quote */}
-                <blockquote className="border-l-2 border-laxmi-gold/60 pl-6 py-2 mb-8">
+                <blockquote className="border-l-2 border-laxmi-gold/60 pl-6 py-2">
                   <p className="text-white/90 italic font-serif text-base md:text-lg">
                     &ldquo;{dict.consulting.heroQuote}&rdquo;
                   </p>
                 </blockquote>
-
-                {/* CTA */}
-                <a
-                  href="#services"
-                  className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.1em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
-                >
-                  {locale === "it" ? "Scopri i Percorsi" : "Discover Our Experiences"}
-                  <svg className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                </a>
               </div>
 
               {/* Decorative corner accents */}
@@ -189,8 +178,6 @@ export default async function ConsultingPage({
           </div>
         </div>
 
-        {/* Bottom fade to content */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
       </section>
 
       {/* Philosophy Section */}
@@ -540,8 +527,9 @@ export default async function ConsultingPage({
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-laxmi-espresso/90" />
-          <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso/95 via-laxmi-espresso/85 to-black/80" />
+          {/* Much darker overlay for better readability */}
+          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-laxmi-espresso/90 to-black/85" />
         </div>
 
         {/* Decorative elements */}
