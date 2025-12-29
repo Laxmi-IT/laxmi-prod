@@ -41,165 +41,6 @@ function SunburstLogo({ className = "" }: { className?: string }) {
   );
 }
 
-// Service Card Component
-function ServiceCard({
-  service,
-  featured = false,
-  locale,
-}: {
-  service: {
-    name: string;
-    tagline: string;
-    price: string;
-    priceNote?: string;
-    description: string;
-    features: string[];
-    ideal: string;
-  };
-  featured?: boolean;
-  locale: string;
-}) {
-  return (
-    <div
-      className={`relative flex flex-col h-full p-6 md:p-8 rounded-2xl transition-all duration-500 group ${
-        featured
-          ? "bg-laxmi-espresso text-laxmi-cream ring-2 ring-laxmi-gold shadow-2xl scale-[1.02] z-10"
-          : "bg-white dark:bg-card border border-laxmi-champagne/50 hover:border-laxmi-gold/50 hover:shadow-xl"
-      }`}
-    >
-      {featured && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-laxmi-gold text-laxmi-espresso text-xs tracking-[0.2em] uppercase rounded-full font-medium">
-          {locale === "it" ? "Più Popolare" : "Most Popular"}
-        </div>
-      )}
-
-      {/* Header */}
-      <div className="mb-6">
-        <p
-          className={`text-xs tracking-[0.2em] uppercase mb-2 ${
-            featured ? "text-laxmi-champagne" : "text-laxmi-bronze"
-          }`}
-        >
-          {service.tagline}
-        </p>
-        <h3 className="font-serif text-2xl md:text-3xl font-light mb-4">
-          {service.name}
-        </h3>
-        <div className="flex items-baseline gap-1">
-          <span
-            className={`text-4xl md:text-5xl font-light ${
-              featured ? "text-laxmi-gold" : "text-laxmi-espresso dark:text-foreground"
-            }`}
-          >
-            &euro;{service.price}
-          </span>
-          {service.priceNote && (
-            <span
-              className={`text-sm ml-2 ${
-                featured ? "text-laxmi-champagne/80" : "text-muted-foreground"
-              }`}
-            >
-              {service.priceNote}
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div
-        className={`w-full h-px mb-6 ${
-          featured ? "bg-laxmi-gold/30" : "bg-laxmi-champagne"
-        }`}
-      />
-
-      {/* Description */}
-      <p
-        className={`text-sm leading-relaxed mb-6 ${
-          featured ? "text-laxmi-cream/90" : "text-muted-foreground"
-        }`}
-      >
-        {service.description}
-      </p>
-
-      {/* Features */}
-      <ul className="space-y-3 mb-8 flex-1">
-        {service.features.map((feature, idx) => (
-          <li key={idx} className="flex items-start gap-3">
-            <svg
-              className={`w-5 h-5 mt-0.5 shrink-0 ${
-                featured ? "text-laxmi-gold" : "text-laxmi-bronze"
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            <span
-              className={`text-sm ${
-                featured ? "text-laxmi-cream/90" : "text-foreground/80"
-              }`}
-            >
-              {feature}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Ideal for */}
-      <p
-        className={`text-xs tracking-wider uppercase mt-auto pt-4 border-t ${
-          featured
-            ? "text-laxmi-champagne/70 border-laxmi-gold/20"
-            : "text-muted-foreground border-laxmi-champagne/50"
-        }`}
-      >
-        {service.ideal}
-      </p>
-    </div>
-  );
-}
-
-// Process Step Component
-function ProcessStep({
-  step,
-  isLast = false,
-}: {
-  step: { number: string; title: string; description: string };
-  isLast?: boolean;
-}) {
-  return (
-    <div className="relative flex gap-6 md:gap-8 pb-8 md:pb-12">
-      {/* Vertical line connector */}
-      {!isLast && (
-        <div className="absolute left-6 md:left-7 top-14 w-px h-[calc(100%-3.5rem)] bg-gradient-to-b from-laxmi-gold/50 to-transparent" />
-      )}
-
-      {/* Number circle */}
-      <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center group-hover:border-laxmi-gold transition-colors duration-300">
-        <span className="text-sm md:text-base font-light text-laxmi-bronze">
-          {step.number}
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 pt-2">
-        <h4 className="font-serif text-xl md:text-2xl text-foreground mb-2">
-          {step.title}
-        </h4>
-        <p className="text-muted-foreground font-light leading-relaxed">
-          {step.description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export default async function ConsultingPage({
   params,
 }: {
@@ -231,7 +72,7 @@ export default async function ConsultingPage({
 
           <div className="hidden md:flex items-center gap-10">
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
-            <Link href={`/${locale}/consulting`} className="nav-link text-laxmi-bronze">{dict.nav.consulting}</Link>
+            <Link href={`/${locale}/consulting`} className="nav-link text-laxmi-gold">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
@@ -254,10 +95,10 @@ export default async function ConsultingPage({
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
+      {/* Hero Section with Premium Glassmorphism - Same as Collections */}
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center pt-20 md:pt-24">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-elegant-living.jpg"
             alt={locale === "it" ? "Interior design di lusso" : "Luxury interior design"}
@@ -266,145 +107,357 @@ export default async function ConsultingPage({
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-laxmi-espresso/90 via-laxmi-espresso/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/50 via-transparent to-laxmi-espresso/30" />
+          {/* Sophisticated overlay - stronger for mobile readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent md:from-black/70 md:via-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
         </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="max-w-3xl animate-fade-in-up">
-            <p className="text-laxmi-gold text-sm tracking-[0.3em] uppercase mb-4">
-              {locale === "it" ? "Servizio Esclusivo" : "Exclusive Service"}
-            </p>
+        {/* Content with Glassmorphism Card */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+          <div className="max-w-2xl lg:max-w-3xl animate-glass-fade">
+            {/* Glassmorphism Card - Premium Effect */}
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
+              {/* Glass background - Safari compatible with webkit prefix */}
+              <div
+                className="absolute inset-0 rounded-2xl md:rounded-3xl"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                  backdropFilter: 'blur(24px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/5 to-transparent rounded-2xl md:rounded-3xl" />
+              <div className="absolute inset-0 border border-white/20 rounded-2xl md:rounded-3xl" />
 
-            <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-laxmi-cream mb-6 leading-tight">
-              {dict.consulting.heroTitle}
-            </h1>
+              {/* Content */}
+              <div className="relative p-6 sm:p-8 md:p-12 lg:p-14">
+                {/* Gold accent line */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/50" />
+                  <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+                    {locale === "it" ? "Servizio Esclusivo" : "Exclusive Service"}
+                  </span>
+                </div>
 
-            <p className="text-xl md:text-2xl text-laxmi-champagne font-light mb-8">
-              {dict.consulting.heroSubtitle}
-            </p>
+                {/* Title */}
+                <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 md:mb-6 leading-[1.1]">
+                  {dict.consulting.heroTitle}
+                </h1>
 
-            <p className="text-laxmi-cream/80 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-10">
-              {dict.consulting.heroDescription}
-            </p>
+                {/* Subtitle */}
+                <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light mb-6 md:mb-8 leading-relaxed">
+                  {dict.consulting.heroSubtitle}
+                </p>
 
-            {/* Quote */}
-            <blockquote className="relative pl-6 border-l-2 border-laxmi-gold/60">
-              <p className="text-laxmi-champagne italic font-serif text-lg md:text-xl">
-                &ldquo;{dict.consulting.heroQuote}&rdquo;
-              </p>
-            </blockquote>
+                {/* Decorative divider */}
+                <div className="w-16 h-px bg-laxmi-gold/60 mb-6 md:mb-8" />
 
-            <div className="mt-10">
-              <Link
-                href="#services"
-                className="inline-flex items-center gap-3 bg-laxmi-gold text-laxmi-espresso px-8 py-4 rounded-full font-medium tracking-wide hover:bg-laxmi-champagne transition-colors duration-300"
-              >
-                {locale === "it" ? "Scopri i Percorsi" : "Discover Our Experiences"}
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </Link>
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-white/80 font-light leading-relaxed max-w-xl mb-8">
+                  {dict.consulting.heroDescription}
+                </p>
+
+                {/* Quote */}
+                <blockquote className="border-l-2 border-laxmi-gold/60 pl-6 py-2 mb-8">
+                  <p className="text-white/90 italic font-serif text-base md:text-lg">
+                    &ldquo;{dict.consulting.heroQuote}&rdquo;
+                  </p>
+                </blockquote>
+
+                {/* CTA */}
+                <a
+                  href="#services"
+                  className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.1em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
+                >
+                  {locale === "it" ? "Scopri i Percorsi" : "Discover Our Experiences"}
+                  <svg className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </a>
+              </div>
+
+              {/* Decorative corner accents */}
+              <div className="absolute top-6 right-6 w-8 h-8 hidden md:block">
+                <div className="absolute top-0 right-0 w-full h-px bg-laxmi-gold/40" />
+                <div className="absolute top-0 right-0 h-full w-px bg-laxmi-gold/40" />
+              </div>
+              <div className="absolute bottom-6 left-6 w-8 h-8 hidden md:block">
+                <div className="absolute bottom-0 left-0 w-full h-px bg-laxmi-gold/40" />
+                <div className="absolute bottom-0 left-0 h-full w-px bg-laxmi-gold/40" />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-laxmi-gold/40 flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-laxmi-gold rounded-full animate-pulse" />
-          </div>
-        </div>
+        {/* Bottom fade to content */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 md:py-32 relative">
-        <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-laxmi-gold/20 to-transparent hidden lg:block" style={{ left: "10%" }} />
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto text-center">
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
             <SunburstLogo className="w-16 h-10 text-laxmi-gold mx-auto mb-8" />
 
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-foreground mb-8">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-laxmi-gold" />
+              <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                {locale === "it" ? "La Nostra Visione" : "Our Vision"}
+              </span>
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-laxmi-gold" />
+            </div>
+
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-8 leading-tight">
               {dict.consulting.philosophyTitle}
             </h2>
 
             <div className="gold-line w-16 mx-auto mb-10" />
 
-            <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed">
               {dict.consulting.philosophyText}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 md:py-32 bg-laxmi-cream/30 dark:bg-card/30 relative overflow-hidden">
-        {/* Decorative arch */}
-        <div className="absolute -right-32 top-1/4 w-64 h-64 border border-laxmi-gold/10 rounded-full hidden lg:block" />
-        <div className="absolute -right-16 top-1/4 w-32 h-32 border border-laxmi-gold/20 rounded-full hidden lg:block" />
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <p className="text-spaced text-laxmi-gold mb-4">{dict.consulting.processSubtitle}</p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
+      {/* Process Section - Storytelling Style */}
+      <section className="py-20 md:py-32 bg-laxmi-cream/30 dark:bg-card/20 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          {/* Section Header */}
+          <div className="text-center mb-16 animate-fade-in-up">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-10 h-px bg-laxmi-gold" />
+              <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                {dict.consulting.processSubtitle}
+              </span>
+              <div className="w-10 h-px bg-laxmi-gold" />
+            </div>
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground">
               {dict.consulting.processTitle}
             </h2>
             <div className="gold-line w-24 mx-auto mt-8" />
           </div>
 
-          <div className="max-w-2xl mx-auto">
+          {/* Process Steps - Premium Cards */}
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4">
             {steps.map((step, idx) => (
-              <ProcessStep key={idx} step={step} isLast={idx === steps.length - 1} />
+              <div
+                key={idx}
+                className="relative animate-fade-in-up"
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                {/* Connector line (desktop only) */}
+                {idx < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-laxmi-gold/40 to-laxmi-gold/10" />
+                )}
+
+                <div className="card-luxury text-center h-full">
+                  {/* Number circle */}
+                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-6 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
+                    <span className="text-lg md:text-xl font-light text-laxmi-bronze">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  <h4 className="font-serif text-xl md:text-2xl text-laxmi-espresso dark:text-foreground mb-3">
+                    {step.title}
+                  </h4>
+
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section - Premium Pricing Cards */}
       <section id="services" className="py-20 md:py-32 relative scroll-mt-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <p className="text-spaced text-laxmi-gold mb-4">{dict.consulting.servicesSubtitle}</p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          {/* Section Header */}
+          <div className="text-center mb-16 animate-fade-in-up">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-10 h-px bg-laxmi-gold" />
+              <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                {dict.consulting.servicesSubtitle}
+              </span>
+              <div className="w-10 h-px bg-laxmi-gold" />
+            </div>
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground">
               {dict.consulting.servicesTitle}
             </h2>
             <div className="gold-line w-24 mx-auto mt-8" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch max-w-6xl mx-auto">
-            <ServiceCard service={dict.consulting.services.express} locale={locale} />
-            <ServiceCard service={dict.consulting.services.singleRoom} featured locale={locale} />
-            <ServiceCard service={dict.consulting.services.fullHouse} locale={locale} />
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {/* Express */}
+            <div className="card-luxury flex flex-col h-full animate-fade-in-up">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-8 h-px bg-laxmi-gold" />
+                <span className="text-xs tracking-[0.2em] uppercase text-laxmi-bronze">
+                  {dict.consulting.services.express.tagline}
+                </span>
+              </div>
+
+              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-2">
+                {dict.consulting.services.express.name}
+              </h3>
+
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-4xl md:text-5xl font-light text-laxmi-espresso dark:text-foreground">
+                  &euro;{dict.consulting.services.express.price}
+                </span>
+              </div>
+
+              <div className="w-full h-px bg-laxmi-champagne mb-6" />
+
+              <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
+                {dict.consulting.services.express.description}
+              </p>
+
+              <ul className="space-y-3 mb-8 flex-1">
+                {dict.consulting.services.express.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-laxmi-gold mt-2 shrink-0" />
+                    <span className="text-sm text-foreground/80 font-light">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-xs tracking-wider uppercase text-muted-foreground mt-auto pt-4 border-t border-laxmi-champagne/50">
+                {dict.consulting.services.express.ideal}
+              </p>
+            </div>
+
+            {/* Single Room - Featured */}
+            <div className="relative flex flex-col h-full animate-fade-in-up delay-100">
+              {/* Featured badge */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                <span className="relative text-xs tracking-[0.15em] uppercase text-laxmi-espresso font-medium px-4 py-2 rounded-full overflow-hidden">
+                  <span className="absolute inset-0 bg-laxmi-gold" />
+                  <span className="relative z-10">{locale === "it" ? "Consigliato" : "Recommended"}</span>
+                </span>
+              </div>
+
+              <div className="bg-laxmi-espresso text-laxmi-cream p-6 sm:p-8 rounded-lg ring-2 ring-laxmi-gold shadow-2xl flex flex-col h-full">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-8 h-px bg-laxmi-gold" />
+                  <span className="text-xs tracking-[0.2em] uppercase text-laxmi-champagne">
+                    {dict.consulting.services.singleRoom.tagline}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-2xl md:text-3xl text-laxmi-cream mb-2">
+                  {dict.consulting.services.singleRoom.name}
+                </h3>
+
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-4xl md:text-5xl font-light text-laxmi-gold">
+                    &euro;{dict.consulting.services.singleRoom.price}
+                  </span>
+                </div>
+
+                <div className="w-full h-px bg-laxmi-gold/30 mb-6" />
+
+                <p className="text-sm text-laxmi-cream/80 font-light leading-relaxed mb-6">
+                  {dict.consulting.services.singleRoom.description}
+                </p>
+
+                <ul className="space-y-3 mb-8 flex-1">
+                  {dict.consulting.services.singleRoom.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <svg className="w-4 h-4 mt-0.5 shrink-0 text-laxmi-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm text-laxmi-cream/90 font-light">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="text-xs tracking-wider uppercase text-laxmi-champagne/70 mt-auto pt-4 border-t border-laxmi-gold/20">
+                  {dict.consulting.services.singleRoom.ideal}
+                </p>
+              </div>
+            </div>
+
+            {/* Full House */}
+            <div className="card-luxury flex flex-col h-full animate-fade-in-up delay-200">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-8 h-px bg-laxmi-gold" />
+                <span className="text-xs tracking-[0.2em] uppercase text-laxmi-bronze">
+                  {dict.consulting.services.fullHouse.tagline}
+                </span>
+              </div>
+
+              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-2">
+                {dict.consulting.services.fullHouse.name}
+              </h3>
+
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-4xl md:text-5xl font-light text-laxmi-espresso dark:text-foreground">
+                  &euro;{dict.consulting.services.fullHouse.price}
+                </span>
+                <span className="text-sm text-muted-foreground">+</span>
+              </div>
+              <p className="text-xs text-muted-foreground mb-6">{dict.consulting.services.fullHouse.priceNote}</p>
+
+              <div className="w-full h-px bg-laxmi-champagne mb-6" />
+
+              <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
+                {dict.consulting.services.fullHouse.description}
+              </p>
+
+              <ul className="space-y-3 mb-8 flex-1">
+                {dict.consulting.services.fullHouse.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-laxmi-gold mt-2 shrink-0" />
+                    <span className="text-sm text-foreground/80 font-light">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-xs tracking-wider uppercase text-muted-foreground mt-auto pt-4 border-t border-laxmi-champagne/50">
+                {dict.consulting.services.fullHouse.ideal}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Deliverables Section */}
-      <section className="py-20 md:py-32 bg-laxmi-espresso text-laxmi-cream relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
+      {/* Deliverables Section - Dark with Pattern */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-laxmi-espresso" />
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
+        {/* Decorative lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-laxmi-gold/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-laxmi-gold/30 to-transparent" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-cream">
               {dict.consulting.deliverablesTitle}
             </h2>
             <div className="w-24 h-px bg-laxmi-gold mx-auto mt-8" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
-            {Object.entries(dict.consulting.deliverables).map(([key, value]) => (
-              <div key={key} className="text-center group">
+            {Object.entries(dict.consulting.deliverables).map(([key, value], idx) => (
+              <div
+                key={key}
+                className="text-center animate-fade-in-up group"
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-laxmi-gold/30 flex items-center justify-center group-hover:border-laxmi-gold group-hover:bg-laxmi-gold/10 transition-all duration-300">
                   {key === "layouts" && (
                     <svg className="w-7 h-7 text-laxmi-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -446,20 +499,28 @@ export default async function ConsultingPage({
 
       {/* Promise Section */}
       <section className="py-20 md:py-32 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-4xl mx-auto animate-fade-in-up">
+            <div className="relative text-center py-12">
               {/* Large quote mark */}
-              <div className="absolute -top-8 -left-4 md:-left-12 text-laxmi-gold/20 font-serif text-[120px] md:text-[180px] leading-none select-none">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-laxmi-gold/10 font-serif text-[120px] md:text-[180px] leading-none select-none pointer-events-none">
                 &ldquo;
               </div>
 
-              <div className="relative z-10 text-center py-12">
-                <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-foreground mb-8">
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="w-10 h-px bg-laxmi-gold" />
+                  <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                    {locale === "it" ? "Il Nostro Impegno" : "Our Commitment"}
+                  </span>
+                  <div className="w-10 h-px bg-laxmi-gold" />
+                </div>
+
+                <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-8">
                   {dict.consulting.promiseTitle}
                 </h2>
 
-                <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed italic">
+                <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed italic max-w-3xl mx-auto">
                   {dict.consulting.promiseText}
                 </p>
               </div>
@@ -468,48 +529,67 @@ export default async function ConsultingPage({
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-laxmi-cream/50 dark:bg-card/50 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* CTA Section - Premium with Image Background */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-interior.jpg"
+            alt="LAXMI Interior Design"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-laxmi-espresso/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso/95 via-laxmi-espresso/85 to-black/80" />
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-laxmi-gold/30 to-transparent" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+          <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
             <SunburstLogo className="w-20 h-12 text-laxmi-gold mx-auto mb-8" />
 
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl mb-6">
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-white mb-6">
               {dict.consulting.ctaTitle}
             </h2>
 
-            <p className="text-lg md:text-xl text-muted-foreground font-light mb-10 max-w-xl mx-auto">
+            <p className="text-base md:text-lg text-white/80 font-light mb-10 max-w-xl mx-auto">
               {dict.consulting.ctaText}
             </p>
 
             <Link
               href={`/${locale}/book`}
-              className="btn-luxury-filled text-lg px-10 py-4"
+              className="inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-laxmi-gold text-laxmi-espresso text-sm md:text-base tracking-[0.15em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
             >
               {dict.consulting.ctaButton}
+              <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
 
-            {/* Trust badges */}
-            <div className="mt-16 pt-12 border-t border-laxmi-champagne/50">
-              <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-light text-laxmi-bronze">10+</p>
-                  <p className="text-sm text-muted-foreground tracking-wider uppercase">
-                    {locale === "it" ? "Anni Esperienza" : "Years Experience"}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-light text-laxmi-bronze">200+</p>
-                  <p className="text-sm text-muted-foreground tracking-wider uppercase">
-                    {locale === "it" ? "Progetti" : "Projects"}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl md:text-3xl font-light text-laxmi-bronze">100%</p>
-                  <p className="text-sm text-muted-foreground tracking-wider uppercase">
-                    {locale === "it" ? "Soddisfazione" : "Satisfaction"}
-                  </p>
-                </div>
+            {/* Trust indicators */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-white/60 text-xs md:text-sm tracking-wider uppercase">
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  10+ {locale === "it" ? "Anni Esperienza" : "Years Experience"}
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  200+ {locale === "it" ? "Progetti" : "Projects"}
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Made in Italy
+                </span>
               </div>
             </div>
           </div>
@@ -517,9 +597,9 @@ export default async function ConsultingPage({
       </section>
 
       {/* Footer */}
-      <footer className="py-10 md:py-12 lg:py-16 border-t border-border/30">
+      <footer className="py-12 md:py-16 border-t border-border/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
               <div className="flex flex-col items-center sm:items-start">
                 <SunburstLogo className="w-10 h-6 md:w-12 md:h-8 text-laxmi-bronze mb-2" />
@@ -536,7 +616,6 @@ export default async function ConsultingPage({
                 <li><Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.home}</Link></li>
                 <li><Link href={`/${locale}/consulting`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.consulting}</Link></li>
                 <li><Link href={`/${locale}/collections`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.collections}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.about}</Link></li>
               </ul>
             </div>
 
@@ -550,7 +629,7 @@ export default async function ConsultingPage({
             </div>
           </div>
 
-          <div className="gold-line mt-8 md:mt-12 mb-6 md:mb-8" />
+          <div className="gold-line mt-10 md:mt-12 mb-6 md:mb-8" />
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-sm text-muted-foreground font-light order-2 md:order-1">
