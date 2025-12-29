@@ -68,27 +68,35 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
       </button>
 
-      {/* Overlay - Strong blur for readability */}
+      {/* Full-screen blur overlay - covers entire page */}
       <div
-        className={`fixed inset-0 bg-laxmi-cream/95 dark:bg-background/95 backdrop-blur-xl z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
         aria-hidden="true"
-      />
+      >
+        {/* Blur layer */}
+        <div className="absolute inset-0 backdrop-blur-3xl" />
+        {/* Cream overlay for brand consistency */}
+        <div className="absolute inset-0 bg-laxmi-cream/98" />
+      </div>
 
-      {/* Menu Panel - Full width on mobile with solid background */}
+      {/* Menu Panel - full screen with solid cream background */}
       <nav
-        className={`fixed top-0 right-0 bottom-0 w-full bg-laxmi-cream dark:bg-background border-l border-border/30 z-50 md:hidden transition-transform duration-300 ease-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ease-out ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         aria-label="Mobile navigation"
       >
+        {/* Solid cream background for complete coverage */}
+        <div className="absolute inset-0 bg-laxmi-cream" />
+
         {/* Close button at top */}
-        <div className="h-16 flex items-center justify-end px-4">
+        <div className="relative z-10 h-16 flex items-center justify-end px-4">
           <button
             onClick={() => setIsOpen(false)}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-laxmi-champagne/20 transition-colors duration-300"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-laxmi-champagne/30 transition-colors duration-300"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,7 +106,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex flex-col px-6 py-4">
+        <div className="relative z-10 flex flex-col px-6 py-4">
           {navItems.map((item, index) => (
             <Link
               key={item.href}
@@ -115,7 +123,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
 
         {/* CTA Button */}
-        <div className="px-6 mt-8">
+        <div className="relative z-10 px-6 mt-8">
           <Link
             href={`/${locale}/book`}
             onClick={() => setIsOpen(false)}
@@ -126,7 +134,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
 
         {/* Decorative footer */}
-        <div className="absolute bottom-8 left-0 right-0 px-6">
+        <div className="absolute bottom-8 left-0 right-0 px-6 z-10">
           <div className="gold-line w-12 mb-4" />
           <p className="text-sm text-muted-foreground font-light">
             {locale === 'it' ? 'Milano, Italia' : 'Milan, Italy'}
