@@ -79,15 +79,8 @@ export function CollectionSlideshow({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Glassmorphism backdrop - semi-transparent with strong blur */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundColor: 'rgba(255, 250, 231, 0.7)',
-          backdropFilter: 'blur(32px)',
-          WebkitBackdropFilter: 'blur(32px)',
-        }}
-      />
+      {/* Glassmorphism backdrop - Safari compatible */}
+      <div className="absolute inset-0 glass-cream glass-blur-xl" />
 
       {/* Subtle warm gradient for depth */}
       <div

@@ -88,15 +88,8 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
           aria-label="Mobile navigation"
           aria-hidden={!isOpen}
         >
-          {/* Glassmorphism backdrop - semi-transparent with strong blur */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundColor: 'rgba(255, 250, 231, 0.65)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-            }}
-          />
+          {/* Glassmorphism backdrop - Safari compatible */}
+          <div className="absolute inset-0 glass-cream" />
 
           {/* Subtle gradient overlay for depth */}
           <div

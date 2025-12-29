@@ -158,16 +158,20 @@ export default async function CollectionsPage({
 
         {/* Content with Glassmorphism Card */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
-          <div className="max-w-2xl lg:max-w-3xl animate-fade-in-up">
+          <div className="max-w-2xl lg:max-w-3xl animate-glass-fade">
             {/* Glassmorphism Card - Premium Effect */}
             <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
-              {/* Glass background with multiple layers */}
-              <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
+              {/* Glass background - Safari compatible with webkit prefix */}
+              <div
+                className="absolute inset-0 rounded-2xl md:rounded-3xl"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                  backdropFilter: 'blur(24px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/5 to-transparent rounded-2xl md:rounded-3xl" />
               <div className="absolute inset-0 border border-white/20 rounded-2xl md:rounded-3xl" />
-
-              {/* Inner glow effect */}
-              <div className="absolute inset-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
 
               {/* Content */}
               <div className="relative p-6 sm:p-8 md:p-12 lg:p-14">
