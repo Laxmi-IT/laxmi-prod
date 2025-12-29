@@ -75,19 +75,23 @@ export function CollectionSlideshow({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col animate-fade-in"
+      className="fixed inset-0 z-[100] flex flex-col animate-fade-in"
+      style={{
+        backgroundColor: '#FFFAE7',
+        width: '100vw',
+        height: '100vh',
+        minHeight: '100%',
+      }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Luxury blurred background - cream based for brand consistency */}
-      <div className="absolute inset-0">
-        {/* Heavy blur layer */}
-        <div className="absolute inset-0 backdrop-blur-3xl" />
-        {/* Cream overlay with subtle gradient */}
-        <div className="absolute inset-0 bg-laxmi-cream/95" />
-        {/* Subtle warm gradient for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-laxmi-champagne/20 via-transparent to-laxmi-champagne/30" />
-      </div>
+      {/* Subtle warm gradient for depth - on top of solid cream background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(245, 219, 185, 0.2), transparent 50%, rgba(245, 219, 185, 0.3))',
+        }}
+      />
 
       {/* Header with elegant controls */}
       <div className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
