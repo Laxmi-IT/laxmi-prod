@@ -68,29 +68,13 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
         </div>
       </button>
 
-      {/* Full-screen blur overlay - covers entire page */}
-      <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsOpen(false)}
-        aria-hidden="true"
-      >
-        {/* Blur layer */}
-        <div className="absolute inset-0 backdrop-blur-3xl" />
-        {/* Cream overlay for brand consistency */}
-        <div className="absolute inset-0 bg-laxmi-cream/98" />
-      </div>
-
       {/* Menu Panel - full screen with solid cream background */}
-      <nav
-        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ease-out ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        aria-label="Mobile navigation"
-      >
-        {/* Solid cream background for complete coverage */}
-        <div className="absolute inset-0 bg-laxmi-cream" />
+      {isOpen && (
+        <nav
+          className="fixed inset-0 z-50 md:hidden"
+          style={{ backgroundColor: '#FFFAE7' }}
+          aria-label="Mobile navigation"
+        >
 
         {/* Close button at top */}
         <div className="relative z-10 h-16 flex items-center justify-end px-4">
@@ -140,7 +124,8 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
             {locale === 'it' ? 'Milano, Italia' : 'Milan, Italy'}
           </p>
         </div>
-      </nav>
+        </nav>
+      )}
     </>
   )
 }
