@@ -52,32 +52,55 @@ export default async function CollectionsPage({
   const locale = (localeParam === 'it' || localeParam === 'en' ? localeParam : 'it') as Locale;
   const dict = await getDictionary(locale);
 
-  // Get hero image for the collections page (first high-quality kitchen image)
+  // Get hero image for the collections page
   const heroImage = collectionImages.find(img => img.id === 'loft22-supermatt-wood') || collectionImages[0];
 
-  // Translations for the collections page
-  const pageTranslations = {
-    en: {
-      heroTitle: "Collections",
-      heroSubtitle: "A curated selection of Italian kitchen excellence",
-      heroDescription: "Discover our exclusive collection of premium Italian kitchens, where artisanal craftsmanship meets contemporary design. Each piece tells a story of passion, precision, and timeless elegance.",
-      filterLabel: "Filter by environment",
-      showingCount: "Showing {count} pieces",
-      noResults: "No pieces found in this category",
-      exploreButton: "Explore Gallery",
-    },
-    it: {
-      heroTitle: "Collezioni",
-      heroSubtitle: "Una selezione curata dell'eccellenza italiana",
-      heroDescription: "Scopri la nostra collezione esclusiva di cucine italiane premium, dove l'artigianato incontra il design contemporaneo. Ogni pezzo racconta una storia di passione, precisione ed eleganza senza tempo.",
-      filterLabel: "Filtra per ambiente",
-      showingCount: "Mostrando {count} pezzi",
-      noResults: "Nessun pezzo trovato in questa categoria",
-      exploreButton: "Esplora la Galleria",
-    }
-  };
+  // Get secondary images for storytelling sections
+  const craftImage = collectionImages.find(img => img.category === 'dettagli') || collectionImages[2];
+  const livingImage = collectionImages.find(img => img.category === 'living') || collectionImages[5];
 
-  const t = pageTranslations[locale];
+  // Page translations
+  const t = locale === 'it' ? {
+    heroTitle: "Collezioni",
+    heroSubtitle: "L'eccellenza italiana nel design d'interni",
+    heroDescription: "Ogni cucina racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano lo spazio in un'opera d'arte.",
+    filterLabel: "Filtra per ambiente",
+    showingCount: "Mostrando {count} pezzi",
+    noResults: "Nessun pezzo trovato in questa categoria",
+    exploreButton: "Esplora la Galleria",
+    // Storytelling sections
+    story1Title: "L'Arte del Design Italiano",
+    story1Subtitle: "Tradizione e Innovazione",
+    story1Text: "Da generazioni, i maestri artigiani italiani perfezionano l'arte della lavorazione del legno e dei materiali pregiati. Ogni cucina ARREXLAB nasce dalla fusione di tecniche centenarie con le più avanzate tecnologie di produzione, creando pezzi unici che resistono al tempo.",
+    story1Quote: "Il vero lusso non si vede, si vive.",
+    story2Title: "Materiali d'Eccellenza",
+    story2Subtitle: "Solo il Meglio",
+    story2Text: "Legni selezionati dalle foreste certificate europee, marmi italiani dalle cave più rinomate, acciai inossidabili di qualità alimentare e finiture Supermatt di ultima generazione. Ogni materiale viene scelto non solo per la sua bellezza, ma per la sua durabilità e sostenibilità.",
+    story2Features: ["Legni certificati FSC", "Marmi italiani autentici", "Finiture antibatteriche", "Zero emissioni VOC"],
+    story3Title: "Il Tuo Spazio, La Tua Visione",
+    story3Subtitle: "Personalizzazione Totale",
+    story3Text: "Non esistono due cucine uguali perché non esistono due famiglie uguali. I nostri designer lavorano con te per creare uno spazio che rifletta il tuo stile di vita, le tue passioni culinarie e la tua visione estetica. Dal primo schizzo all'installazione finale, ogni dettaglio è curato con precisione.",
+  } : {
+    heroTitle: "Collections",
+    heroSubtitle: "Italian excellence in interior design",
+    heroDescription: "Each kitchen tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform space into a work of art.",
+    filterLabel: "Filter by environment",
+    showingCount: "Showing {count} pieces",
+    noResults: "No pieces found in this category",
+    exploreButton: "Explore Gallery",
+    // Storytelling sections
+    story1Title: "The Art of Italian Design",
+    story1Subtitle: "Tradition Meets Innovation",
+    story1Text: "For generations, Italian master craftsmen have perfected the art of working with wood and premium materials. Each ARREXLAB kitchen is born from the fusion of centuries-old techniques with the most advanced production technologies, creating unique pieces that stand the test of time.",
+    story1Quote: "True luxury isn't seen, it's lived.",
+    story2Title: "Materials of Excellence",
+    story2Subtitle: "Only the Best",
+    story2Text: "Woods selected from certified European forests, Italian marbles from the most renowned quarries, food-grade stainless steels, and latest-generation Supermatt finishes. Each material is chosen not only for its beauty but for its durability and sustainability.",
+    story2Features: ["FSC certified woods", "Authentic Italian marble", "Antibacterial finishes", "Zero VOC emissions"],
+    story3Title: "Your Space, Your Vision",
+    story3Subtitle: "Total Customization",
+    story3Text: "No two kitchens are alike because no two families are alike. Our designers work with you to create a space that reflects your lifestyle, your culinary passions, and your aesthetic vision. From the first sketch to final installation, every detail is crafted with precision.",
+  };
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
@@ -116,9 +139,9 @@ export default async function CollectionsPage({
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[75vh] md:min-h-[85vh] flex items-center pt-16 md:pt-20">
-        {/* Background Image with Enhanced Overlay */}
+      {/* Hero Section with Premium Glassmorphism */}
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center pt-20 md:pt-24">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
             src={heroImage.src}
@@ -128,90 +151,191 @@ export default async function CollectionsPage({
             priority
             sizes="100vw"
           />
-          {/* Enhanced gradient overlays for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-laxmi-espresso/95 via-laxmi-espresso/80 to-laxmi-espresso/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/70 via-laxmi-espresso/20 to-laxmi-espresso/30" />
-          {/* Subtle noise texture for depth */}
-          <div className="absolute inset-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
+          {/* Sophisticated overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
         </div>
 
-        {/* Content with frosted glass panel for maximum readability */}
-        <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-          <div className="max-w-2xl animate-fade-in-up">
-            {/* Frosted glass content panel - highly visible for maximum readability */}
-            <div className="relative bg-laxmi-espresso/95 backdrop-blur-xl rounded-xl p-6 md:p-10 lg:p-12 border border-laxmi-gold/20 shadow-2xl">
-              {/* Decorative gold corner accents */}
-              <div className="absolute top-4 left-4 w-6 h-6">
-                <div className="absolute top-0 left-0 w-full h-px bg-laxmi-gold/60" />
-                <div className="absolute top-0 left-0 h-full w-px bg-laxmi-gold/60" />
-              </div>
-              <div className="absolute bottom-4 right-4 w-6 h-6">
-                <div className="absolute bottom-0 right-0 w-full h-px bg-laxmi-gold/60" />
-                <div className="absolute bottom-0 right-0 h-full w-px bg-laxmi-gold/60" />
-              </div>
+        {/* Content with Glassmorphism Card */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+          <div className="max-w-2xl lg:max-w-3xl animate-fade-in-up">
+            {/* Glassmorphism Card - Premium Effect */}
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
+              {/* Glass background with multiple layers */}
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
+              <div className="absolute inset-0 border border-white/20 rounded-2xl md:rounded-3xl" />
 
-              {/* Label with improved visibility */}
-              <div className="flex items-center gap-4 mb-5">
-                <div className="w-10 h-px bg-laxmi-gold" />
-                <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                  {dict.common.madeInItaly}
-                </p>
-              </div>
+              {/* Inner glow effect */}
+              <div className="absolute inset-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
 
-              {/* Title - now highly readable */}
-              <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-5 md:mb-6">
-                {t.heroTitle}
-              </h1>
-
-              {/* Subtitle with excellent contrast */}
-              <p className="text-lg md:text-xl lg:text-2xl text-laxmi-champagne font-light mb-5 md:mb-6 tracking-wide">
-                {t.heroSubtitle}
-              </p>
-
-              {/* Decorative gold line */}
-              <div className="w-20 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/30 mb-5 md:mb-6" />
-
-              {/* Description - perfectly readable with pure white */}
-              <p className="text-sm md:text-base lg:text-lg text-white font-light leading-relaxed">
-                {t.heroDescription}
-              </p>
-
-              {/* Scroll indicator inside panel */}
-              <div className="mt-8 md:mt-10 flex items-center gap-3">
-                <div className="w-px h-10 bg-gradient-to-b from-laxmi-gold to-transparent" />
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-xs tracking-[0.2em] uppercase text-laxmi-gold">{t.exploreButton}</span>
-                  <span className="text-xs text-white/50">↓</span>
+              {/* Content */}
+              <div className="relative p-6 sm:p-8 md:p-12 lg:p-14">
+                {/* Gold accent line */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/50" />
+                  <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+                    {dict.common.madeInItaly}
+                  </span>
                 </div>
+
+                {/* Title */}
+                <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 md:mb-6 leading-[1.1]">
+                  {t.heroTitle}
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-6 md:mb-8 leading-relaxed">
+                  {t.heroSubtitle}
+                </p>
+
+                {/* Decorative divider */}
+                <div className="w-16 h-px bg-laxmi-gold/60 mb-6 md:mb-8" />
+
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-white/80 font-light leading-relaxed max-w-xl">
+                  {t.heroDescription}
+                </p>
+
+                {/* CTA */}
+                <div className="mt-8 md:mt-10 flex items-center gap-4">
+                  <a
+                    href="#gallery"
+                    className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.1em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
+                  >
+                    {t.exploreButton}
+                    <svg className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* Decorative corner accents */}
+              <div className="absolute top-6 right-6 w-8 h-8 hidden md:block">
+                <div className="absolute top-0 right-0 w-full h-px bg-laxmi-gold/40" />
+                <div className="absolute top-0 right-0 h-full w-px bg-laxmi-gold/40" />
+              </div>
+              <div className="absolute bottom-6 left-6 w-8 h-8 hidden md:block">
+                <div className="absolute bottom-0 left-0 w-full h-px bg-laxmi-gold/40" />
+                <div className="absolute bottom-0 left-0 h-full w-px bg-laxmi-gold/40" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced decorative bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
+        {/* Bottom fade to content */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      </section>
 
-        {/* Decorative corner accent */}
-        <div className="absolute top-24 right-8 md:right-16 w-20 h-20 opacity-20 z-10 hidden md:block">
-          <div className="absolute top-0 right-0 w-full h-px bg-laxmi-gold/50" />
-          <div className="absolute top-0 right-0 h-full w-px bg-laxmi-gold/50" />
+      {/* Storytelling Section 1: The Art */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Text Content */}
+            <div className="order-2 lg:order-1 animate-fade-in-up">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-px bg-laxmi-gold" />
+                <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                  {t.story1Subtitle}
+                </span>
+              </div>
+              <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 leading-tight">
+                {t.story1Title}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed mb-8">
+                {t.story1Text}
+              </p>
+              <blockquote className="border-l-2 border-laxmi-gold pl-6 py-2">
+                <p className="font-serif italic text-xl md:text-2xl text-laxmi-espresso dark:text-foreground">
+                  &ldquo;{t.story1Quote}&rdquo;
+                </p>
+              </blockquote>
+            </div>
+
+            {/* Image */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={craftImage.src}
+                  alt={locale === 'it' ? craftImage.title.it : craftImage.title.en}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/30 to-transparent" />
+              </div>
+              {/* Decorative frame */}
+              <div className="absolute -top-4 -right-4 w-full h-full border-2 border-laxmi-gold/20 rounded-2xl -z-10" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Storytelling Section 2: Materials */}
+      <section className="py-20 md:py-32 relative bg-laxmi-cream/30 dark:bg-card/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image */}
+            <div className="relative">
+              <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={livingImage.src}
+                  alt={locale === 'it' ? livingImage.title.it : livingImage.title.en}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/30 to-transparent" />
+              </div>
+              {/* Decorative frame */}
+              <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-laxmi-gold/20 rounded-2xl -z-10" />
+            </div>
+
+            {/* Text Content */}
+            <div className="animate-fade-in-up">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-px bg-laxmi-gold" />
+                <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                  {t.story2Subtitle}
+                </span>
+              </div>
+              <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 leading-tight">
+                {t.story2Title}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed mb-8">
+                {t.story2Text}
+              </p>
+              {/* Features grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {t.story2Features.map((feature, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-laxmi-gold" />
+                    <span className="text-sm text-laxmi-espresso dark:text-foreground font-medium">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 md:py-28 lg:py-36 relative bg-gradient-to-b from-background via-laxmi-cream/5 to-background">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-          {/* Section header with enhanced styling */}
-          <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
+      <section id="gallery" className="py-20 md:py-32 relative scroll-mt-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          {/* Section header */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
             <div className="flex items-center justify-center gap-6 mb-6">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-laxmi-gold/50" />
-              <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
+              <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
                 {t.filterLabel}
-              </p>
+              </span>
               <div className="w-16 h-px bg-gradient-to-l from-transparent to-laxmi-gold/50" />
             </div>
-            <h2 className="font-serif font-light text-2xl md:text-3xl lg:text-4xl text-laxmi-espresso dark:text-foreground">
-              {locale === 'it' ? 'La Nostra Selezione' : 'Our Selection'}
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground">
+              {locale === 'it' ? 'La Nostra Galleria' : 'Our Gallery'}
             </h2>
           </div>
 
@@ -227,48 +351,41 @@ export default async function CollectionsPage({
         </div>
       </section>
 
-      {/* CTA Section - Enhanced with luxury feel */}
-      <section className="py-24 md:py-32 lg:py-40 relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-laxmi-cream/30 via-laxmi-cream/50 to-laxmi-cream/30 dark:from-card/20 dark:via-card/30 dark:to-card/20" />
-
-        {/* Decorative lines */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-laxmi-gold/30" />
-
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
-          <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
-            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 text-laxmi-gold mx-auto mb-8 md:mb-10" />
-
-            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 md:mb-8">
-              {dict.cta.title}
+      {/* Storytelling Section 3: Your Vision */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso to-laxmi-espresso/95" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-10 h-px bg-laxmi-gold" />
+              <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
+                {t.story3Subtitle}
+              </span>
+              <div className="w-10 h-px bg-laxmi-gold" />
+            </div>
+            <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-white mb-8 leading-tight">
+              {t.story3Title}
             </h2>
-
-            <div className="w-16 h-px bg-laxmi-gold/50 mx-auto mb-6 md:mb-8" />
-
-            <p className="text-base md:text-lg text-muted-foreground font-light mb-10 md:mb-12 max-w-xl mx-auto leading-relaxed">
-              {dict.cta.description}
+            <p className="text-base md:text-lg lg:text-xl text-white/80 font-light leading-relaxed max-w-3xl mx-auto mb-10">
+              {t.story3Text}
             </p>
-
             <Link
               href={`/${locale}/book`}
-              className="inline-flex items-center gap-3 px-10 py-4 bg-laxmi-espresso text-white text-sm tracking-[0.15em] uppercase hover:bg-laxmi-espresso/90 transition-all duration-300 hover:shadow-lg group"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.15em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
             >
               {dict.cta.button}
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
           </div>
         </div>
-
-        {/* Bottom decorative line */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-px h-24 bg-gradient-to-t from-transparent to-laxmi-gold/30" />
       </section>
 
       {/* Footer */}
-      <footer className="py-10 md:py-12 lg:py-16 border-t border-border/30">
+      <footer className="py-12 md:py-16 border-t border-border/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
               <div className="flex flex-col items-center sm:items-start">
                 <SunburstLogo className="w-10 h-6 md:w-12 md:h-8 text-laxmi-bronze mb-2" />
@@ -285,7 +402,6 @@ export default async function CollectionsPage({
                 <li><Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.home}</Link></li>
                 <li><Link href={`/${locale}/consulting`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.consulting}</Link></li>
                 <li><Link href={`/${locale}/collections`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.collections}</Link></li>
-                <li><Link href={`/${locale}/about`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.about}</Link></li>
               </ul>
             </div>
 
@@ -299,7 +415,7 @@ export default async function CollectionsPage({
             </div>
           </div>
 
-          <div className="gold-line mt-8 md:mt-12 mb-6 md:mb-8" />
+          <div className="gold-line mt-10 md:mt-12 mb-6 md:mb-8" />
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-sm text-muted-foreground font-light order-2 md:order-1">
