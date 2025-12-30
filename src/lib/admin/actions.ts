@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
+import { revalidateTag, revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 
 export interface UpdateContentResult {
@@ -9,7 +9,21 @@ export interface UpdateContentResult {
 }
 
 /**
- * Update a single content item and revalidate the dictionary cache
+ * Revalidate all pages that use the dictionary
+ * This ensures content changes appear immediately on the live site
+ */
+function revalidateAllPages() {
+  // Revalidate the dictionary cache
+  revalidateTag('dictionary', { expire: 0 });
+
+  // Revalidate all locale pages to pick up dictionary changes
+  // Using layout revalidation to cover all pages under each locale
+  revalidatePath('/it', 'layout');
+  revalidatePath('/en', 'layout');
+}
+
+/**
+ * Update a single content item and revalidate caches
  */
 export async function updateContentItem(
   id: string,
@@ -35,9 +49,8 @@ export async function updateContentItem(
       return { success: false, error: error.message };
     }
 
-    // Revalidate the dictionary cache so frontend picks up changes immediately
-    // Using { expire: 0 } for immediate cache expiration (Next.js 16+ API)
-    revalidateTag('dictionary', { expire: 0 });
+    // Revalidate dictionary cache AND all pages
+    revalidateAllPages();
 
     return { success: true };
   } catch (err) {
@@ -77,8 +90,8 @@ export async function updateMultipleContentItems(
       }
     }
 
-    // Revalidate the dictionary cache immediately
-    revalidateTag('dictionary', { expire: 0 });
+    // Revalidate dictionary cache AND all pages
+    revalidateAllPages();
 
     return { success: true };
   } catch (err) {
