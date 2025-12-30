@@ -453,6 +453,9 @@ export async function createAuthor(data: AuthorFormData): Promise<ActionResult> 
       return { success: false, error: error.message };
     }
 
+    // Revalidate blog caches since author info appears on posts
+    revalidateBlogCaches();
+
     return { success: true, data: { id: author.id } };
   } catch (err) {
     console.error('Error creating author:', err);
@@ -510,6 +513,9 @@ export async function deleteAuthor(id: string): Promise<ActionResult> {
       return { success: false, error: error.message };
     }
 
+    // Revalidate blog caches since author info appears on posts
+    revalidateBlogCaches();
+
     return { success: true };
   } catch (err) {
     console.error('Error deleting author:', err);
@@ -548,6 +554,9 @@ export async function createCategory(data: CategoryFormData): Promise<ActionResu
       console.error('Failed to create category:', error);
       return { success: false, error: error.message };
     }
+
+    // Revalidate blog caches since category info appears on posts
+    revalidateBlogCaches();
 
     return { success: true, data: { id: category.id } };
   } catch (err) {
@@ -605,6 +614,9 @@ export async function deleteCategory(id: string): Promise<ActionResult> {
       console.error('Failed to delete category:', error);
       return { success: false, error: error.message };
     }
+
+    // Revalidate blog caches since category info appears on posts
+    revalidateBlogCaches();
 
     return { success: true };
   } catch (err) {
