@@ -1,5 +1,5 @@
 import { unstable_cache } from 'next/cache';
-import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
 import type { Dictionary } from '@/i18n/dictionaries';
 import type { Locale } from '@/i18n/config';
 
@@ -73,7 +73,8 @@ function buildNestedDictionary(
  * Fetch dictionary from database with caching
  */
 async function fetchDictionaryFromDB(locale: Locale): Promise<Dictionary> {
-  const supabase = await createClient();
+  // Use public client without cookies for cacheable content reads
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase
     .from('site_content')
