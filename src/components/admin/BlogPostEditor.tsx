@@ -11,6 +11,7 @@ import {
   type BlogPostFormData,
   type BlogFAQData,
 } from '@/lib/admin/blog-actions';
+import { BlogDeleteButton } from './BlogDeleteButton';
 
 interface Author {
   id: string;
@@ -282,6 +283,9 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </p>
         </div>
         <div className="flex items-center gap-3">
+          {isEditing && post && (
+            <BlogDeleteButton postId={post.id} postTitle={post.title_en} variant="button" redirectAfterDelete />
+          )}
           <button
             type="button"
             onClick={() => router.back()}

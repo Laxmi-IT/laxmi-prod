@@ -1,6 +1,16 @@
 'use client';
 
-import { Category, categories } from '@/data/collections';
+// Category type matching database categories
+type Category = 'all' | 'Kitchen' | 'Living' | 'Pantry' | 'Details';
+
+// Categories with bilingual labels
+const categories: { value: Category; label: { en: string; it: string } }[] = [
+  { value: 'all', label: { en: 'All Collections', it: 'Tutte le Collezioni' } },
+  { value: 'Kitchen', label: { en: 'Kitchen', it: 'Cucina' } },
+  { value: 'Living', label: { en: 'Living', it: 'Living' } },
+  { value: 'Pantry', label: { en: 'Pantry', it: 'Dispensa' } },
+  { value: 'Details', label: { en: 'Details', it: 'Dettagli' } },
+];
 
 interface CategoryFilterProps {
   activeCategory: Category;

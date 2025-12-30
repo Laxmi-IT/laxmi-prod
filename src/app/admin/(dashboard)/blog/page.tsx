@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { BlogDeleteButton } from "@/components/admin/BlogDeleteButton";
 
 // Status badge component
 function StatusBadge({ status }: { status: string }) {
@@ -214,6 +215,7 @@ export default async function BlogPage({
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </Link>
+                      <BlogDeleteButton postId={post.id} postTitle={post.title_en} />
                     </div>
                   </td>
                 </tr>

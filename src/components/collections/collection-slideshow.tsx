@@ -2,10 +2,25 @@
 
 import { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
-import { CollectionImage } from '@/data/collections';
+
+// Slideshow image type - compatible with both database and legacy static images
+interface SlideshowImage {
+  id: string;
+  src: string;
+  category: string;
+  series?: string;
+  title: {
+    en: string;
+    it: string;
+  };
+  description: {
+    en: string;
+    it: string;
+  };
+}
 
 interface CollectionSlideshowProps {
-  images: CollectionImage[];
+  images: SlideshowImage[];
   initialIndex: number;
   locale: string;
   onClose: () => void;

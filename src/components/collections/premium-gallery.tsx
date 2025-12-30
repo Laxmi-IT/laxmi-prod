@@ -2,17 +2,59 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { CollectionImage, Category, getImagesByCategory } from '@/data/collections';
 import { CategoryFilter } from './category-filter';
 import { CollectionSlideshow } from './collection-slideshow';
 
+// Types for gallery images from database
+export interface GalleryImageData {
+  id: string;
+  src: string;
+  category: string;
+  categoryIT: string;
+  title: {
+    en: string;
+    it: string;
+  };
+  description: {
+    en: string;
+    it: string;
+  };
+  isFeatured: boolean;
+  isActive: boolean;
+  sortOrder: number;
+}
+
+// Legacy type for static data compatibility
+export interface CollectionImage {
+  id: string;
+  src: string;
+  category: string;
+  series?: string;
+  title: {
+    en: string;
+    it: string;
+  };
+  description: {
+    en: string;
+    it: string;
+  };
+}
+
+type ImageType = GalleryImageData | CollectionImage;
+
 interface PremiumGalleryProps {
   locale: string;
+  images: ImageType[];
   translations: {
     filterLabel: string;
     showingCount: string;
     noResults: string;
   };
+}
+
+// Helper to get series from image (for legacy static data)
+function getImageSeries(image: ImageType): string {
+  return 'series' in image && image.series ? image.series : '';
 }
 
 // Featured card component for hero images
@@ -22,13 +64,14 @@ function FeaturedCard({
   locale,
   onClick,
 }: {
-  image: CollectionImage;
+  image: ImageType;
   index: number;
   locale: string;
   onClick: () => void;
 }) {
   const title = locale === 'it' ? image.title.it : image.title.en;
   const description = locale === 'it' ? image.description.it : image.description.en;
+  const series = getImageSeries(image);
 
   return (
     <div
@@ -52,9 +95,9 @@ function FeaturedCard({
 
       {/* Content overlay - always visible */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
-        {/* Series badge */}
+        {/* Series/Category badge */}
         <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-laxmi-gold mb-2 md:mb-3">
-          {image.series}
+          {series || image.category}
         </span>
 
         {/* Title */}
@@ -96,12 +139,13 @@ function StandardCard({
   locale,
   onClick,
 }: {
-  image: CollectionImage;
+  image: ImageType;
   index: number;
   locale: string;
   onClick: () => void;
 }) {
   const title = locale === 'it' ? image.title.it : image.title.en;
+  const series = getImageSeries(image);
 
   return (
     <div
@@ -124,9 +168,9 @@ function StandardCard({
 
       {/* Content overlay */}
       <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-        {/* Series badge */}
+        {/* Series/Category badge */}
         <span className="text-[10px] tracking-[0.2em] uppercase text-laxmi-champagne/90 mb-1.5">
-          {image.series}
+          {series || image.category}
         </span>
 
         {/* Title */}
@@ -141,13 +185,22 @@ function StandardCard({
   );
 }
 
-export function PremiumGallery({ locale, translations }: PremiumGalleryProps) {
+// Category type for filtering
+type Category = 'all' | 'Kitchen' | 'Living' | 'Pantry' | 'Details';
+
+// Helper to filter images by category
+function filterByCategory(images: ImageType[], category: Category): ImageType[] {
+  if (category === 'all') return images;
+  return images.filter((img) => img.category === category);
+}
+
+export function PremiumGallery({ locale, images, translations }: PremiumGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const filteredImages = useMemo(
-    () => getImagesByCategory(activeCategory),
-    [activeCategory]
+    () => filterByCategory(images, activeCategory),
+    [images, activeCategory]
   );
 
   const handleImageClick = (index: number) => {

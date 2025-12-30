@@ -6,7 +6,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { PremiumGallery } from "@/components/collections";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale } from "@/i18n/config";
-import { collectionImages } from "@/data/collections";
+import { getGalleryImages } from "@/lib/gallery/queries";
 
 // Sunburst Logo Component
 function SunburstLogo({ className = "" }: { className?: string }) {
@@ -52,12 +52,31 @@ export default async function CollectionsPage({
   const locale = (localeParam === 'it' || localeParam === 'en' ? localeParam : 'it') as Locale;
   const dict = await getDictionary(locale);
 
-  // Get hero image for the collections page
-  const heroImage = collectionImages.find(img => img.id === 'loft22-supermatt-wood') || collectionImages[0];
+  // Fetch gallery images from database (cached)
+  const galleryImages = await getGalleryImages();
+
+  // Fallback image data in case database is empty
+  const fallbackImage = {
+    id: 'fallback',
+    src: '/images/collections/loft22-supermatt-wood.webp',
+    category: 'Kitchen',
+    categoryIT: 'Cucina',
+    title: { en: 'LAXMI Kitchen', it: 'Cucina LAXMI' },
+    description: { en: 'Italian luxury kitchen design', it: 'Design cucina lusso italiano' },
+    isFeatured: true,
+    isActive: true,
+    sortOrder: 0,
+  };
+
+  // Get hero image for the collections page - prefer featured Kitchen image
+  const heroImage = galleryImages.find(img => img.isFeatured && img.category === 'Kitchen')
+    || galleryImages.find(img => img.category === 'Kitchen')
+    || galleryImages[0]
+    || fallbackImage;
 
   // Get secondary images for storytelling sections
-  const craftImage = collectionImages.find(img => img.category === 'dettagli') || collectionImages[2];
-  const livingImage = collectionImages.find(img => img.category === 'living') || collectionImages[5];
+  const craftImage = galleryImages.find(img => img.category === 'Details') || galleryImages[2] || fallbackImage;
+  const livingImage = galleryImages.find(img => img.category === 'Living') || galleryImages[5] || fallbackImage;
 
   // Page translations
   const t = locale === 'it' ? {
@@ -348,6 +367,7 @@ export default async function CollectionsPage({
           {/* Premium Gallery */}
           <PremiumGallery
             locale={locale}
+            images={galleryImages}
             translations={{
               filterLabel: t.filterLabel,
               showingCount: t.showingCount,
