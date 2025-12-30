@@ -13,6 +13,9 @@ Crawl-delay: 1
 # Block access to API routes
 Disallow: /api/
 
+# Block access to admin area
+Disallow: /admin/
+
 # Allow all language versions
 Allow: /it/
 Allow: /en/
