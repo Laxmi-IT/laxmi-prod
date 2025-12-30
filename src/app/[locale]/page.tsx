@@ -86,6 +86,7 @@ export default async function Home({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -100,6 +101,7 @@ export default async function Home({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
+                { href: `/${locale}/blog`, label: "Blog" },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
