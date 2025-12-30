@@ -50,8 +50,8 @@ export async function middleware(request: NextRequest) {
 
   // ============= Admin Route Protection =============
   if (pathname.startsWith('/admin')) {
-    // Allow access to login page without auth
-    if (pathname === '/admin/login') {
+    // Allow access to login and signup pages without auth
+    if (pathname === '/admin/login' || pathname === '/admin/signup') {
       // If already logged in as admin, redirect to dashboard
       const { supabase, response } = createMiddlewareClient(request)
       const { data: { user } } = await supabase.auth.getUser()
