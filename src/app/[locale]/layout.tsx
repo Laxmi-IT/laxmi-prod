@@ -20,6 +20,10 @@ const inter = Inter({
   display: "swap",
 });
 
+// Enable ISR - pages will revalidate on-demand when content changes
+// This allows revalidatePath() to trigger page regeneration
+export const revalidate = 60; // Revalidate every 60 seconds as fallback
+
 // Generate static params for all locales
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
