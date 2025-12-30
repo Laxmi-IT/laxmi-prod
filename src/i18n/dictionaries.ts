@@ -1,4 +1,5 @@
 import type { Locale } from './config';
+import { getDictionaryFromDB } from '@/lib/content/getDictionaryFromDB';
 
 // Dictionary type based on the structure
 export interface Dictionary {
@@ -240,11 +241,31 @@ export interface Dictionary {
   };
 }
 
-const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
+// Static dictionaries as fallback
+const staticDictionaries: Record<Locale, () => Promise<Dictionary>> = {
   it: () => import('./dictionaries/it.json').then((module) => module.default),
   en: () => import('./dictionaries/en.json').then((module) => module.default),
 };
 
+/**
+ * Get dictionary for a locale
+ * Tries database first, falls back to static JSON files
+ */
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
-  return dictionaries[locale]();
+  try {
+    // Try to get dictionary from database (cached)
+    return await getDictionaryFromDB(locale);
+  } catch (error) {
+    // Log error but don't expose to users
+    console.error('Database dictionary failed, using static fallback:', error);
+    // Fall back to static JSON files
+    return staticDictionaries[locale]();
+  }
+};
+
+/**
+ * Get static dictionary directly (for development/debugging)
+ */
+export const getStaticDictionary = async (locale: Locale): Promise<Dictionary> => {
+  return staticDictionaries[locale]();
 };
