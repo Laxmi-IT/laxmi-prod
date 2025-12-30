@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 import { createClient } from "@/lib/supabase/client";
 
 interface NavItem {
@@ -80,11 +81,14 @@ const navItems: NavItem[] = [
 interface AdminSidebarProps {
   adminName: string;
   adminRole: string;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export function AdminSidebar({ adminName, adminRole }: AdminSidebarProps) {
+export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   async function handleLogout() {
     const supabase = createClient();
@@ -93,47 +97,74 @@ export function AdminSidebar({ adminName, adminRole }: AdminSidebarProps) {
     router.refresh();
   }
 
+  const handleNavClick = () => {
+    // Close sidebar on mobile after navigation
+    if (onClose && window.innerWidth < 768) {
+      onClose();
+    }
+  };
+
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col">
+    <aside
+      className={`fixed left-0 top-0 z-50 h-screen w-64 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col transform transition-transform duration-300 ease-in-out ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0`}
+    >
       {/* Logo */}
-      <div className="p-6 border-b border-zinc-800">
-        <Link href="/admin/dashboard" className="flex flex-col items-center group">
-          <svg
-            viewBox="0 0 40 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-10 h-6 text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110"
+      <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="flex items-center justify-between">
+          <Link
+            href="/admin/dashboard"
+            onClick={handleNavClick}
+            className="flex flex-col items-center group flex-1"
           >
-            {Array.from({ length: 9 }).map((_, i) => {
-              const angle = -180 + (i * 180) / 8;
-              const rad = (angle * Math.PI) / 180;
-              const x1 = 20 + Math.cos(rad) * 4;
-              const y1 = 22 + Math.sin(rad) * 4;
-              const x2 = 20 + Math.cos(rad) * 12;
-              const y2 = 22 + Math.sin(rad) * 12;
-              return (
-                <line
-                  key={i}
-                  x1={x1}
-                  y1={y1}
-                  x2={x2}
-                  y2={y2}
-                  stroke="currentColor"
-                  strokeWidth="0.8"
-                  strokeLinecap="round"
-                  opacity={0.85}
-                />
-              );
-            })}
-            <circle cx="20" cy="22" r="1.5" fill="currentColor" />
-          </svg>
-          <span className="text-lg tracking-[0.3em] font-serif font-light text-white">
-            LAXMI
-          </span>
-          <span className="text-xs tracking-widest text-zinc-500 uppercase">
-            Admin
-          </span>
-        </Link>
+            <svg
+              viewBox="0 0 40 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-10 h-6 text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110"
+            >
+              {Array.from({ length: 9 }).map((_, i) => {
+                const angle = -180 + (i * 180) / 8;
+                const rad = (angle * Math.PI) / 180;
+                const x1 = 20 + Math.cos(rad) * 4;
+                const y1 = 22 + Math.sin(rad) * 4;
+                const x2 = 20 + Math.cos(rad) * 12;
+                const y2 = 22 + Math.sin(rad) * 12;
+                return (
+                  <line
+                    key={i}
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="currentColor"
+                    strokeWidth="0.8"
+                    strokeLinecap="round"
+                    opacity={0.85}
+                  />
+                );
+              })}
+              <circle cx="20" cy="22" r="1.5" fill="currentColor" />
+            </svg>
+            <span className="text-lg tracking-[0.3em] font-serif font-light text-zinc-900 dark:text-white">
+              LAXMI
+            </span>
+            <span className="text-xs tracking-widest text-zinc-500 dark:text-zinc-500 uppercase">
+              Admin
+            </span>
+          </Link>
+          {/* Mobile Close Button */}
+          <button
+            onClick={onClose}
+            className="md:hidden p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors absolute right-4 top-4"
+            aria-label="Close menu"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Navigation */}
@@ -144,10 +175,11 @@ export function AdminSidebar({ adminName, adminRole }: AdminSidebarProps) {
             <Link
               key={item.href}
               href={item.href}
+              onClick={handleNavClick}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-amber-500/10 text-amber-500 border border-amber-500/20"
-                  : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-500 border border-amber-500/20"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
               }`}
             >
               {item.icon}
@@ -157,14 +189,62 @@ export function AdminSidebar({ adminName, adminRole }: AdminSidebarProps) {
         })}
       </nav>
 
+      {/* Theme Toggle */}
+      <div className="px-4 py-3 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-zinc-600 dark:text-zinc-400">Theme</span>
+          <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1">
+            <button
+              onClick={() => setTheme("light")}
+              className={`p-2 rounded-md transition-colors ${
+                theme === "light"
+                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
+                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+              title="Light mode"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setTheme("dark")}
+              className={`p-2 rounded-md transition-colors ${
+                theme === "dark"
+                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
+                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+              title="Dark mode"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setTheme("system")}
+              className={`p-2 rounded-md transition-colors ${
+                theme === "system"
+                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
+                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+              title="System preference"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* User section */}
-      <div className="p-4 border-t border-zinc-800">
+      <div className="p-4 border-t border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 font-medium">
+          <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-500 font-medium">
             {adminName.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-white truncate">{adminName}</p>
+            <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">{adminName}</p>
             <p className="text-xs text-zinc-500 capitalize">{adminRole.replace("_", " ")}</p>
           </div>
         </div>
@@ -172,13 +252,14 @@ export function AdminSidebar({ adminName, adminRole }: AdminSidebarProps) {
         <div className="flex gap-2">
           <Link
             href="/it"
-            className="flex-1 px-3 py-2 text-xs text-center text-zinc-400 hover:text-white hover:bg-zinc-800 rounded transition-colors"
+            onClick={handleNavClick}
+            className="flex-1 px-3 py-2 text-xs text-center text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition-colors"
           >
             View Site
           </Link>
           <button
             onClick={handleLogout}
-            className="flex-1 px-3 py-2 text-xs text-center text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
+            className="flex-1 px-3 py-2 text-xs text-center text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
           >
             Sign Out
           </button>

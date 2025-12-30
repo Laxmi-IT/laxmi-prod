@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { AdminLayoutClient } from "@/components/admin/AdminLayoutClient";
 import { Toaster } from "@/components/ui/sonner";
 import "@/app/globals.css";
 
@@ -30,17 +30,14 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-zinc-950 text-white antialiased">
-        <AdminSidebar
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white antialiased">
+        <AdminLayoutClient
           adminName={adminUser.display_name}
           adminRole={adminUser.role}
-        />
-        <main className="ml-64 min-h-screen">
-          <div className="p-8">
-            {children}
-          </div>
-        </main>
+        >
+          {children}
+        </AdminLayoutClient>
         <Toaster position="bottom-right" />
       </body>
     </html>
