@@ -5,8 +5,18 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale } from "@/i18n/config";
-import { getPublishedPosts, getFeaturedPosts, categories, getCategoryById, getAuthorById } from "@/lib/blog/data";
+import {
+  getPublishedPosts,
+  getFeaturedPosts,
+  getCategories,
+  getAuthors,
+  getCategoryById,
+  getAuthorById,
+} from "@/lib/blog/queries";
 import type { Metadata } from "next";
+
+// Enable ISR for blog pages
+export const revalidate = 60;
 
 // Sunburst Logo Component
 function SunburstLogo({ className = "" }: { className?: string }) {
@@ -80,8 +90,13 @@ export default async function BlogPage({
   const locale = (localeParam === "it" || localeParam === "en" ? localeParam : "it") as Locale;
   const dict = await getDictionary(locale);
 
-  const allPosts = getPublishedPosts();
-  const featuredPosts = getFeaturedPosts();
+  // Fetch data from database
+  const [allPosts, featuredPosts, categories, authors] = await Promise.all([
+    getPublishedPosts(),
+    getFeaturedPosts(),
+    getCategories(),
+    getAuthors(),
+  ]);
 
   // Format date based on locale
   const formatDate = (dateString: string) => {
@@ -212,7 +227,7 @@ export default async function BlogPage({
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredPosts.slice(0, 2).map((post, idx) => {
-                const category = getCategoryById(post.category);
+                const category = getCategoryById(categories, post.category);
                 return (
                   <Link
                     key={post.id}
@@ -300,8 +315,8 @@ export default async function BlogPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allPosts.map((post, idx) => {
-              const category = getCategoryById(post.category);
-              const author = getAuthorById(post.author);
+              const category = getCategoryById(categories, post.category);
+              const author = getAuthorById(authors, post.author);
               return (
                 <Link
                   key={post.id}

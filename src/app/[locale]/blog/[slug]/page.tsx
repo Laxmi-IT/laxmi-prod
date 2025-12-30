@@ -10,10 +10,15 @@ import {
   getPostBySlug,
   getPublishedPosts,
   getRelatedPosts,
+  getCategories,
+  getAuthors,
   getCategoryById,
   getAuthorById,
-} from "@/lib/blog/data";
+} from "@/lib/blog/queries";
 import type { Metadata } from "next";
+
+// Enable ISR for blog posts
+export const revalidate = 60;
 
 // Sunburst Logo Component
 function SunburstLogo({ className = "" }: { className?: string }) {
@@ -52,15 +57,21 @@ function SunburstLogo({ className = "" }: { className?: string }) {
 
 // Generate static paths for all blog posts
 export async function generateStaticParams() {
-  const posts = getPublishedPosts();
-  const locales = ["it", "en"];
+  try {
+    const posts = await getPublishedPosts();
+    const locales = ["it", "en"];
 
-  return locales.flatMap((locale) =>
-    posts.map((post) => ({
-      locale,
-      slug: post.slug,
-    }))
-  );
+    return locales.flatMap((locale) =>
+      posts.map((post) => ({
+        locale,
+        slug: post.slug,
+      }))
+    );
+  } catch (error) {
+    // During build time, env vars may not be available
+    console.warn('Unable to generate static params for blog posts:', error);
+    return [];
+  }
 }
 
 // Generate metadata for SEO
@@ -71,7 +82,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale: localeParam, slug } = await params;
   const locale = localeParam === "it" ? "it" : "en";
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -145,15 +156,22 @@ export default async function BlogArticlePage({
   const locale = (localeParam === "it" || localeParam === "en" ? localeParam : "it") as Locale;
   const dict = await getDictionary(locale);
 
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post || post.status !== "published") {
     notFound();
   }
 
-  const category = getCategoryById(post.category);
-  const author = getAuthorById(post.author);
-  const relatedPosts = getRelatedPosts(post.id, 3);
+  // Fetch categories, authors, and related posts
+  const [categories, authors, relatedPostsData] = await Promise.all([
+    getCategories(),
+    getAuthors(),
+    post.relatedPosts.length > 0 ? getRelatedPosts(post.relatedPosts) : Promise.resolve([]),
+  ]);
+
+  const category = getCategoryById(categories, post.category);
+  const author = getAuthorById(authors, post.author);
+  const relatedPosts = relatedPostsData;
 
   const content = locale === "it" ? post.contentIT : post.content;
   const title = locale === "it" ? post.titleIT : post.title;
@@ -391,7 +409,7 @@ export default async function BlogArticlePage({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {relatedPosts.map((relatedPost) => {
-                const relatedCategory = getCategoryById(relatedPost.category);
+                const relatedCategory = getCategoryById(categories, relatedPost.category);
                 return (
                   <Link
                     key={relatedPost.id}
