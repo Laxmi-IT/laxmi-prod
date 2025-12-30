@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieConsent } from "@/components/cookie-consent";
 import { locales, defaultLocale, hreflangCodes, siteUrl, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import "../globals.css";
@@ -252,6 +253,7 @@ export default async function LocaleLayout({
         >
           {children}
           <Toaster />
+          <CookieConsent locale={locale as "it" | "en"} />
         </ThemeProvider>
       </body>
     </html>

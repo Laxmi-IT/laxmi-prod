@@ -337,6 +337,27 @@ export default async function ContactPage({
                     />
                   </div>
 
+                  {/* GDPR Consent Checkbox */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="privacy-consent"
+                      required
+                      className="mt-1 w-5 h-5 rounded border-border/50 text-laxmi-gold focus:ring-laxmi-gold/30 cursor-pointer"
+                    />
+                    <label htmlFor="privacy-consent" className="text-sm text-muted-foreground font-light leading-relaxed cursor-pointer">
+                      {locale === "it" ? (
+                        <>
+                          Ho letto e accetto l&apos;<Link href={`/${locale}/privacy-policy`} className="text-laxmi-bronze hover:text-laxmi-gold underline">Informativa Privacy</Link> e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
+                        </>
+                      ) : (
+                        <>
+                          I have read and accept the <Link href={`/${locale}/privacy-policy`} className="text-laxmi-bronze hover:text-laxmi-gold underline">Privacy Policy</Link> and consent to the processing of my personal data to respond to my request. *
+                        </>
+                      )}
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
                     className="btn-luxury-filled w-full"
