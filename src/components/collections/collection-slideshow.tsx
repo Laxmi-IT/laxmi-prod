@@ -94,8 +94,8 @@ export function CollectionSlideshow({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Glassmorphism backdrop - Safari compatible */}
-      <div className="absolute inset-0 glass-cream glass-blur-xl" />
+      {/* Glassmorphism backdrop - Safari compatible, strong blur for focus */}
+      <div className="absolute inset-0 bg-laxmi-cream/85 glass-blur-3xl" />
 
       {/* Subtle warm gradient for depth */}
       <div
