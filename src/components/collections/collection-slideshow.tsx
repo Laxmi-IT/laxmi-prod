@@ -94,14 +94,13 @@ export function CollectionSlideshow({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Glassmorphism backdrop - Safari compatible, strong blur for focus */}
-      <div className="absolute inset-0 bg-laxmi-cream/85 glass-blur-3xl" />
-
-      {/* Subtle warm gradient for depth */}
+      {/* Strong opaque backdrop to hide background completely */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(255, 250, 231, 0.25) 0%, transparent 40%, rgba(245, 219, 185, 0.2) 100%)',
+          backgroundColor: 'rgba(250, 248, 243, 0.97)',
+          backdropFilter: 'blur(80px) saturate(120%)',
+          WebkitBackdropFilter: 'blur(80px) saturate(120%)',
         }}
       />
 
