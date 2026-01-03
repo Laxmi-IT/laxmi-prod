@@ -98,7 +98,7 @@ export function CollectionSlideshow({
       <div
         className="absolute inset-0"
         style={{
-          backgroundColor: 'rgba(250, 248, 243, 0.97)',
+          backgroundColor: 'rgba(250, 248, 243, 0.75)',
           backdropFilter: 'blur(80px) saturate(120%)',
           WebkitBackdropFilter: 'blur(80px) saturate(120%)',
         }}
