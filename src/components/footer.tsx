@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { CookieSettingsButton } from "./cookie-consent";
-import { SunburstLogo } from "./laxmi-logo";
+import { LogoText } from "./laxmi-logo";
 
 const translations = {
   it: {
@@ -58,9 +58,8 @@ export function Footer({ locale }: FooterProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12">
           {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
-            <Link href={`/${locale}`} className="inline-flex flex-col items-center sm:items-start group">
-              <SunburstLogo className="w-10 h-6 md:w-12 md:h-8 text-laxmi-bronze mb-2 transition-transform duration-300 group-hover:scale-110" />
-              <span className="text-lg tracking-[0.3em] font-serif font-light">LAXMI</span>
+            <Link href={`/${locale}`} className="inline-flex items-center group">
+              <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-300 group-hover:scale-110" />
             </Link>
             <p className="text-muted-foreground font-light mt-4 max-w-sm">
               {t.description}

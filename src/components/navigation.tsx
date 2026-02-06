@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileNav } from "./mobile-nav";
-import { SunburstLogo } from "./laxmi-logo";
+import { LogoText } from "./laxmi-logo";
 
 const translations = {
   it: {
@@ -43,11 +43,8 @@ export function Navigation({ locale, activeLink }: NavigationProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
       <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
-        <Link href={`/${locale}`} className="flex flex-col items-center group">
-          <SunburstLogo className="w-8 h-5 md:w-10 md:h-6 text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
-          <span className="text-lg md:text-xl tracking-[0.25em] md:tracking-[0.3em] font-serif font-light mt-0.5 md:mt-1">
-            LAXMI
-          </span>
+        <Link href={`/${locale}`} className="flex items-center group">
+          <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
         </Link>
 
         <div className="hidden md:flex items-center gap-10">

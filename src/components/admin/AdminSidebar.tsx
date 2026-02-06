@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { createClient } from "@/lib/supabase/client";
-import { SunburstLogo } from "../laxmi-logo";
+import { LogoText } from "../laxmi-logo";
 
 interface NavItem {
   href: string;
@@ -119,10 +119,7 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
             onClick={handleNavClick}
             className="flex flex-col items-center group flex-1"
           >
-            <SunburstLogo className="w-10 h-6 text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-lg tracking-[0.3em] font-serif font-light text-zinc-900 dark:text-white">
-              LAXMI
-            </span>
+            <LogoText className="h-8 w-auto text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110" />
             <span className="text-xs tracking-widest text-zinc-500 dark:text-zinc-500 uppercase">
               Admin
             </span>

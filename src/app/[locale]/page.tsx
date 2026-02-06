@@ -6,7 +6,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale } from "@/i18n/config";
-import { SunburstLogo } from "@/components/laxmi-logo";
+import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
 
 // Decorative Line with Arrow
 function DecorativeLine({ className = "" }: { className?: string }) {
@@ -38,11 +38,8 @@ export default async function Home({
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
         <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
           {/* Logo */}
-          <Link href={`/${locale}`} className="flex flex-col items-center group">
-            <SunburstLogo className="w-8 h-5 md:w-10 md:h-6 text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
-            <span className="text-lg md:text-xl tracking-[0.25em] md:tracking-[0.3em] font-serif font-light mt-0.5 md:mt-1">
-              LAXMI
-            </span>
+          <Link href={`/${locale}`} className="flex items-center group">
+            <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
           </Link>
 
           {/* Navigation Links */}
@@ -422,9 +419,8 @@ export default async function Home({
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
             <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
-              <div className="flex flex-col items-center sm:items-start">
-                <SunburstLogo className="w-10 h-6 md:w-12 md:h-8 text-laxmi-bronze mb-2" />
-                <span className="text-lg tracking-[0.3em] font-serif font-light">LAXMI</span>
+              <div className="flex items-center sm:items-start">
+                <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze" />
               </div>
               <p className="text-muted-foreground font-light mt-4 max-w-sm">
                 {dict.footer.description}

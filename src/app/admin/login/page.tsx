@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SunburstLogo } from "@/components/laxmi-logo";
+import { LogoText } from "@/components/laxmi-logo";
 
 // Login form component that uses searchParams
 function LoginForm() {
@@ -184,11 +184,8 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         {/* Logo/Branding */}
         <div className="text-center mb-8">
-          <div className="inline-flex flex-col items-center">
-            <SunburstLogo className="w-12 h-8 text-amber-500 mb-3" />
-            <span className="text-xl tracking-[0.3em] font-serif font-light text-white">
-              LAXMI
-            </span>
+          <div className="inline-flex items-center">
+            <LogoText className="h-10 w-auto text-amber-500" />
             <span className="text-xs tracking-widest text-zinc-500 mt-1 uppercase">
               Admin Dashboard
             </span>
