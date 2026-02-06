@@ -72,6 +72,10 @@
   --laxmi-olive: #A4B494;
   --laxmi-moss: #C4D4B4;
 
+  /* Logo Colors */
+  --logo-color: #39241d;
+  --logo-accent: #93694d;
+
   /* Luxury Gold Accents */
   --laxmi-gold: #B8956E;
   --laxmi-gold-light: #D4B896;
@@ -122,6 +126,8 @@
 }
 
 .dark {
+  --logo-color: #F5DBB9;
+  --logo-accent: #B8956E;
   --background: #1A1612;
   --foreground: #FAF8F3;
   --card: #252019;

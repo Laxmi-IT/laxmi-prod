@@ -189,7 +189,7 @@ export default async function Home({
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-5 md:space-y-8 animate-fade-in-up pt-[340px] sm:pt-[400px] lg:pt-0">
               {/* Main heading with brand logo */}
               <div className="flex justify-center lg:justify-start">
-                <LogoText className="h-14 sm:h-16 md:h-20 w-auto" />
+                <LogoText className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto" />
               </div>
 
               {/* Tagline */}
