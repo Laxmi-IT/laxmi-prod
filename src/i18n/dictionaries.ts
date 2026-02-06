@@ -17,6 +17,7 @@ export interface Dictionary {
     collections: string;
     about: string;
     contact: string;
+    blog: string;
   };
   hero: {
     tagline1: string;
@@ -24,6 +25,8 @@ export interface Dictionary {
     description: string;
     madeInItaly: string;
     cta: string;
+    imageAlt: string;
+    mobileImageAlt: string;
   };
   values: {
     sectionLabel: string;
@@ -39,6 +42,7 @@ export interface Dictionary {
     service2: { title: string; description: string };
     service3: { title: string; description: string };
     discoverMore: string;
+    imageAlt: string;
   };
   gallery: {
     sectionLabel: string;
@@ -109,6 +113,7 @@ export interface Dictionary {
     byAppointmentOnly: string;
     learnMore: string;
     contactUs: string;
+    location: string;
   };
   collections: {
     heroTitle: string;
@@ -125,12 +130,28 @@ export interface Dictionary {
       dispensa: string;
       dettagli: string;
     };
+    galleryTitle: string;
+    story1Title: string;
+    story1Subtitle: string;
+    story1Text: string;
+    story1Quote: string;
+    story2Title: string;
+    story2Subtitle: string;
+    story2Text: string;
+    story2Features: string[];
+    story3Title: string;
+    story3Subtitle: string;
+    story3Text: string;
+    trustCustomDesign: string;
+    trustPremiumQuality: string;
   };
   consulting: {
+    heroLabel: string;
     heroTitle: string;
     heroSubtitle: string;
     heroDescription: string;
     heroQuote: string;
+    visionLabel: string;
     philosophyTitle: string;
     philosophyText: string;
     processTitle: string;
@@ -142,6 +163,7 @@ export interface Dictionary {
       creation: { number: string; title: string; description: string };
       refinement: { number: string; title: string; description: string };
     };
+    recommended: string;
     servicesTitle: string;
     servicesSubtitle: string;
     services: {
@@ -180,6 +202,7 @@ export interface Dictionary {
       renders: string;
       coordination: string;
     };
+    commitmentLabel: string;
     promiseTitle: string;
     promiseText: string;
     ctaTitle: string;
@@ -206,11 +229,52 @@ export interface Dictionary {
       collaboration: string;
       other: string;
     };
+    phone: string;
+    locationLabel: string;
+    hoursDetail: string;
+    followUs: string;
+    subjectLabel: string;
+    selectTopic: string;
+    privacyConsent: string;
+    privacyPolicyLabel: string;
+    responseTime: string;
+    mapTitle: string;
+    mapDescription: string;
+    bookAppointment: string;
+  };
+  blog: {
+    metaTitle: string;
+    metaDescription: string;
+    heroLabel: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    heroDescription: string;
+    featuredLabel: string;
+    featuredTitle: string;
+    minRead: string;
+    readMore: string;
+    allArticlesLabel: string;
+    allArticlesTitle: string;
+    read: string;
+    newsletterTitle: string;
+    newsletterDescription: string;
+    newsletterPlaceholder: string;
+    subscribe: string;
+    articleNotFound: string;
+    faqTitle: string;
+    continueReading: string;
+    relatedArticles: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButton: string;
+    heroImageAlt: string;
   };
   aboutPage: {
     label: string;
     heroTitle: string;
     heroSubtitle: string;
+    heroImageAlt: string;
+    nameImageAlt: string;
     nameSection: {
       label: string;
       title: string;

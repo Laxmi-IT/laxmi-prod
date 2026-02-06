@@ -23,10 +23,8 @@ export default async function AboutPage({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
         </svg>
       ),
-      title: locale === "it" ? "Qualità" : "Quality",
-      description: locale === "it"
-        ? "Solo materiali pregiati e lavorazioni artigianali d'eccellenza per creare pezzi che durano nel tempo."
-        : "Only premium materials and exceptional craftsmanship to create pieces that stand the test of time."
+      title: dict.aboutPage.values.quality.title,
+      description: dict.aboutPage.values.quality.description
     },
     {
       icon: (
@@ -34,10 +32,8 @@ export default async function AboutPage({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
         </svg>
       ),
-      title: locale === "it" ? "Autenticità" : "Authenticity",
-      description: locale === "it"
-        ? "Ogni pezzo racconta una storia di tradizione italiana, passione e maestria artigianale."
-        : "Every piece tells a story of Italian tradition, passion, and artisanal mastery."
+      title: dict.aboutPage.values.authenticity.title,
+      description: dict.aboutPage.values.authenticity.description
     },
     {
       icon: (
@@ -45,10 +41,8 @@ export default async function AboutPage({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
         </svg>
       ),
-      title: locale === "it" ? "Unicità" : "Uniqueness",
-      description: locale === "it"
-        ? "Soluzioni personalizzate che riflettono la tua personalità e il tuo stile di vita unico."
-        : "Personalized solutions that reflect your personality and unique lifestyle."
+      title: dict.aboutPage.values.uniqueness.title,
+      description: dict.aboutPage.values.uniqueness.description
     },
     {
       icon: (
@@ -56,10 +50,8 @@ export default async function AboutPage({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      title: locale === "it" ? "Professionalità" : "Professionalism",
-      description: locale === "it"
-        ? "Un servizio impeccabile dalla prima consulenza fino all'installazione finale."
-        : "Impeccable service from the first consultation to the final installation."
+      title: dict.aboutPage.values.professionalism.title,
+      description: dict.aboutPage.values.professionalism.description
     },
   ];
 
@@ -76,7 +68,7 @@ export default async function AboutPage({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link text-laxmi-gold">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -90,10 +82,12 @@ export default async function AboutPage({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -105,7 +99,7 @@ export default async function AboutPage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services-interior.jpg"
-            alt={locale === "it" ? "Chi Siamo - LAXMI" : "About Us - LAXMI"}
+            alt={dict.aboutPage.heroImageAlt}
             fill
             className="object-cover"
             priority
@@ -134,18 +128,16 @@ export default async function AboutPage({
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/50" />
                   <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                    {locale === "it" ? "La Nostra Storia" : "Our Story"}
+                    {dict.aboutPage.label}
                   </span>
                 </div>
 
                 <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 md:mb-6 leading-[1.1]">
-                  {locale === "it" ? "Chi Siamo" : "About Us"}
+                  {dict.aboutPage.heroTitle}
                 </h1>
 
                 <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light leading-relaxed">
-                  {locale === "it"
-                    ? "Dove la passione per il design italiano incontra l'eccellenza artigianale"
-                    : "Where passion for Italian design meets artisanal excellence"}
+                  {dict.aboutPage.heroSubtitle}
                 </p>
               </div>
             </div>
@@ -170,7 +162,7 @@ export default async function AboutPage({
                 >
                   <Image
                     src="/images/hero-italian.jpg"
-                    alt={locale === "it" ? "Il significato di LAXMI" : "The meaning of LAXMI"}
+                    alt={dict.aboutPage.nameImageAlt}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -193,24 +185,20 @@ export default async function AboutPage({
             <div className="space-y-8 animate-fade-in-up delay-200 order-1 lg:order-2">
               <div>
                 <p className="text-spaced text-laxmi-gold mb-4">
-                  {locale === "it" ? "Il Nome" : "The Name"}
+                  {dict.aboutPage.nameSection.label}
                 </p>
                 <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl mb-6">
-                  {locale === "it" ? "Il Significato di LAXMI" : "The Meaning of LAXMI"}
+                  {dict.aboutPage.nameSection.title}
                 </h2>
                 <div className="gold-line w-16" />
               </div>
 
               <div className="space-y-6 text-muted-foreground font-light leading-relaxed text-lg">
                 <p>
-                  {locale === "it"
-                    ? "LAXMI prende il nome dalla dea induista della ricchezza, della fortuna, della prosperità, della bellezza e della luce. Questo nome racchiude la nostra missione: portare prosperità e bellezza negli spazi in cui le persone vivono."
-                    : "LAXMI is named after the Hindu goddess of wealth, fortune, prosperity, beauty, and light. This name embodies our mission: to bring prosperity and beauty into the spaces where people live."}
+                  {dict.aboutPage.nameSection.paragraph1}
                 </p>
                 <p>
-                  {locale === "it"
-                    ? "Come la dea illumina la vita di coloro che la venerano, noi aspiriamo a illuminare le case dei nostri clienti con design raffinati, materiali pregiati e un'attenzione maniacale ai dettagli."
-                    : "Just as the goddess illuminates the lives of those who honor her, we aspire to illuminate our clients' homes with refined design, premium materials, and meticulous attention to detail."}
+                  {dict.aboutPage.nameSection.paragraph2}
                 </p>
               </div>
 
@@ -233,7 +221,7 @@ export default async function AboutPage({
             <SunburstLogo className="w-12 h-8 mx-auto mb-6" />
             <p className="text-spaced text-laxmi-gold mb-4">{dict.values.sectionLabel}</p>
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
-              {locale === "it" ? "La Nostra Essenza" : "Our Essence"}
+              {dict.aboutPage.essenceTitle}
             </h2>
             <div className="gold-line w-24 mx-auto mt-8" />
           </div>
@@ -274,7 +262,7 @@ export default async function AboutPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
             <p className="text-spaced text-laxmi-gold mb-4">
-              {locale === "it" ? "Cosa Ci Guida" : "What Guides Us"}
+              {dict.aboutPage.valuesTitle}
             </p>
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
               {dict.values.values.title}
@@ -307,7 +295,7 @@ export default async function AboutPage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-elegant-living.jpg"
-            alt="Made in Italy"
+            alt={dict.common.madeInItaly}
             fill
             className="object-cover"
           />
@@ -318,31 +306,29 @@ export default async function AboutPage({
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
             <SunburstLogo className="w-16 h-10 mx-auto mb-8" />
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-white mb-6">
-              {locale === "it" ? "Orgogliosamente Made in Italy" : "Proudly Made in Italy"}
+              {dict.aboutPage.madeInItaly.title}
             </h2>
             <p className="text-white/80 font-light text-lg md:text-xl leading-relaxed mb-8">
-              {locale === "it"
-                ? "L'Italia è sinonimo di eccellenza nel design e nell'artigianato. Ogni pezzo che selezioniamo porta con sé secoli di tradizione, innovazione e quella passione inconfondibile che solo il Made in Italy può offrire."
-                : "Italy is synonymous with excellence in design and craftsmanship. Every piece we select carries centuries of tradition, innovation, and that unmistakable passion that only Made in Italy can offer."}
+              {dict.aboutPage.madeInItaly.description}
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-white/70">
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                {locale === "it" ? "Artigianato d'Eccellenza" : "Excellence in Craftsmanship"}
+                {dict.aboutPage.madeInItaly.badges.craftsmanship}
               </span>
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                {locale === "it" ? "Design Senza Tempo" : "Timeless Design"}
+                {dict.aboutPage.madeInItaly.badges.design}
               </span>
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                {locale === "it" ? "Materiali Pregiati" : "Premium Materials"}
+                {dict.aboutPage.madeInItaly.badges.materials}
               </span>
             </div>
           </div>
@@ -354,19 +340,17 @@ export default async function AboutPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
             <h2 className="font-serif font-light text-3xl md:text-4xl mb-6">
-              {locale === "it" ? "Inizia il Tuo Viaggio" : "Begin Your Journey"}
+              {dict.aboutPage.ctaTitle}
             </h2>
             <p className="text-muted-foreground font-light text-lg mb-8">
-              {locale === "it"
-                ? "Scopri come possiamo trasformare i tuoi spazi in un riflesso della tua personalità e del tuo stile."
-                : "Discover how we can transform your spaces into a reflection of your personality and style."}
+              {dict.aboutPage.ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/consulting`} className="btn-luxury-filled">
-                {locale === "it" ? "Scopri i Servizi" : "Discover Services"}
+                {dict.aboutPage.ctaServices}
               </Link>
               <Link href={`/${locale}/contact`} className="btn-luxury text-laxmi-bronze border-laxmi-bronze hover:bg-laxmi-bronze hover:text-laxmi-cream">
-                {locale === "it" ? "Contattaci" : "Contact Us"}
+                {dict.aboutPage.ctaContact}
               </Link>
             </div>
           </div>
@@ -401,7 +385,7 @@ export default async function AboutPage({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>

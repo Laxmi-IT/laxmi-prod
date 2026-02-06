@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "LAXMI | Consulenza Arredamento di Lusso Made in Italy",
-    "titleTemplate": "%s | LAXMI Luxury Furniture",
+    "titleTemplate": "%s | LAXMI Arredamento di Lusso",
     "description": "Consulenza esclusiva per arredamento di lusso italiano. LAXMI guida i connoisseur nella selezione di mobili Made in Italy: qualità artigianale, design unico, eleganza senza tempo. Milano.",
     "keywords": "arredamento di lusso, mobili italiani, consulenza arredamento Milano, interior design lusso, Made in Italy, mobili di design, arredamento esclusivo, furniture consulting, luxury furniture Italy",
     "ogTitle": "LAXMI — Consulenza Arredamento di Lusso Made in Italy",
@@ -12,14 +12,17 @@
     "consulting": "Consulenza",
     "collections": "Collezioni",
     "about": "Chi Siamo",
-    "contact": "Contatti"
+    "contact": "Contatti",
+    "blog": "Blog"
   },
   "hero": {
     "tagline1": "Consulenza Arredamento di Lusso",
     "tagline2": "& Boutique",
     "description": "Creato per intenditori.",
     "madeInItaly": "Made in Italy.",
-    "cta": "Richiedi una Consulenza"
+    "cta": "Richiedi una Consulenza",
+    "imageAlt": "Soggiorno di lusso italiano con divani in velluto verde salvia e finestre ad arco",
+    "mobileImageAlt": "Soggiorno di lusso italiano"
   },
   "values": {
     "sectionLabel": "La Nostra Filosofia",
@@ -53,7 +56,8 @@
       "title": "Interior Styling",
       "description": "Servizi completi di styling per dare vita alla tua visione."
     },
-    "discoverMore": "Scopri di Più"
+    "discoverMore": "Scopri di Più",
+    "imageAlt": "Elegante interior design italiano con archi e dettagli di lusso"
   },
   "gallery": {
     "sectionLabel": "Il Nostro Portfolio",
@@ -165,12 +169,13 @@
     "madeInItaly": "Made in Italy",
     "byAppointmentOnly": "Solo su Appuntamento",
     "learnMore": "Scopri di Più",
-    "contactUs": "Contattaci"
+    "contactUs": "Contattaci",
+    "location": "Milano, Italia"
   },
   "collections": {
     "heroTitle": "Collezioni",
-    "heroSubtitle": "Una selezione curata dell'eccellenza italiana",
-    "heroDescription": "Scopri la nostra collezione esclusiva di cucine italiane premium, dove l'artigianato incontra il design contemporaneo. Ogni pezzo racconta una storia di passione, precisione ed eleganza senza tempo.",
+    "heroSubtitle": "L'eccellenza italiana nel design d'interni",
+    "heroDescription": "Ogni cucina racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano lo spazio in un'opera d'arte.",
     "filterLabel": "Filtra per ambiente",
     "showingCount": "Mostrando {count} pezzi",
     "noResults": "Nessun pezzo trovato in questa categoria",
@@ -181,13 +186,29 @@
       "living": "Living",
       "dispensa": "Dispensa",
       "dettagli": "Dettagli"
-    }
+    },
+    "galleryTitle": "La Nostra Galleria",
+    "story1Title": "L'Arte del Design Italiano",
+    "story1Subtitle": "Tradizione e Innovazione",
+    "story1Text": "Da generazioni, i maestri artigiani italiani perfezionano l'arte della lavorazione del legno e dei materiali pregiati. Ogni cucina ARREXLAB nasce dalla fusione di tecniche centenarie con le più avanzate tecnologie di produzione, creando pezzi unici che resistono al tempo.",
+    "story1Quote": "Il vero lusso non si vede, si vive.",
+    "story2Title": "Materiali d'Eccellenza",
+    "story2Subtitle": "Solo il Meglio",
+    "story2Text": "Legni selezionati dalle foreste certificate europee, marmi italiani dalle cave più rinomate, acciai inossidabili di qualità alimentare e finiture Supermatt di ultima generazione. Ogni materiale viene scelto non solo per la sua bellezza, ma per la sua durabilità e sostenibilità.",
+    "story2Features": ["Legni certificati FSC", "Marmi italiani autentici", "Finiture antibatteriche", "Zero emissioni VOC"],
+    "story3Title": "Il Tuo Spazio, La Tua Visione",
+    "story3Subtitle": "Personalizzazione Totale",
+    "story3Text": "Non esistono due cucine uguali perché non esistono due famiglie uguali. I nostri designer lavorano con te per creare uno spazio che rifletta il tuo stile di vita, le tue passioni culinarie e la tua visione estetica. Dal primo schizzo all'installazione finale, ogni dettaglio è curato con precisione.",
+    "trustCustomDesign": "Design Su Misura",
+    "trustPremiumQuality": "Qualità Premium"
   },
   "consulting": {
+    "heroLabel": "Servizio Esclusivo",
     "heroTitle": "Consulenza Online",
     "heroSubtitle": "La Tua Visione, Interpretata con Maestria",
     "heroDescription": "Ogni grande spazio nasce da una storia. La tua. Trasformiamo le tue aspirazioni in ambienti che parlano di chi sei, dove ogni dettaglio è una dichiarazione di stile e ogni scelta riflette la tua unicità.",
     "heroQuote": "Non arrediamo case. Creiamo scenografie per vite straordinarie.",
+    "visionLabel": "La Nostra Visione",
     "philosophyTitle": "La Nostra Filosofia",
     "philosophyText": "Crediamo che la tua casa debba essere il riflesso più autentico di chi sei. Non un catalogo di tendenze, ma un santuario costruito attorno alla tua essenza. Un luogo dove ogni mattina ti svegli circondato dalla bellezza che hai scelto, e ogni sera torni in uno spazio che ti appartiene profondamente.",
     "processTitle": "Il Processo",
@@ -219,6 +240,7 @@
         "description": "Revisioni fino a quando ogni elemento non risuona con la tua approvazione. La perfezione non ha fretta."
       }
     },
+    "recommended": "Consigliato",
     "servicesTitle": "I Nostri Percorsi",
     "servicesSubtitle": "Scegli l'Esperienza che Merita il Tuo Spazio",
     "services": {
@@ -278,6 +300,7 @@
       "renders": "Render 3D Fotorealistici",
       "coordination": "Coordinamento Stilistico"
     },
+    "commitmentLabel": "Il Nostro Impegno",
     "promiseTitle": "La Nostra Promessa",
     "promiseText": "Non ti consegneremo mai un progetto che non ci renderebbe orgogliosi di firmare. Il tuo spazio porterà la nostra firma invisibile: quella ossessione per i dettagli, quella ricerca della perfezione, quel rifiuto del compromesso che definisce tutto ciò che facciamo.",
     "ctaTitle": "Inizia la Trasformazione",
@@ -303,12 +326,53 @@
       "boutique": "Boutique",
       "collaboration": "Collaborazione",
       "other": "Altro"
-    }
+    },
+    "phone": "Telefono",
+    "locationLabel": "Sede",
+    "hoursDetail": "Lun - Ven: 9:00 - 18:00",
+    "followUs": "Seguici",
+    "subjectLabel": "Oggetto",
+    "selectTopic": "Seleziona un argomento",
+    "privacyConsent": "Ho letto e accetto l'{link} e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *",
+    "privacyPolicyLabel": "Informativa Privacy",
+    "responseTime": "Ti risponderemo entro 24-48 ore lavorative.",
+    "mapTitle": "Nel Cuore di Milano",
+    "mapDescription": "La capitale mondiale del design, dove tradizione e innovazione si incontrano per creare eccellenza.",
+    "bookAppointment": "Prenota Appuntamento"
+  },
+  "blog": {
+    "metaTitle": "Blog | Guida al Design d'Interni di Lusso | LAXMI",
+    "metaDescription": "Scopri approfondimenti esclusivi sul design d'interni di lusso, artigianalità italiana, palette cromatiche e materiali premium. La guida definitiva per interni raffinati.",
+    "heroLabel": "Approfondimenti Esclusivi",
+    "heroTitle": "Il Journal",
+    "heroSubtitle": "Dove l'eccellenza del design incontra la saggezza senza tempo",
+    "heroDescription": "Esplora la nostra raccolta curata di guide esperte, tendenze del design e approfondimenti sull'artigianalità italiana di lusso.",
+    "featuredLabel": "In Evidenza",
+    "featuredTitle": "Articoli in Primo Piano",
+    "minRead": "min di lettura",
+    "readMore": "Leggi di più",
+    "allArticlesLabel": "Tutti gli Articoli",
+    "allArticlesTitle": "Esplora il Journal",
+    "read": "Leggi",
+    "newsletterTitle": "Rimani Ispirato",
+    "newsletterDescription": "Iscriviti per ricevere approfondimenti esclusivi sul design, tendenze curate e inviti a eventi privati.",
+    "newsletterPlaceholder": "La tua email",
+    "subscribe": "Iscriviti",
+    "articleNotFound": "Articolo Non Trovato",
+    "faqTitle": "Domande Frequenti",
+    "continueReading": "Continua a Leggere",
+    "relatedArticles": "Articoli Correlati",
+    "ctaTitle": "Inizia il Tuo Viaggio",
+    "ctaDescription": "Lascia che i nostri esperti ti guidino nella creazione dello spazio dei tuoi sogni.",
+    "ctaButton": "Contattaci",
+    "heroImageAlt": "Design d'interni di lusso"
   },
   "aboutPage": {
     "label": "La Nostra Storia",
     "heroTitle": "Chi Siamo",
     "heroSubtitle": "Dove la passione per il design italiano incontra l'eccellenza artigianale",
+    "heroImageAlt": "Chi Siamo - LAXMI",
+    "nameImageAlt": "Il significato di LAXMI",
     "nameSection": {
       "label": "Il Nome",
       "title": "Il Significato di LAXMI",

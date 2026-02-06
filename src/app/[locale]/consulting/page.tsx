@@ -37,7 +37,7 @@ export default async function ConsultingPage({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link text-laxmi-gold">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -51,10 +51,12 @@ export default async function ConsultingPage({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -66,7 +68,7 @@ export default async function ConsultingPage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-elegant-living.jpg"
-            alt={locale === "it" ? "Interior design di lusso" : "Luxury interior design"}
+            alt={dict.consulting.heroSubtitle}
             fill
             className="object-cover"
             priority
@@ -100,7 +102,7 @@ export default async function ConsultingPage({
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/50" />
                   <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                    {locale === "it" ? "Servizio Esclusivo" : "Exclusive Service"}
+                    {dict.consulting.heroLabel}
                   </span>
                 </div>
 
@@ -154,7 +156,7 @@ export default async function ConsultingPage({
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="w-12 h-px bg-gradient-to-r from-transparent to-laxmi-gold" />
               <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                {locale === "it" ? "La Nostra Visione" : "Our Vision"}
+                {dict.consulting.visionLabel}
               </span>
               <div className="w-12 h-px bg-gradient-to-l from-transparent to-laxmi-gold" />
             </div>
@@ -290,7 +292,7 @@ export default async function ConsultingPage({
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                 <span className="relative text-xs tracking-[0.15em] uppercase text-laxmi-espresso font-medium px-4 py-2 rounded-full overflow-hidden">
                   <span className="absolute inset-0 bg-laxmi-gold" />
-                  <span className="relative z-10">{locale === "it" ? "Consigliato" : "Recommended"}</span>
+                  <span className="relative z-10">{dict.consulting.recommended}</span>
                 </span>
               </div>
 
@@ -463,7 +465,7 @@ export default async function ConsultingPage({
                 <div className="flex items-center justify-center gap-4 mb-6">
                   <div className="w-10 h-px bg-laxmi-gold" />
                   <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                    {locale === "it" ? "Il Nostro Impegno" : "Our Commitment"}
+                    {dict.consulting.commitmentLabel}
                   </span>
                   <div className="w-10 h-px bg-laxmi-gold" />
                 </div>
@@ -487,7 +489,7 @@ export default async function ConsultingPage({
         <div className="absolute inset-0">
           <Image
             src="/images/hero-interior.jpg"
-            alt="LAXMI Interior Design"
+            alt={dict.consulting.heroTitle}
             fill
             className="object-cover"
             sizes="100vw"
@@ -529,19 +531,19 @@ export default async function ConsultingPage({
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  10+ {locale === "it" ? "Anni Esperienza" : "Years Experience"}
+                  {dict.consulting.trustBadges.experience}
                 </span>
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  200+ {locale === "it" ? "Progetti" : "Projects"}
+                  {dict.consulting.trustBadges.projects}
                 </span>
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Made in Italy
+                  {dict.common.madeInItaly}
                 </span>
               </div>
             </div>
@@ -576,7 +578,7 @@ export default async function ConsultingPage({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>

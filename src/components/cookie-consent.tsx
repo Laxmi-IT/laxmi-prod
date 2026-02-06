@@ -23,6 +23,7 @@ const translations = {
     customize: "Personalizza",
     save: "Salva preferenze",
     close: "Chiudi",
+    manageCookies: "Gestisci Cookie",
     privacyPolicy: "Informativa Privacy",
     cookiePolicy: "Cookie Policy",
     categories: {
@@ -52,6 +53,7 @@ const translations = {
     customize: "Customize",
     save: "Save preferences",
     close: "Close",
+    manageCookies: "Manage Cookies",
     privacyPolicy: "Privacy Policy",
     cookiePolicy: "Cookie Policy",
     categories: {
@@ -365,7 +367,7 @@ export function CookieSettingsButton({ locale }: { locale: "it" | "en" }) {
       onClick={handleClick}
       className="text-muted-foreground hover:text-foreground transition-colors font-light"
     >
-      {locale === "it" ? "Gestisci Cookie" : "Manage Cookies"}
+      {translations[locale].manageCookies}
     </button>
   );
 }

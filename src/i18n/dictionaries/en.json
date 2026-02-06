@@ -12,18 +12,21 @@
     "consulting": "Consulting",
     "collections": "Collections",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "blog": "Blog"
   },
   "hero": {
     "tagline1": "Luxury Furniture Consulting",
     "tagline2": "& Boutique",
     "description": "Crafted for connoisseurs.",
     "madeInItaly": "Made in Italy.",
-    "cta": "Request a Consultation"
+    "cta": "Request a Consultation",
+    "imageAlt": "Luxury Italian living room with sage green velvet sofas and arched windows",
+    "mobileImageAlt": "Luxury Italian living room"
   },
   "values": {
     "sectionLabel": "Our Philosophy",
-    "sectionTitle": "Valori",
+    "sectionTitle": "Values",
     "vision": {
       "title": "Vision",
       "description": "To bring beauty, light, personality, and luxury into people's homes."
@@ -40,7 +43,7 @@
   },
   "services": {
     "sectionLabel": "What We Offer",
-    "sectionTitle": "Servizi",
+    "sectionTitle": "Services",
     "service1": {
       "title": "Furniture Consulting",
       "description": "Personalized guidance to select the perfect pieces for your space."
@@ -53,11 +56,12 @@
       "title": "Interior Styling",
       "description": "Complete styling services to bring your vision to life."
     },
-    "discoverMore": "Discover More"
+    "discoverMore": "Discover More",
+    "imageAlt": "Elegant Italian interior design with arched doorways and luxury details"
   },
   "gallery": {
     "sectionLabel": "Our Portfolio",
-    "sectionTitle": "Ispirazioni",
+    "sectionTitle": "Inspirations",
     "description": "A curated collection of interior spaces that embody the essence of Italian luxury and timeless elegance.",
     "viewAll": "View All Collections",
     "images": [
@@ -165,12 +169,13 @@
     "madeInItaly": "Made in Italy",
     "byAppointmentOnly": "By Appointment Only",
     "learnMore": "Learn More",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "location": "Milan, Italy"
   },
   "collections": {
     "heroTitle": "Collections",
-    "heroSubtitle": "A curated selection of Italian kitchen excellence",
-    "heroDescription": "Discover our exclusive collection of premium Italian kitchens, where artisanal craftsmanship meets contemporary design. Each piece tells a story of passion, precision, and timeless elegance.",
+    "heroSubtitle": "Italian excellence in interior design",
+    "heroDescription": "Each kitchen tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform space into a work of art.",
     "filterLabel": "Filter by environment",
     "showingCount": "Showing {count} pieces",
     "noResults": "No pieces found in this category",
@@ -181,13 +186,29 @@
       "living": "Living",
       "dispensa": "Pantry",
       "dettagli": "Details"
-    }
+    },
+    "galleryTitle": "Our Gallery",
+    "story1Title": "The Art of Italian Design",
+    "story1Subtitle": "Tradition Meets Innovation",
+    "story1Text": "For generations, Italian master craftsmen have perfected the art of working with wood and premium materials. Each ARREXLAB kitchen is born from the fusion of centuries-old techniques with the most advanced production technologies, creating unique pieces that stand the test of time.",
+    "story1Quote": "True luxury isn't seen, it's lived.",
+    "story2Title": "Materials of Excellence",
+    "story2Subtitle": "Only the Best",
+    "story2Text": "Woods selected from certified European forests, Italian marbles from the most renowned quarries, food-grade stainless steels, and latest-generation Supermatt finishes. Each material is chosen not only for its beauty but for its durability and sustainability.",
+    "story2Features": ["FSC certified woods", "Authentic Italian marble", "Antibacterial finishes", "Zero VOC emissions"],
+    "story3Title": "Your Space, Your Vision",
+    "story3Subtitle": "Total Customization",
+    "story3Text": "No two kitchens are alike because no two families are alike. Our designers work with you to create a space that reflects your lifestyle, your culinary passions, and your aesthetic vision. From the first sketch to final installation, every detail is crafted with precision.",
+    "trustCustomDesign": "Custom Design",
+    "trustPremiumQuality": "Premium Quality"
   },
   "consulting": {
+    "heroLabel": "Exclusive Service",
     "heroTitle": "Online Consulting",
     "heroSubtitle": "Your Vision, Masterfully Interpreted",
     "heroDescription": "Every great space begins with a story. Yours. We transform your aspirations into environments that speak of who you are, where every detail is a statement of style and every choice reflects your uniqueness.",
     "heroQuote": "We don't furnish homes. We create stages for extraordinary lives.",
+    "visionLabel": "Our Vision",
     "philosophyTitle": "Our Philosophy",
     "philosophyText": "We believe your home should be the most authentic reflection of who you are. Not a catalog of trends, but a sanctuary built around your essence. A place where every morning you wake surrounded by the beauty you chose, and every evening you return to a space that deeply belongs to you.",
     "processTitle": "The Process",
@@ -219,6 +240,7 @@
         "description": "Revisions until every element resonates with your approval. Perfection is not rushed."
       }
     },
+    "recommended": "Recommended",
     "servicesTitle": "Our Experiences",
     "servicesSubtitle": "Choose the Experience Your Space Deserves",
     "services": {
@@ -278,6 +300,7 @@
       "renders": "Photorealistic 3D Renders",
       "coordination": "Style Coordination"
     },
+    "commitmentLabel": "Our Commitment",
     "promiseTitle": "Our Promise",
     "promiseText": "We will never deliver a project we wouldn't be proud to sign. Your space will carry our invisible signature: that obsession with details, that pursuit of perfection, that refusal to compromise that defines everything we do.",
     "ctaTitle": "Begin the Transformation",
@@ -303,12 +326,53 @@
       "boutique": "Boutique",
       "collaboration": "Collaboration",
       "other": "Other"
-    }
+    },
+    "phone": "Phone",
+    "locationLabel": "Location",
+    "hoursDetail": "Mon - Fri: 9:00 AM - 6:00 PM",
+    "followUs": "Follow Us",
+    "subjectLabel": "Subject",
+    "selectTopic": "Select a topic",
+    "privacyConsent": "I have read and accept the {link} and consent to the processing of my personal data to respond to my request. *",
+    "privacyPolicyLabel": "Privacy Policy",
+    "responseTime": "We'll respond within 24-48 business hours.",
+    "mapTitle": "In the Heart of Milan",
+    "mapDescription": "The world's design capital, where tradition and innovation meet to create excellence.",
+    "bookAppointment": "Book Appointment"
+  },
+  "blog": {
+    "metaTitle": "Blog | Luxury Interior Design Guide | LAXMI",
+    "metaDescription": "Discover exclusive insights on luxury interior design, Italian craftsmanship, color palettes, and premium materials. The definitive guide for refined interiors.",
+    "heroLabel": "Exclusive Insights",
+    "heroTitle": "The Journal",
+    "heroSubtitle": "Where design excellence meets timeless wisdom",
+    "heroDescription": "Explore our curated collection of expert guides, design trends, and insights into luxury Italian craftsmanship.",
+    "featuredLabel": "Featured",
+    "featuredTitle": "Featured Articles",
+    "minRead": "min read",
+    "readMore": "Read More",
+    "allArticlesLabel": "All Articles",
+    "allArticlesTitle": "Explore the Journal",
+    "read": "Read",
+    "newsletterTitle": "Stay Inspired",
+    "newsletterDescription": "Subscribe to receive exclusive design insights, curated trends, and invitations to private events.",
+    "newsletterPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "articleNotFound": "Article Not Found",
+    "faqTitle": "Frequently Asked Questions",
+    "continueReading": "Continue Reading",
+    "relatedArticles": "Related Articles",
+    "ctaTitle": "Begin Your Journey",
+    "ctaDescription": "Let our experts guide you in creating the space of your dreams.",
+    "ctaButton": "Contact Us",
+    "heroImageAlt": "Luxury interior design"
   },
   "aboutPage": {
     "label": "Our Story",
     "heroTitle": "About Us",
     "heroSubtitle": "Where passion for Italian design meets artisanal excellence",
+    "heroImageAlt": "About Us - LAXMI",
+    "nameImageAlt": "The meaning of LAXMI",
     "nameSection": {
       "label": "The Name",
       "title": "The Meaning of LAXMI",

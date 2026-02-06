@@ -44,49 +44,6 @@ export default async function CollectionsPage({
   const craftImage = galleryImages.find(img => img.category === 'Details') || galleryImages[2] || fallbackImage;
   const livingImage = galleryImages.find(img => img.category === 'Living') || galleryImages[5] || fallbackImage;
 
-  // Page translations
-  const t = locale === 'it' ? {
-    heroTitle: "Collezioni",
-    heroSubtitle: "L'eccellenza italiana nel design d'interni",
-    heroDescription: "Ogni cucina racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano lo spazio in un'opera d'arte.",
-    filterLabel: "Filtra per ambiente",
-    showingCount: "Mostrando {count} pezzi",
-    noResults: "Nessun pezzo trovato in questa categoria",
-    exploreButton: "Esplora la Galleria",
-    // Storytelling sections
-    story1Title: "L'Arte del Design Italiano",
-    story1Subtitle: "Tradizione e Innovazione",
-    story1Text: "Da generazioni, i maestri artigiani italiani perfezionano l'arte della lavorazione del legno e dei materiali pregiati. Ogni cucina ARREXLAB nasce dalla fusione di tecniche centenarie con le più avanzate tecnologie di produzione, creando pezzi unici che resistono al tempo.",
-    story1Quote: "Il vero lusso non si vede, si vive.",
-    story2Title: "Materiali d'Eccellenza",
-    story2Subtitle: "Solo il Meglio",
-    story2Text: "Legni selezionati dalle foreste certificate europee, marmi italiani dalle cave più rinomate, acciai inossidabili di qualità alimentare e finiture Supermatt di ultima generazione. Ogni materiale viene scelto non solo per la sua bellezza, ma per la sua durabilità e sostenibilità.",
-    story2Features: ["Legni certificati FSC", "Marmi italiani autentici", "Finiture antibatteriche", "Zero emissioni VOC"],
-    story3Title: "Il Tuo Spazio, La Tua Visione",
-    story3Subtitle: "Personalizzazione Totale",
-    story3Text: "Non esistono due cucine uguali perché non esistono due famiglie uguali. I nostri designer lavorano con te per creare uno spazio che rifletta il tuo stile di vita, le tue passioni culinarie e la tua visione estetica. Dal primo schizzo all'installazione finale, ogni dettaglio è curato con precisione.",
-  } : {
-    heroTitle: "Collections",
-    heroSubtitle: "Italian excellence in interior design",
-    heroDescription: "Each kitchen tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform space into a work of art.",
-    filterLabel: "Filter by environment",
-    showingCount: "Showing {count} pieces",
-    noResults: "No pieces found in this category",
-    exploreButton: "Explore Gallery",
-    // Storytelling sections
-    story1Title: "The Art of Italian Design",
-    story1Subtitle: "Tradition Meets Innovation",
-    story1Text: "For generations, Italian master craftsmen have perfected the art of working with wood and premium materials. Each ARREXLAB kitchen is born from the fusion of centuries-old techniques with the most advanced production technologies, creating unique pieces that stand the test of time.",
-    story1Quote: "True luxury isn't seen, it's lived.",
-    story2Title: "Materials of Excellence",
-    story2Subtitle: "Only the Best",
-    story2Text: "Woods selected from certified European forests, Italian marbles from the most renowned quarries, food-grade stainless steels, and latest-generation Supermatt finishes. Each material is chosen not only for its beauty but for its durability and sustainability.",
-    story2Features: ["FSC certified woods", "Authentic Italian marble", "Antibacterial finishes", "Zero VOC emissions"],
-    story3Title: "Your Space, Your Vision",
-    story3Subtitle: "Total Customization",
-    story3Text: "No two kitchens are alike because no two families are alike. Our designers work with you to create a space that reflects your lifestyle, your culinary passions, and your aesthetic vision. From the first sketch to final installation, every detail is crafted with precision.",
-  };
-
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       {/* Navigation */}
@@ -100,7 +57,7 @@ export default async function CollectionsPage({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link text-laxmi-gold">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -114,10 +71,12 @@ export default async function CollectionsPage({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -169,12 +128,12 @@ export default async function CollectionsPage({
 
                 {/* Title */}
                 <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 md:mb-6 leading-[1.1]">
-                  {t.heroTitle}
+                  {dict.collections.heroTitle}
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-6 md:mb-8 leading-relaxed">
-                  {t.heroSubtitle}
+                  {dict.collections.heroSubtitle}
                 </p>
 
                 {/* Decorative divider */}
@@ -182,7 +141,7 @@ export default async function CollectionsPage({
 
                 {/* Description */}
                 <p className="text-sm sm:text-base md:text-lg text-white/80 font-light leading-relaxed max-w-xl">
-                  {t.heroDescription}
+                  {dict.collections.heroDescription}
                 </p>
 
                 {/* CTA */}
@@ -191,7 +150,7 @@ export default async function CollectionsPage({
                     href="#gallery"
                     className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.1em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 hover:shadow-lg group"
                   >
-                    {t.exploreButton}
+                    {dict.collections.exploreButton}
                     <svg className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
@@ -225,18 +184,18 @@ export default async function CollectionsPage({
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-10 h-px bg-laxmi-gold" />
                 <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                  {t.story1Subtitle}
+                  {dict.collections.story1Subtitle}
                 </span>
               </div>
               <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 leading-tight">
-                {t.story1Title}
+                {dict.collections.story1Title}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                {t.story1Text}
+                {dict.collections.story1Text}
               </p>
               <blockquote className="border-l-2 border-laxmi-gold pl-6 py-2">
                 <p className="font-serif italic text-xl md:text-2xl text-laxmi-espresso dark:text-foreground">
-                  &ldquo;{t.story1Quote}&rdquo;
+                  &ldquo;{dict.collections.story1Quote}&rdquo;
                 </p>
               </blockquote>
             </div>
@@ -285,18 +244,18 @@ export default async function CollectionsPage({
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-10 h-px bg-laxmi-gold" />
                 <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                  {t.story2Subtitle}
+                  {dict.collections.story2Subtitle}
                 </span>
               </div>
               <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground mb-6 leading-tight">
-                {t.story2Title}
+                {dict.collections.story2Title}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                {t.story2Text}
+                {dict.collections.story2Text}
               </p>
               {/* Features grid */}
               <div className="grid grid-cols-2 gap-4">
-                {t.story2Features.map((feature, index) => (
+                {dict.collections.story2Features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-laxmi-gold" />
                     <span className="text-sm text-laxmi-espresso dark:text-foreground font-medium">
@@ -318,12 +277,12 @@ export default async function CollectionsPage({
             <div className="flex items-center justify-center gap-6 mb-6">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-laxmi-gold/50" />
               <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                {t.filterLabel}
+                {dict.collections.filterLabel}
               </span>
               <div className="w-16 h-px bg-gradient-to-l from-transparent to-laxmi-gold/50" />
             </div>
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground">
-              {locale === 'it' ? 'La Nostra Galleria' : 'Our Gallery'}
+              {dict.collections.galleryTitle}
             </h2>
           </div>
 
@@ -332,9 +291,9 @@ export default async function CollectionsPage({
             locale={locale}
             images={galleryImages}
             translations={{
-              filterLabel: t.filterLabel,
-              showingCount: t.showingCount,
-              noResults: t.noResults,
+              filterLabel: dict.collections.filterLabel,
+              showingCount: dict.collections.showingCount,
+              noResults: dict.collections.noResults,
             }}
           />
         </div>
@@ -346,7 +305,7 @@ export default async function CollectionsPage({
         <div className="absolute inset-0">
           <Image
             src={heroImage.src}
-            alt="LAXMI Kitchen Design"
+            alt={dict.collections.heroTitle}
             fill
             className="object-cover"
             sizes="100vw"
@@ -372,19 +331,19 @@ export default async function CollectionsPage({
                 <span className="absolute inset-0 border border-laxmi-gold/40 rounded-full" />
                 <span className="absolute inset-0 shadow-[inset_0_1px_1px_rgba(212,175,55,0.2)]" />
                 {/* Text */}
-                <span className="relative z-10">{t.story3Subtitle}</span>
+                <span className="relative z-10">{dict.collections.story3Subtitle}</span>
               </span>
               <div className="w-12 h-px bg-gradient-to-l from-transparent to-laxmi-gold" />
             </div>
 
             {/* Title */}
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white mb-8 leading-tight">
-              {t.story3Title}
+              {dict.collections.story3Title}
             </h2>
 
             {/* Description */}
             <p className="text-base md:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto mb-12">
-              {t.story3Text}
+              {dict.collections.story3Text}
             </p>
 
             {/* CTA Button */}
@@ -405,19 +364,19 @@ export default async function CollectionsPage({
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  {locale === 'it' ? 'Design Su Misura' : 'Custom Design'}
+                  {dict.collections.trustCustomDesign}
                 </span>
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  {locale === 'it' ? 'Qualità Premium' : 'Premium Quality'}
+                  {dict.collections.trustPremiumQuality}
                 </span>
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-laxmi-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Made in Italy
+                  {dict.common.madeInItaly}
                 </span>
               </div>
             </div>
@@ -452,7 +411,7 @@ export default async function CollectionsPage({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>

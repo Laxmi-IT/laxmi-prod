@@ -13,9 +13,11 @@ interface NavItem {
 interface MobileNavProps {
   locale: Locale
   navItems: NavItem[]
+  ctaLabel?: string
+  location?: string
 }
 
-export function MobileNav({ locale, navItems }: MobileNavProps) {
+export function MobileNav({ locale, navItems, ctaLabel, location }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -138,7 +140,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
               onClick={handleClose}
               className="btn-luxury-filled w-full text-center"
             >
-              {locale === 'it' ? 'Richiedi Consulenza' : 'Request Consultation'}
+              {ctaLabel ?? (locale === 'it' ? 'Richiedi Consulenza' : 'Request Consultation')}
             </Link>
           </div>
 
@@ -146,7 +148,7 @@ export function MobileNav({ locale, navItems }: MobileNavProps) {
           <div className="absolute bottom-8 left-0 right-0 px-6 z-10">
             <div className="gold-line w-12 mb-4" />
             <p className="text-sm text-muted-foreground font-light">
-              {locale === 'it' ? 'Milano, Italia' : 'Milan, Italy'}
+              {location ?? (locale === 'it' ? 'Milano, Italia' : 'Milan, Italy')}
             </p>
           </div>
         </nav>,

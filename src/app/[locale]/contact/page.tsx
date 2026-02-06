@@ -29,7 +29,7 @@ export default async function ContactPage({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link text-laxmi-gold">{dict.nav.contact}</Link>
           </div>
@@ -43,10 +43,12 @@ export default async function ContactPage({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -58,7 +60,7 @@ export default async function ContactPage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-elegant-living.jpg"
-            alt={locale === "it" ? "Contattaci - LAXMI" : "Contact Us - LAXMI"}
+            alt={dict.contactPage.heroTitle + " - LAXMI"}
             fill
             className="object-cover"
             priority
@@ -89,18 +91,16 @@ export default async function ContactPage({
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-0.5 bg-gradient-to-r from-laxmi-gold to-laxmi-gold/50" />
                   <span className="text-xs md:text-sm tracking-[0.3em] uppercase text-laxmi-gold font-medium">
-                    {dict.contactPage?.label || (locale === "it" ? "Parliamo" : "Let's Talk")}
+                    {dict.contactPage.label}
                   </span>
                 </div>
 
                 <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl text-white mb-4 leading-[1.1]">
-                  {dict.contactPage?.heroTitle || (locale === "it" ? "Contattaci" : "Contact Us")}
+                  {dict.contactPage.heroTitle}
                 </h1>
 
                 <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed">
-                  {dict.contactPage?.heroSubtitle || (locale === "it"
-                    ? "Siamo qui per trasformare la tua visione in realtà"
-                    : "We're here to transform your vision into reality")}
+                  {dict.contactPage.heroSubtitle}
                 </p>
               </div>
             </div>
@@ -117,18 +117,16 @@ export default async function ContactPage({
             <div className="space-y-10 animate-fade-in-up">
               <div>
                 <p className="text-spaced text-laxmi-gold mb-4">
-                  {dict.contactPage?.infoLabel || (locale === "it" ? "I Nostri Riferimenti" : "Our Details")}
+                  {dict.contactPage.infoLabel}
                 </p>
                 <h2 className="font-serif font-light text-3xl md:text-4xl mb-6">
-                  {dict.contactPage?.infoTitle || (locale === "it" ? "Inizia una Conversazione" : "Start a Conversation")}
+                  {dict.contactPage.infoTitle}
                 </h2>
                 <div className="gold-line w-16" />
               </div>
 
               <p className="text-muted-foreground font-light leading-relaxed text-lg">
-                {dict.contactPage?.infoDescription || (locale === "it"
-                  ? "Ogni grande progetto inizia con una semplice conversazione. Che tu abbia una visione chiara o stia cercando ispirazione, siamo qui per guidarti nel tuo percorso verso l'eccellenza."
-                  : "Every great project begins with a simple conversation. Whether you have a clear vision or are seeking inspiration, we're here to guide you on your journey to excellence.")}
+                {dict.contactPage.infoDescription}
               </p>
 
               {/* Contact Details Cards */}
@@ -157,7 +155,7 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="font-serif text-lg mb-1">
-                      {locale === "it" ? "Telefono" : "Phone"}
+                      {dict.contactPage.phone}
                     </h4>
                     <a href="tel:+390000000000" className="text-muted-foreground hover:text-laxmi-bronze transition-colors">
                       +39 000 000 0000
@@ -175,10 +173,10 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="font-serif text-lg mb-1">
-                      {locale === "it" ? "Sede" : "Location"}
+                      {dict.contactPage.locationLabel}
                     </h4>
                     <p className="text-muted-foreground">
-                      {locale === "it" ? "Milano, Italia" : "Milan, Italy"}
+                      {dict.common.location}
                     </p>
                   </div>
                 </div>
@@ -192,12 +190,10 @@ export default async function ContactPage({
                   </div>
                   <div>
                     <h4 className="font-serif text-lg mb-1">
-                      {locale === "it" ? "Solo su Appuntamento" : "By Appointment Only"}
+                      {dict.common.byAppointmentOnly}
                     </h4>
                     <p className="text-muted-foreground">
-                      {locale === "it"
-                        ? "Lun - Ven: 9:00 - 18:00"
-                        : "Mon - Fri: 9:00 AM - 6:00 PM"}
+                      {dict.contactPage.hoursDetail}
                     </p>
                   </div>
                 </div>
@@ -206,7 +202,7 @@ export default async function ContactPage({
               {/* Social Links */}
               <div className="pt-4">
                 <p className="text-spaced text-sm text-laxmi-bronze mb-4">
-                  {locale === "it" ? "Seguici" : "Follow Us"}
+                  {dict.contactPage.followUs}
                 </p>
                 <div className="flex gap-4">
                   <a
@@ -237,7 +233,7 @@ export default async function ContactPage({
             <div className="animate-fade-in-up delay-200">
               <div className="card-luxury p-6 sm:p-8 md:p-10">
                 <h3 className="font-serif text-2xl md:text-3xl mb-6">
-                  {dict.contactPage?.formTitle || (locale === "it" ? "Inviaci un Messaggio" : "Send Us a Message")}
+                  {dict.contactPage.formTitle}
                 </h3>
                 <div className="gold-line w-12 mb-8" />
 
@@ -278,14 +274,14 @@ export default async function ContactPage({
 
                   <div>
                     <label className="block text-sm font-medium mb-2 text-foreground/80">
-                      {locale === "it" ? "Oggetto" : "Subject"}
+                      {dict.contactPage.subjectLabel}
                     </label>
                     <select className="w-full px-4 py-3 bg-background border border-border/50 rounded-lg focus:outline-none focus:border-laxmi-gold/50 focus:ring-1 focus:ring-laxmi-gold/30 transition-all font-light">
-                      <option value="">{locale === "it" ? "Seleziona un argomento" : "Select a topic"}</option>
-                      <option value="consulting">{locale === "it" ? "Consulenza Arredamento" : "Furniture Consulting"}</option>
-                      <option value="boutique">{locale === "it" ? "Boutique" : "Boutique"}</option>
-                      <option value="collaboration">{locale === "it" ? "Collaborazione" : "Collaboration"}</option>
-                      <option value="other">{locale === "it" ? "Altro" : "Other"}</option>
+                      <option value="">{dict.contactPage.selectTopic}</option>
+                      <option value="consulting">{dict.contactPage.subjects.consulting}</option>
+                      <option value="boutique">{dict.contactPage.subjects.boutique}</option>
+                      <option value="collaboration">{dict.contactPage.subjects.collaboration}</option>
+                      <option value="other">{dict.contactPage.subjects.other}</option>
                     </select>
                   </div>
 
@@ -309,15 +305,9 @@ export default async function ContactPage({
                       className="mt-1 w-5 h-5 rounded border-border/50 text-laxmi-gold focus:ring-laxmi-gold/30 cursor-pointer"
                     />
                     <label htmlFor="privacy-consent" className="text-sm text-muted-foreground font-light leading-relaxed cursor-pointer">
-                      {locale === "it" ? (
-                        <>
-                          Ho letto e accetto l&apos;<Link href={`/${locale}/privacy-policy`} className="text-laxmi-bronze hover:text-laxmi-gold underline">Informativa Privacy</Link> e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
-                        </>
-                      ) : (
-                        <>
-                          I have read and accept the <Link href={`/${locale}/privacy-policy`} className="text-laxmi-bronze hover:text-laxmi-gold underline">Privacy Policy</Link> and consent to the processing of my personal data to respond to my request. *
-                        </>
-                      )}
+                      {dict.contactPage.privacyConsent.split('{link}')[0]}
+                      <Link href={`/${locale}/privacy-policy`} className="text-laxmi-bronze hover:text-laxmi-gold underline">{dict.contactPage.privacyPolicyLabel}</Link>
+                      {dict.contactPage.privacyConsent.split('{link}')[1]}
                     </label>
                   </div>
 
@@ -325,14 +315,12 @@ export default async function ContactPage({
                     type="submit"
                     className="btn-luxury-filled w-full"
                   >
-                    {dict.contactPage?.formSubmit || (locale === "it" ? "Invia Messaggio" : "Send Message")}
+                    {dict.contactPage.formSubmit}
                   </button>
                 </form>
 
                 <p className="text-sm text-muted-foreground mt-6 text-center">
-                  {locale === "it"
-                    ? "Ti risponderemo entro 24-48 ore lavorative."
-                    : "We'll respond within 24-48 business hours."}
+                  {dict.contactPage.responseTime}
                 </p>
               </div>
             </div>
@@ -346,12 +334,10 @@ export default async function ContactPage({
           <div className="text-center mb-12 animate-fade-in-up">
             <SunburstLogo className="w-12 h-8 mx-auto mb-6" />
             <h2 className="font-serif font-light text-3xl md:text-4xl mb-4">
-              {locale === "it" ? "Nel Cuore di Milano" : "In the Heart of Milan"}
+              {dict.contactPage.mapTitle}
             </h2>
             <p className="text-muted-foreground font-light max-w-xl mx-auto">
-              {locale === "it"
-                ? "La capitale mondiale del design, dove tradizione e innovazione si incontrano per creare eccellenza."
-                : "The world's design capital, where tradition and innovation meet to create excellence."}
+              {dict.contactPage.mapDescription}
             </p>
           </div>
 
@@ -360,7 +346,7 @@ export default async function ContactPage({
             <div className="aspect-[16/9] relative rounded-2xl overflow-hidden border border-laxmi-gold/20">
               <Image
                 src="/images/hero-italian.jpg"
-                alt={locale === "it" ? "Milano, Italia" : "Milan, Italy"}
+                alt={dict.common.location}
                 fill
                 className="object-cover opacity-60"
               />
@@ -383,16 +369,16 @@ export default async function ContactPage({
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                   <div>
-                    <h3 className="font-serif text-2xl text-white mb-2">Milano, Italia</h3>
+                    <h3 className="font-serif text-2xl text-white mb-2">{dict.common.location}</h3>
                     <p className="text-white/80 font-light">
-                      {locale === "it" ? "Solo su Appuntamento" : "By Appointment Only"}
+                      {dict.common.byAppointmentOnly}
                     </p>
                   </div>
                   <Link
                     href={`/${locale}/book`}
                     className="btn-luxury text-white border-white/50 hover:bg-white hover:text-laxmi-espresso"
                   >
-                    {locale === "it" ? "Prenota Appuntamento" : "Book Appointment"}
+                    {dict.contactPage.bookAppointment}
                   </Link>
                 </div>
               </div>
@@ -429,7 +415,7 @@ export default async function ContactPage({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>

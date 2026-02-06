@@ -12,6 +12,8 @@ const translations = {
     blog: "Blog",
     about: "Chi Siamo",
     contact: "Contatti",
+    ctaLabel: "Richiedi Consulenza",
+    location: "Milano, Italia",
   },
   en: {
     home: "Home",
@@ -20,6 +22,8 @@ const translations = {
     blog: "Blog",
     about: "About",
     contact: "Contact",
+    ctaLabel: "Request Consultation",
+    location: "Milan, Italy",
   },
 };
 
@@ -65,6 +69,8 @@ export function Navigation({ locale, activeLink }: NavigationProps) {
           <MobileNav
             locale={locale}
             navItems={navItems.map(({ href, label }) => ({ href, label }))}
+            ctaLabel={t.ctaLabel}
+            location={t.location}
           />
         </div>
       </div>

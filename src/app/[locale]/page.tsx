@@ -47,7 +47,7 @@ export default async function Home({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -62,10 +62,12 @@ export default async function Home({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -98,10 +100,7 @@ export default async function Home({
           >
             <Image
               src="/images/hero-italian.jpg"
-              alt={locale === "it"
-                ? "Soggiorno di lusso italiano con divani in velluto verde salvia e finestre ad arco"
-                : "Luxury Italian living room with sage green velvet sofas and arched windows"
-              }
+              alt={dict.hero.imageAlt}
               fill
               className="object-cover"
               style={{ objectPosition: "center center" }}
@@ -147,10 +146,7 @@ export default async function Home({
             >
               <Image
                 src="/images/hero-italian.jpg"
-                alt={locale === "it"
-                  ? "Soggiorno di lusso italiano"
-                  : "Luxury Italian living room"
-                }
+                alt={dict.hero.mobileImageAlt}
                 fill
                 className="object-cover"
                 style={{ objectPosition: "center 30%" }}
@@ -294,10 +290,7 @@ export default async function Home({
                 >
                   <Image
                     src="/images/services-interior.jpg"
-                    alt={locale === "it"
-                      ? "Elegante interior design italiano con archi e dettagli di lusso"
-                      : "Elegant Italian interior design with arched doorways"
-                    }
+                    alt={dict.services.imageAlt}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -438,7 +431,7 @@ export default async function Home({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>

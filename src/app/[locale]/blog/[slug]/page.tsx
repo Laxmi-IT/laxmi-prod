@@ -52,7 +52,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Article Not Found",
+      title: locale === "it" ? "Articolo Non Trovato" : "Article Not Found",
     };
   }
 
@@ -220,7 +220,7 @@ export default async function BlogArticlePage({
             <Link href={`/${locale}`} className="nav-link">{dict.nav.home}</Link>
             <Link href={`/${locale}/consulting`} className="nav-link">{dict.nav.consulting}</Link>
             <Link href={`/${locale}/collections`} className="nav-link">{dict.nav.collections}</Link>
-            <Link href={`/${locale}/blog`} className="nav-link text-laxmi-gold">Blog</Link>
+            <Link href={`/${locale}/blog`} className="nav-link text-laxmi-gold">{dict.nav.blog}</Link>
             <Link href={`/${locale}/about`} className="nav-link">{dict.nav.about}</Link>
             <Link href={`/${locale}/contact`} className="nav-link">{dict.nav.contact}</Link>
           </div>
@@ -234,10 +234,12 @@ export default async function BlogArticlePage({
                 { href: `/${locale}`, label: dict.nav.home },
                 { href: `/${locale}/consulting`, label: dict.nav.consulting },
                 { href: `/${locale}/collections`, label: dict.nav.collections },
-                { href: `/${locale}/blog`, label: "Blog" },
+                { href: `/${locale}/blog`, label: dict.nav.blog },
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
               ]}
+              ctaLabel={dict.hero.cta}
+              location={dict.common.location}
             />
           </div>
         </div>
@@ -262,7 +264,7 @@ export default async function BlogArticlePage({
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm mb-6 text-white/60">
               <Link href={`/${locale}/blog`} className="hover:text-laxmi-gold transition-colors">
-                Blog
+                {dict.nav.blog}
               </Link>
               <span>/</span>
               <span className="text-laxmi-gold">
@@ -276,7 +278,7 @@ export default async function BlogArticlePage({
               </span>
               <span className="w-1 h-1 rounded-full bg-white/40" />
               <span className="text-xs text-white/60">
-                {post.readingTime} {locale === "it" ? "min di lettura" : "min read"}
+                {post.readingTime} {dict.blog.minRead}
               </span>
             </div>
 
@@ -333,7 +335,7 @@ export default async function BlogArticlePage({
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-10 h-px bg-laxmi-gold" />
                 <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                  {locale === "it" ? "Domande Frequenti" : "Frequently Asked Questions"}
+                  {dict.blog.faqTitle}
                 </span>
               </div>
 
@@ -361,13 +363,13 @@ export default async function BlogArticlePage({
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-10 h-px bg-laxmi-gold" />
               <span className="text-xs tracking-[0.25em] uppercase text-laxmi-gold">
-                {locale === "it" ? "Continua a Leggere" : "Continue Reading"}
+                {dict.blog.continueReading}
               </span>
               <div className="w-10 h-px bg-laxmi-gold" />
             </div>
 
             <h2 className="font-serif font-light text-3xl md:text-4xl text-center text-laxmi-espresso dark:text-foreground mb-12">
-              {locale === "it" ? "Articoli Correlati" : "Related Articles"}
+              {dict.blog.relatedArticles}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -409,7 +411,7 @@ export default async function BlogArticlePage({
         <div className="absolute inset-0">
           <Image
             src="/images/hero-interior.jpg"
-            alt="LAXMI Interior Design"
+            alt={dict.blog.heroImageAlt}
             fill
             className="object-cover"
             sizes="100vw"
@@ -423,20 +425,18 @@ export default async function BlogArticlePage({
             <SunburstLogo className="w-20 h-12 mx-auto mb-8" />
 
             <h2 className="font-serif font-light text-3xl md:text-4xl text-white mb-6">
-              {locale === "it" ? "Inizia il Tuo Viaggio" : "Begin Your Journey"}
+              {dict.blog.ctaTitle}
             </h2>
 
             <p className="text-base md:text-lg text-white/80 font-light mb-10 max-w-xl mx-auto">
-              {locale === "it"
-                ? "Lascia che i nostri esperti ti guidino nella creazione dello spazio dei tuoi sogni."
-                : "Let our experts guide you in creating the space of your dreams."}
+              {dict.blog.ctaDescription}
             </p>
 
             <Link
               href={`/${locale}/contact`}
               className="inline-flex items-center gap-3 px-8 py-4 bg-laxmi-gold text-laxmi-espresso text-sm tracking-[0.15em] uppercase font-medium rounded-full hover:bg-white transition-all duration-300 group"
             >
-              {locale === "it" ? "Contattaci" : "Contact Us"}
+              {dict.blog.ctaButton}
               <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -463,7 +463,7 @@ export default async function BlogArticlePage({
               <ul className="space-y-1">
                 <li><Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.home}</Link></li>
                 <li><Link href={`/${locale}/consulting`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.consulting}</Link></li>
-                <li><Link href={`/${locale}/blog`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">Blog</Link></li>
+                <li><Link href={`/${locale}/blog`} className="text-muted-foreground hover:text-foreground transition-colors font-light py-2 inline-flex items-center min-h-[44px]">{dict.nav.blog}</Link></li>
               </ul>
             </div>
 
@@ -472,7 +472,7 @@ export default async function BlogArticlePage({
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
                 <li className="py-1">+39 000 000 0000</li>
-                <li className="py-1">{locale === "it" ? "Milano, Italia" : "Milan, Italy"}</li>
+                <li className="py-1">{dict.common.location}</li>
               </ul>
             </div>
           </div>
