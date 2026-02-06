@@ -78,6 +78,31 @@ export default async function SettingsPage() {
           </div>
         </div>
 
+        {/* Tools Section (Super Admin Only) */}
+        {adminUser?.role === "super_admin" && (
+          <div className="p-6 bg-zinc-900 border border-zinc-800 rounded-lg">
+            <h2 className="text-lg font-medium text-white mb-6">Tools</h2>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-white">ArrexLab Image Downloader</p>
+                  <p className="text-xs text-zinc-500">Python script for downloading product images from ArrexLab</p>
+                </div>
+                <a
+                  href="/api/admin/scripts?file=arrexlab_full_downloader.py"
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Admin Users Section (Super Admin Only) */}
         {adminUser?.role === "super_admin" && (
           <div className="p-6 bg-zinc-900 border border-zinc-800 rounded-lg lg:col-span-2">

@@ -353,7 +353,7 @@ export default async function Home({
               </div>
 
               <Link
-                href={`/${locale}/services`}
+                href={`/${locale}/consulting`}
                 className="inline-flex items-center justify-center lg:justify-start gap-2 text-laxmi-bronze hover:text-laxmi-espresso transition-colors duration-300 mt-4 min-h-[44px] py-2 w-full lg:w-auto"
               >
                 <span className="text-spaced text-sm">{dict.services.discoverMore}</span>
