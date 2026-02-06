@@ -10,6 +10,14 @@ export interface Dictionary {
     keywords: string;
     ogTitle: string;
     ogDescription: string;
+    consultingTitle: string;
+    consultingDescription: string;
+    collectionsTitle: string;
+    collectionsDescription: string;
+    aboutTitle: string;
+    aboutDescription: string;
+    contactTitle: string;
+    contactDescription: string;
   };
   nav: {
     home: string;

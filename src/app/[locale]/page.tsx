@@ -1,12 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LuxuryGallery } from "@/components/luxury-gallery";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
-import { type Locale } from "@/i18n/config";
+import { locales, defaultLocale, hreflangCodes, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+  const dict = await getDictionary(locale);
+
+  return {
+    title: dict.metadata.title,
+    description: dict.metadata.description,
+    openGraph: {
+      title: dict.metadata.ogTitle,
+      description: dict.metadata.ogDescription,
+      url: `${siteUrl}/${locale}`,
+      type: "website",
+    },
+  };
+}
 
 // Decorative Line with Arrow
 function DecorativeLine({ className = "" }: { className?: string }) {
@@ -184,6 +206,7 @@ export default async function Home({
             {/* Mobile: Add top padding to account for arch image, Desktop: normal layout */}
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-5 md:space-y-8 animate-fade-in-up pt-[340px] sm:pt-[400px] lg:pt-0">
               {/* Main heading with brand logo */}
+              <h1 className="sr-only">{dict.metadata.ogTitle}</h1>
               <div className="flex justify-center lg:justify-start">
                 <LogoText className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto" />
               </div>

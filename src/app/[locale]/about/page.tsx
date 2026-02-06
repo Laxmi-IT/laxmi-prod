@@ -1,11 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
-import { type Locale } from "@/i18n/config";
+import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+  const dict = await getDictionary(locale);
+
+  return {
+    title: dict.metadata.aboutTitle,
+    description: dict.metadata.aboutDescription,
+    openGraph: {
+      title: dict.metadata.aboutTitle,
+      description: dict.metadata.aboutDescription,
+      url: `${siteUrl}/${locale}/about`,
+    },
+  };
+}
 
 export default async function AboutPage({
   params,

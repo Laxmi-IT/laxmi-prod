@@ -115,7 +115,6 @@ function StructuredData({ locale }: { locale: Locale }) {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+39-000-000-0000",
       contactType: "customer service",
       email: "thelaxmii07@gmail.com",
       availableLanguage: ["Italian", "English"],
@@ -135,7 +134,6 @@ function StructuredData({ locale }: { locale: Locale }) {
       ? "Consulenza arredamento di lusso e boutique di mobili italiani Made in Italy"
       : "Luxury furniture consulting and boutique of Italian Made in Italy furniture",
     url: siteUrl,
-    telephone: "+39-000-000-0000",
     email: "thelaxmii07@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -206,10 +204,9 @@ function StructuredData({ locale }: { locale: Locale }) {
     name: "LAXMI",
     url: siteUrl,
     inLanguage: locale === "it" ? "it-IT" : "en-GB",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
+    publisher: {
+      "@type": "Organization",
+      name: "LAXMI",
     },
   };
 
@@ -245,6 +242,9 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <StructuredData locale={locale} />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#39241d" />
       </head>
       <body
         className={`${cormorant.variable} ${inter.variable} font-sans antialiased`}
