@@ -119,7 +119,7 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
             onClick={handleNavClick}
             className="flex flex-col items-center group flex-1"
           >
-            <LogoText className="h-8 w-auto text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110" />
+            <LogoText className="h-8 w-auto mb-2 transition-transform duration-300 group-hover:scale-110" />
             <span className="text-xs tracking-widest text-zinc-500 dark:text-zinc-500 uppercase">
               Admin
             </span>

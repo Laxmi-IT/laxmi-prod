@@ -185,7 +185,7 @@ export default function AdminLoginPage() {
         {/* Logo/Branding */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center">
-            <LogoText className="h-10 w-auto text-amber-500" />
+            <LogoText className="h-10 w-auto" />
             <span className="text-xs tracking-widest text-zinc-500 mt-1 uppercase">
               Admin Dashboard
             </span>

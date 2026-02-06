@@ -59,7 +59,7 @@ export function Footer({ locale }: FooterProps) {
           {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
             <Link href={`/${locale}`} className="inline-flex items-center group">
-              <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-300 group-hover:scale-110" />
+              <LogoText className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-110" />
             </Link>
             <p className="text-muted-foreground font-light mt-4 max-w-sm">
               {t.description}

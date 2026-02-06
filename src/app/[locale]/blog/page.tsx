@@ -80,7 +80,7 @@ export default async function BlogPage({
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
         <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
           <Link href={`/${locale}`} className="flex items-center group">
-            <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
+            <LogoText className="h-8 md:h-10 w-auto transition-transform duration-500 group-hover:scale-110" />
           </Link>
 
           <div className="hidden md:flex items-center gap-10">
@@ -347,7 +347,7 @@ export default async function BlogPage({
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <SunburstLogo className="w-16 h-10 text-laxmi-gold mx-auto mb-8" />
+            <SunburstLogo className="w-16 h-10 mx-auto mb-8" />
 
             <h2 className="font-serif font-light text-3xl md:text-4xl text-laxmi-cream mb-4">
               {locale === "it" ? "Rimani Ispirato" : "Stay Inspired"}
@@ -379,7 +379,7 @@ export default async function BlogPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
               <div className="flex flex-col items-center sm:items-start">
-                <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze" />
+                <LogoText className="h-8 md:h-10 w-auto" />
               </div>
               <p className="text-muted-foreground font-light mt-4 max-w-sm">
                 {dict.footer.description}

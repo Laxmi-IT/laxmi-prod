@@ -39,7 +39,7 @@ export default async function Home({
         <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center group">
-            <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze transition-transform duration-500 group-hover:scale-110" />
+            <LogoText className="h-8 md:h-10 w-auto transition-transform duration-500 group-hover:scale-110" />
           </Link>
 
           {/* Navigation Links */}
@@ -187,14 +187,10 @@ export default async function Home({
 
             {/* Mobile: Add top padding to account for arch image, Desktop: normal layout */}
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-5 md:space-y-8 animate-fade-in-up pt-[340px] sm:pt-[400px] lg:pt-0">
-              {/* Main heading with sunburst above the I */}
-              <h1 className="font-serif font-light text-foreground tracking-[0.15em] md:tracking-[0.25em] flex items-end justify-center lg:justify-start text-4xl sm:text-5xl md:text-6xl">
-                <span>LAXM</span>
-                <span className="flex flex-col items-center">
-                  <SunburstLogo className="w-10 h-8 md:w-12 md:h-10 text-laxmi-gold -mb-1" />
-                  <span>I</span>
-                </span>
-              </h1>
+              {/* Main heading with brand logo */}
+              <div className="flex justify-center lg:justify-start">
+                <LogoText className="h-14 sm:h-16 md:h-20 w-auto" />
+              </div>
 
               {/* Tagline */}
               <div className="space-y-2">
@@ -402,7 +398,7 @@ export default async function Home({
       <section className="py-16 md:py-24 lg:py-32 relative bg-laxmi-cream/20 dark:bg-card/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
-            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 text-laxmi-gold mx-auto mb-6 md:mb-8" />
+            <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 mx-auto mb-6 md:mb-8" />
             <h2 className="font-serif font-light mb-4 md:mb-6">{dict.cta.title}</h2>
             <p className="text-base md:text-lg text-muted-foreground font-light mb-8 md:mb-10 max-w-xl mx-auto">
               {dict.cta.description}
@@ -420,7 +416,7 @@ export default async function Home({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
             <div className="sm:col-span-2 lg:col-span-2 text-center sm:text-left">
               <div className="flex items-center sm:items-start">
-                <LogoText className="h-8 md:h-10 w-auto text-laxmi-bronze" />
+                <LogoText className="h-8 md:h-10 w-auto" />
               </div>
               <p className="text-muted-foreground font-light mt-4 max-w-sm">
                 {dict.footer.description}
