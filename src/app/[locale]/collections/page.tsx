@@ -9,6 +9,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { getGalleryImages } from "@/lib/gallery/queries";
 import { LogoText } from "@/components/laxmi-logo";
+import { DYNAMIC_BLUR_DATA_URL } from "@/lib/image/blur-data";
 
 export async function generateMetadata({
   params,
@@ -114,6 +115,9 @@ export default async function CollectionsPage({
             className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
+            placeholder="blur"
+            blurDataURL={DYNAMIC_BLUR_DATA_URL}
           />
           {/* Sophisticated overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
@@ -230,6 +234,9 @@ export default async function CollectionsPage({
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL={DYNAMIC_BLUR_DATA_URL}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/30 to-transparent" />
               </div>
@@ -253,6 +260,9 @@ export default async function CollectionsPage({
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL={DYNAMIC_BLUR_DATA_URL}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/30 to-transparent" />
               </div>
@@ -330,6 +340,9 @@ export default async function CollectionsPage({
             fill
             className="object-cover"
             sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={DYNAMIC_BLUR_DATA_URL}
           />
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-laxmi-espresso/90" />

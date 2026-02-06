@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
+import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data';
 import { CategoryFilter } from './category-filter';
 import { CollectionSlideshow } from './collection-slideshow';
 
@@ -88,6 +89,8 @@ function FeaturedCard({
         sizes="(max-width: 768px) 100vw, 66vw"
         loading={index < 3 ? 'eager' : 'lazy'}
         quality={90}
+        placeholder="blur"
+        blurDataURL={DYNAMIC_BLUR_DATA_URL}
       />
 
       {/* Gradient overlay - always visible but stronger on hover */}
@@ -161,6 +164,9 @@ function StandardCard({
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         loading={index < 6 ? 'eager' : 'lazy'}
+        quality={80}
+        placeholder="blur"
+        blurDataURL={DYNAMIC_BLUR_DATA_URL}
       />
 
       {/* Gradient overlay */}

@@ -17,6 +17,7 @@ import {
 } from "@/lib/blog/queries";
 import type { Metadata } from "next";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { blurDataMap, DYNAMIC_BLUR_DATA_URL } from "@/lib/image/blur-data";
 
 // Enable ISR for blog posts
 export const revalidate = 60;
@@ -255,6 +256,9 @@ export default async function BlogArticlePage({
             className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
+            placeholder="blur"
+            blurDataURL={DYNAMIC_BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
         </div>
@@ -388,6 +392,9 @@ export default async function BlogArticlePage({
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
+                        quality={80}
+                        placeholder="blur"
+                        blurDataURL={DYNAMIC_BLUR_DATA_URL}
                       />
                     </div>
 
@@ -415,6 +422,9 @@ export default async function BlogArticlePage({
             fill
             className="object-cover"
             sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/hero-interior.jpg"]}
           />
           <div className="absolute inset-0 bg-black/70" />
           <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-laxmi-espresso/90 to-black/85" />

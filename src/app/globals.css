@@ -190,13 +190,13 @@
   }
 
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
     font-weight: 300;
     letter-spacing: -0.03em;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
     font-weight: 400;
   }
 
@@ -333,6 +333,62 @@
 
   .text-spaced {
     @apply uppercase tracking-[0.15em] md:tracking-[0.25em] text-sm font-light;
+  }
+
+  /* Pull Quote - editorial italic serif */
+  .text-pullquote {
+    font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  /* Small Label - refined uppercase micro-label */
+  .text-label-sm {
+    @apply uppercase text-xs font-medium;
+    letter-spacing: 0.2em;
+  }
+
+  /* Section Label Variants */
+
+  /* Type A: Centered with flanking lines */
+  .label-flanked {
+    @apply flex items-center justify-center gap-4;
+  }
+  .label-flanked::before,
+  .label-flanked::after {
+    content: '';
+    flex: 0 0 2rem;
+    height: 1px;
+    background-color: var(--laxmi-gold);
+    opacity: 0.5;
+  }
+
+  /* Type B: Left-anchored with gold dot */
+  .label-dotted {
+    @apply flex items-center gap-3;
+  }
+  .label-dotted::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full flex-shrink-0;
+    background-color: var(--laxmi-gold);
+  }
+
+  /* Type C: Numbered label (use with span.label-number) */
+  .label-numbered {
+    @apply flex items-center gap-2;
+  }
+  .label-numbered .label-number {
+    font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 300;
+    font-size: 1.1em;
+    color: var(--laxmi-gold);
+  }
+  .label-numbered .label-divider {
+    color: var(--laxmi-gold);
+    opacity: 0.4;
   }
 
   /* Navigation Link */

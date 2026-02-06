@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, hreflangCodes, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { blurDataMap } from "@/lib/image/blur-data";
 
 export async function generateMetadata({
   params,
@@ -128,6 +129,9 @@ export default async function Home({
               style={{ objectPosition: "center center" }}
               priority
               sizes="52vw"
+              quality={90}
+              placeholder="blur"
+              blurDataURL={blurDataMap["/images/hero-italian.jpg"]}
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-transparent" />
           </div>
@@ -174,6 +178,9 @@ export default async function Home({
                 style={{ objectPosition: "center 30%" }}
                 priority
                 sizes="320px"
+                quality={90}
+                placeholder="blur"
+                blurDataURL={blurDataMap["/images/hero-italian.jpg"]}
               />
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/40 via-transparent to-transparent" />
@@ -246,7 +253,7 @@ export default async function Home({
       <section className="py-16 md:py-24 lg:py-32 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-10 md:mb-16 lg:mb-20 animate-fade-in-up">
-            <p className="text-spaced text-laxmi-gold mb-4">{dict.values.sectionLabel}</p>
+            <p className="text-label-sm text-laxmi-gold mb-4 label-flanked">{dict.values.sectionLabel}</p>
             <h2 className="font-serif font-light">{dict.values.sectionTitle}</h2>
             <div className="gold-line w-24 mx-auto mt-6 md:mt-8" />
           </div>
@@ -317,6 +324,9 @@ export default async function Home({
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL={blurDataMap["/images/services-interior.jpg"]}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/20 via-transparent to-transparent" />
                 </div>
@@ -332,7 +342,7 @@ export default async function Home({
             </div>
 
             <div className="space-y-6 md:space-y-8 animate-fade-in-up delay-200 order-1 lg:order-2">
-              <p className="text-spaced text-laxmi-gold text-center lg:text-left">{dict.services.sectionLabel}</p>
+              <p className="text-label-sm text-laxmi-gold label-dotted justify-center lg:justify-start">{dict.services.sectionLabel}</p>
               <h2 className="font-serif font-light text-center lg:text-left">{dict.services.sectionTitle}</h2>
               <div className="gold-line w-16 mx-auto lg:mx-0" />
 

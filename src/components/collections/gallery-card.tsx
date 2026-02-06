@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { CollectionImage } from '@/data/collections';
+import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data';
 
 interface GalleryCardProps {
   image: CollectionImage;
@@ -28,6 +29,9 @@ export function GalleryCard({ image, index, locale, onClick }: GalleryCardProps)
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         loading={index < 6 ? 'eager' : 'lazy'}
+        quality={80}
+        placeholder="blur"
+        blurDataURL={DYNAMIC_BLUR_DATA_URL}
       />
 
       {/* Gradient overlay */}

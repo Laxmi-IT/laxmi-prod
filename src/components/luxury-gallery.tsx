@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data'
 
 interface GalleryImageTranslation {
   category: string
@@ -50,6 +51,9 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              quality={80}
+              placeholder="blur"
+              blurDataURL={DYNAMIC_BLUR_DATA_URL}
             />
 
             {/* Overlay */}
@@ -98,6 +102,9 @@ export function LuxuryGallery({ images }: LuxuryGalleryProps) {
               className="object-cover"
               sizes="100vw"
               priority
+              quality={90}
+              placeholder="blur"
+              blurDataURL={DYNAMIC_BLUR_DATA_URL}
             />
 
             {/* Close button */}

@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { blurDataMap } from "@/lib/image/blur-data";
 
 export async function generateMetadata({
   params,
@@ -125,6 +126,9 @@ export default async function AboutPage({
             className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/services-interior.jpg"]}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
@@ -187,6 +191,9 @@ export default async function AboutPage({
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL={blurDataMap["/images/hero-italian.jpg"]}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/30 via-transparent to-transparent" />
                 </div>
@@ -205,7 +212,7 @@ export default async function AboutPage({
             {/* Content */}
             <div className="space-y-8 animate-fade-in-up delay-200 order-1 lg:order-2">
               <div>
-                <p className="text-spaced text-laxmi-gold mb-4">
+                <p className="text-label-sm text-laxmi-gold mb-4 label-dotted">
                   {dict.aboutPage.nameSection.label}
                 </p>
                 <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl mb-6">
@@ -240,7 +247,7 @@ export default async function AboutPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
           <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
             <SunburstLogo className="w-12 h-8 mx-auto mb-6" />
-            <p className="text-spaced text-laxmi-gold mb-4">{dict.values.sectionLabel}</p>
+            <p className="text-label-sm text-laxmi-gold mb-4 label-flanked">{dict.values.sectionLabel}</p>
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
               {dict.aboutPage.essenceTitle}
             </h2>
@@ -282,7 +289,7 @@ export default async function AboutPage({
       <section className="py-16 md:py-24 lg:py-32 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
-            <p className="text-spaced text-laxmi-gold mb-4">
+            <p className="text-label-sm text-laxmi-gold mb-4 label-dotted justify-center">
               {dict.aboutPage.valuesTitle}
             </p>
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
@@ -319,6 +326,9 @@ export default async function AboutPage({
             alt={dict.common.madeInItaly}
             fill
             className="object-cover"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/hero-elegant-living.jpg"]}
           />
           <div className="absolute inset-0 bg-black/75" />
         </div>

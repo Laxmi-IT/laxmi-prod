@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { blurDataMap } from "@/lib/image/blur-data";
 
 export async function generateMetadata({
   params,
@@ -86,6 +87,9 @@ export default async function ContactPage({
             className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/hero-elegant-living.jpg"]}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
@@ -137,7 +141,7 @@ export default async function ContactPage({
             {/* Contact Information */}
             <div className="space-y-10 animate-fade-in-up">
               <div>
-                <p className="text-spaced text-laxmi-gold mb-4">
+                <p className="text-label-sm text-laxmi-gold mb-4 label-dotted">
                   {dict.contactPage.infoLabel}
                 </p>
                 <h2 className="font-serif font-light text-3xl md:text-4xl mb-6">
@@ -370,6 +374,9 @@ export default async function ContactPage({
                 alt={dict.common.location}
                 fill
                 className="object-cover opacity-60"
+                quality={75}
+                placeholder="blur"
+                blurDataURL={blurDataMap["/images/hero-italian.jpg"]}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/80 via-laxmi-espresso/40 to-transparent" />
 

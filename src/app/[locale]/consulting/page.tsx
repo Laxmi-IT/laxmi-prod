@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { blurDataMap } from "@/lib/image/blur-data";
 
 export async function generateMetadata({
   params,
@@ -94,6 +95,9 @@ export default async function ConsultingPage({
             className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/hero-elegant-living.jpg"]}
           />
           {/* Sophisticated overlay - stronger for mobile readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent md:from-black/70 md:via-black/40" />
@@ -514,6 +518,9 @@ export default async function ConsultingPage({
             fill
             className="object-cover"
             sizes="100vw"
+            quality={75}
+            placeholder="blur"
+            blurDataURL={blurDataMap["/images/hero-interior.jpg"]}
           />
           {/* Much darker overlay for better readability */}
           <div className="absolute inset-0 bg-black/70" />

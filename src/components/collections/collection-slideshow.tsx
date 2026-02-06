@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
+import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data';
 
 // Slideshow image type - compatible with both database and legacy static images
 interface SlideshowImage {
@@ -157,6 +158,9 @@ export function CollectionSlideshow({
               className="object-contain drop-shadow-2xl"
               sizes="(max-width: 768px) 100vw, 80vw"
               priority
+              quality={90}
+              placeholder="blur"
+              blurDataURL={DYNAMIC_BLUR_DATA_URL}
             />
           </div>
 
