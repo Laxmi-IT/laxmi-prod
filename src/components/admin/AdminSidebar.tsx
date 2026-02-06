@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { createClient } from "@/lib/supabase/client";
+import { SunburstLogo } from "../laxmi-logo";
 
 interface NavItem {
   href: string;
@@ -118,35 +119,7 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
             onClick={handleNavClick}
             className="flex flex-col items-center group flex-1"
           >
-            <svg
-              viewBox="0 0 40 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-10 h-6 text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110"
-            >
-              {Array.from({ length: 9 }).map((_, i) => {
-                const angle = -180 + (i * 180) / 8;
-                const rad = (angle * Math.PI) / 180;
-                const x1 = 20 + Math.cos(rad) * 4;
-                const y1 = 22 + Math.sin(rad) * 4;
-                const x2 = 20 + Math.cos(rad) * 12;
-                const y2 = 22 + Math.sin(rad) * 12;
-                return (
-                  <line
-                    key={i}
-                    x1={x1}
-                    y1={y1}
-                    x2={x2}
-                    y2={y2}
-                    stroke="currentColor"
-                    strokeWidth="0.8"
-                    strokeLinecap="round"
-                    opacity={0.85}
-                  />
-                );
-              })}
-              <circle cx="20" cy="22" r="1.5" fill="currentColor" />
-            </svg>
+            <SunburstLogo className="w-10 h-6 text-amber-500 mb-2 transition-transform duration-300 group-hover:scale-110" />
             <span className="text-lg tracking-[0.3em] font-serif font-light text-zinc-900 dark:text-white">
               LAXMI
             </span>

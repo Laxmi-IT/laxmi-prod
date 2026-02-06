@@ -6,41 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-// Sunburst Logo Component
-function SunburstLogo({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 40 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      {Array.from({ length: 9 }).map((_, i) => {
-        const angle = -180 + (i * 180) / 8;
-        const rad = (angle * Math.PI) / 180;
-        const x1 = 20 + Math.cos(rad) * 4;
-        const y1 = 22 + Math.sin(rad) * 4;
-        const x2 = 20 + Math.cos(rad) * 12;
-        const y2 = 22 + Math.sin(rad) * 12;
-        return (
-          <line
-            key={i}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke="currentColor"
-            strokeWidth="0.8"
-            strokeLinecap="round"
-            opacity={0.85}
-          />
-        );
-      })}
-      <circle cx="20" cy="22" r="1.5" fill="currentColor" />
-    </svg>
-  );
-}
+import { SunburstLogo } from "@/components/laxmi-logo";
 
 // Login form component that uses searchParams
 function LoginForm() {
