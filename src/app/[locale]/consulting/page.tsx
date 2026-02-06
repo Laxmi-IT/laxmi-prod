@@ -214,7 +214,7 @@ export default async function ConsultingPage({
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl text-laxmi-espresso dark:text-foreground">
               {dict.consulting.processTitle}
             </h2>
-            <div className="gold-line w-24 mx-auto mt-8" />
+            <div className="gold-dots mt-8"><span className="gold-dots-center" /></div>
           </div>
 
           {/* Process Steps - Premium Cards */}

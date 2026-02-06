@@ -295,7 +295,7 @@ export default async function AboutPage({
             <h2 className="font-serif font-light text-3xl md:text-4xl lg:text-5xl">
               {dict.values.values.title}
             </h2>
-            <div className="gold-line w-24 mx-auto mt-8" />
+            <div className="gold-divider-diamond mx-auto mt-8"><span className="diamond" /></div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">

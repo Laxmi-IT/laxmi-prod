@@ -76,7 +76,7 @@ function FeaturedCard({
 
   return (
     <div
-      className="group relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden cursor-pointer animate-fade-in-up"
+      className="group relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden cursor-pointer animate-fade-in-up rounded-t-[2rem] md:rounded-t-[3rem]"
       style={{ animationDelay: `${index * 100}ms` }}
       onClick={onClick}
     >

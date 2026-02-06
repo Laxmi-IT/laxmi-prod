@@ -421,8 +421,9 @@ export default async function Home({
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 lg:py-32 relative bg-laxmi-cream/20 dark:bg-card/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+      <section className="py-16 md:py-24 lg:py-32 relative bg-laxmi-cream/20 dark:bg-card/20 overflow-hidden">
+        <div className="absolute inset-0 sunburst-bg-accent" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
             <SunburstLogo className="w-16 h-10 md:w-20 md:h-12 mx-auto mb-6 md:mb-8" />
             <h2 className="font-serif font-light mb-4 md:mb-6">{dict.cta.title}</h2>

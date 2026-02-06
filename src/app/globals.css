@@ -287,6 +287,75 @@
     );
   }
 
+  /* Gold Dots Divider — three dots in a row */
+  .gold-dots {
+    @apply flex items-center justify-center gap-2.5;
+  }
+  .gold-dots::before,
+  .gold-dots::after {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full;
+    background-color: var(--laxmi-gold);
+    opacity: 0.6;
+  }
+  .gold-dots .gold-dots-center {
+    @apply w-2 h-2 rounded-full;
+    background-color: var(--laxmi-gold);
+  }
+
+  /* Gold Arch Divider — small arch shape */
+  .gold-arch {
+    @apply mx-auto;
+    width: 60px;
+    height: 30px;
+    border: 1px solid var(--laxmi-gold);
+    border-bottom: none;
+    border-radius: 60px 60px 0 0;
+    opacity: 0.5;
+  }
+
+  /* Gold Diamond Divider — lines flanking a diamond */
+  .gold-divider-diamond {
+    @apply flex items-center justify-center gap-0;
+    width: 100%;
+    max-width: 200px;
+  }
+  .gold-divider-diamond::before,
+  .gold-divider-diamond::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--laxmi-gold) 100%
+    );
+  }
+  .gold-divider-diamond::after {
+    background: linear-gradient(
+      90deg,
+      var(--laxmi-gold) 0%,
+      transparent 100%
+    );
+  }
+  .gold-divider-diamond .diamond {
+    @apply w-2 h-2 mx-3 flex-shrink-0;
+    background-color: var(--laxmi-gold);
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+
+  /* Sunburst Background Accent — subtle brand texture for CTA sections */
+  .sunburst-bg-accent {
+    background-image: repeating-conic-gradient(
+      from 0deg at 50% 100%,
+      var(--laxmi-gold) 0deg 2deg,
+      transparent 2deg 10deg
+    );
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
   /* Organic Blob Shape */
   .organic-shape {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;

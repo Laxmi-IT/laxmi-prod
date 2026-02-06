@@ -368,7 +368,7 @@ export default async function ContactPage({
 
           {/* Elegant Map Placeholder */}
           <div className="relative max-w-4xl mx-auto animate-fade-in-up delay-200">
-            <div className="aspect-[16/9] relative rounded-2xl overflow-hidden border border-laxmi-gold/20">
+            <div className="aspect-[16/9] relative overflow-hidden border border-laxmi-gold/20" style={{ borderRadius: "3rem 3rem 1rem 1rem" }}>
               <Image
                 src="/images/hero-italian.jpg"
                 alt={dict.common.location}

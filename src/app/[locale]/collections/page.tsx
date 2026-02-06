@@ -247,6 +247,11 @@ export default async function CollectionsPage({
         </div>
       </section>
 
+      {/* Decorative arch separator */}
+      <div className="flex justify-center py-4">
+        <div className="gold-arch" />
+      </div>
+
       {/* Storytelling Section 2: Materials */}
       <section className="py-20 md:py-32 relative bg-laxmi-cream/30 dark:bg-card/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
@@ -347,6 +352,7 @@ export default async function CollectionsPage({
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-laxmi-espresso/90" />
           <div className="absolute inset-0 bg-gradient-to-br from-laxmi-espresso/95 via-laxmi-espresso/85 to-black/80" />
+          <div className="absolute inset-0 sunburst-bg-accent" />
         </div>
 
         {/* Decorative elements */}
