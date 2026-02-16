@@ -218,27 +218,27 @@ export default async function ConsultingPage({
           </div>
 
           {/* Process Steps - Premium Cards */}
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8 xl:gap-6">
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className="relative animate-fade-in-up"
+                className={`relative animate-fade-in-up${idx === 4 ? ' sm:col-span-2 sm:max-w-[calc(50%-0.75rem)] sm:mx-auto lg:col-span-1 lg:max-w-none' : ''}`}
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
-                {/* Connector line (desktop only) */}
+                {/* Connector line (wide desktop only) */}
                 {idx < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-laxmi-gold/40 to-laxmi-gold/10" />
+                  <div className="hidden xl:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-laxmi-gold/40 to-laxmi-gold/10" />
                 )}
 
                 <div className="card-luxury text-center h-full">
                   {/* Number circle */}
-                  <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-6 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
-                    <span className="text-lg lg:text-xl font-light text-laxmi-bronze">
+                  <div className="w-14 h-14 mx-auto mb-5 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
+                    <span className="text-lg font-light text-laxmi-bronze">
                       {step.number}
                     </span>
                   </div>
 
-                  <h4 className="font-serif text-xl lg:text-2xl text-laxmi-espresso dark:text-foreground mb-3">
+                  <h4 className="font-serif text-lg xl:text-xl text-laxmi-espresso dark:text-foreground mb-3">
                     {step.title}
                   </h4>
 
