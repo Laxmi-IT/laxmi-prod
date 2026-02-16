@@ -103,7 +103,7 @@ export const getDictionaryFromDB = unstable_cache(
   ['dictionary-db'],
   {
     tags: ['dictionary'],
-    revalidate: 3600, // Revalidate every hour (but also on-demand via tag)
+    revalidate: 300, // Revalidate every 5 minutes
   }
 );
 

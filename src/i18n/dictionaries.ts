@@ -1,5 +1,5 @@
 import type { Locale } from './config';
-import { getDictionaryFromDB } from '@/lib/content/getDictionaryFromDB';
+import { getDictionaryFromDB, getDictionaryFromDBNoCache } from '@/lib/content/getDictionaryFromDB';
 
 // Dictionary type based on the structure
 export interface Dictionary {
@@ -352,7 +352,11 @@ export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
   const staticDict = await staticDictionaries[locale]();
 
   try {
-    const dbDict = await getDictionaryFromDB(locale);
+    // During build, skip cache so we always get the latest DB content
+    const isBuild = process.env.NEXT_PHASE === 'phase-production-build';
+    const dbDict = isBuild
+      ? await getDictionaryFromDBNoCache(locale)
+      : await getDictionaryFromDB(locale);
     // Merge DB values over static base so missing DB keys fall back to static
     return deepMerge(
       staticDict as unknown as Record<string, unknown>,
