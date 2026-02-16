@@ -320,18 +320,47 @@ const staticDictionaries: Record<Locale, () => Promise<Dictionary>> = {
 };
 
 /**
+ * Deep merge source into target. Source values override target,
+ * but missing keys in source are filled from target.
+ */
+function deepMerge<T extends Record<string, unknown>>(target: T, source: Record<string, unknown>): T {
+  const result = { ...target };
+  for (const key of Object.keys(source)) {
+    const sourceVal = source[key];
+    const targetVal = (target as Record<string, unknown>)[key];
+    if (
+      sourceVal && typeof sourceVal === 'object' && !Array.isArray(sourceVal) &&
+      targetVal && typeof targetVal === 'object' && !Array.isArray(targetVal)
+    ) {
+      (result as Record<string, unknown>)[key] = deepMerge(
+        targetVal as Record<string, unknown>,
+        sourceVal as Record<string, unknown>
+      );
+    } else if (sourceVal !== undefined && sourceVal !== null && sourceVal !== '') {
+      (result as Record<string, unknown>)[key] = sourceVal;
+    }
+  }
+  return result;
+}
+
+/**
  * Get dictionary for a locale
- * Tries database first, falls back to static JSON files
+ * Loads static JSON as base, then merges DB overrides on top.
+ * This ensures all keys always exist even if the DB is incomplete.
  */
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
+  const staticDict = await staticDictionaries[locale]();
+
   try {
-    // Try to get dictionary from database (cached)
-    return await getDictionaryFromDB(locale);
+    const dbDict = await getDictionaryFromDB(locale);
+    // Merge DB values over static base so missing DB keys fall back to static
+    return deepMerge(
+      staticDict as unknown as Record<string, unknown>,
+      dbDict as unknown as Record<string, unknown>
+    ) as unknown as Dictionary;
   } catch (error) {
-    // Log error but don't expose to users
     console.error('Database dictionary failed, using static fallback:', error);
-    // Fall back to static JSON files
-    return staticDictionaries[locale]();
+    return staticDict;
   }
 };
 
