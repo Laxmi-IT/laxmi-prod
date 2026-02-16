@@ -481,8 +481,8 @@ export default async function ConsultingPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <div className="relative text-center py-12">
-              {/* Large quote mark — pushed below the label */}
-              <div className="absolute top-16 md:top-20 left-1/2 -translate-x-1/2 text-laxmi-gold/10 font-serif text-[120px] md:text-[180px] leading-none select-none pointer-events-none" aria-hidden="true">
+              {/* Large decorative quote mark — behind the label */}
+              <div className="absolute -top-6 md:-top-4 left-1/2 -translate-x-1/2 text-laxmi-gold/8 font-serif text-[100px] md:text-[140px] leading-none select-none pointer-events-none" aria-hidden="true">
                 &ldquo;
               </div>
 
