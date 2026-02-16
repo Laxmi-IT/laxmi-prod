@@ -218,7 +218,7 @@ export default async function ConsultingPage({
           </div>
 
           {/* Process Steps - Premium Cards */}
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
             {steps.map((step, idx) => (
               <div
                 key={idx}
@@ -227,18 +227,18 @@ export default async function ConsultingPage({
               >
                 {/* Connector line (desktop only) */}
                 {idx < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-laxmi-gold/40 to-laxmi-gold/10" />
+                  <div className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-laxmi-gold/40 to-laxmi-gold/10" />
                 )}
 
                 <div className="card-luxury text-center h-full">
                   {/* Number circle */}
-                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-6 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
-                    <span className="text-lg md:text-xl font-light text-laxmi-bronze">
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-6 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
+                    <span className="text-lg lg:text-xl font-light text-laxmi-bronze">
                       {step.number}
                     </span>
                   </div>
 
-                  <h4 className="font-serif text-xl md:text-2xl text-laxmi-espresso dark:text-foreground mb-3">
+                  <h4 className="font-serif text-xl lg:text-2xl text-laxmi-espresso dark:text-foreground mb-3">
                     {step.title}
                   </h4>
 
@@ -481,8 +481,8 @@ export default async function ConsultingPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <div className="relative text-center py-12">
-              {/* Large quote mark */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-laxmi-gold/10 font-serif text-[120px] md:text-[180px] leading-none select-none pointer-events-none">
+              {/* Large quote mark — pushed below the label */}
+              <div className="absolute top-16 md:top-20 left-1/2 -translate-x-1/2 text-laxmi-gold/10 font-serif text-[120px] md:text-[180px] leading-none select-none pointer-events-none" aria-hidden="true">
                 &ldquo;
               </div>
 

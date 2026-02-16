@@ -25,8 +25,8 @@
   },
   "hero": {
     "tagline1": "Luxury Furniture Consulting",
-    "tagline2": "& Boutique",
-    "description": "Crafted for connoisseurs.",
+    "tagline2": "",
+    "description": "Furnishing your life, one detail at a time.",
     "madeInItaly": "Made in Italy.",
     "cta": "Request a Consultation",
     "imageAlt": "Luxury Italian living room with sage green velvet sofas and arched windows",
@@ -58,7 +58,7 @@
     },
     "service2": {
       "title": "Boutique Reselling",
-      "description": "Curated collection of authentic Italian luxury furniture."
+      "description": "Curated collection of authentic artisanal Italian luxury furniture."
     },
     "service3": {
       "title": "Interior Styling",
@@ -111,7 +111,7 @@
     "button": "Schedule a Consultation"
   },
   "footer": {
-    "description": "Luxury Furniture Consulting & Boutique. Crafted for connoisseurs. Made in Italy.",
+    "description": "Luxury Furniture Consulting. Furnishing your life, one detail at a time. Made in Italy.",
     "navigation": "Navigation",
     "contact": "Contact",
     "quote": "\"Goddess of wealth, fortune, prosperity, beauty and light\"",
@@ -183,7 +183,7 @@
   "collections": {
     "heroTitle": "Collections",
     "heroSubtitle": "Italian excellence in interior design",
-    "heroDescription": "Each kitchen tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform space into a work of art.",
+    "heroDescription": "Each piece of furniture tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform your space into a place to live every day.",
     "filterLabel": "Filter by environment",
     "showingCount": "Showing {count} pieces",
     "noResults": "No pieces found in this category",
@@ -310,7 +310,7 @@
     },
     "commitmentLabel": "Our Commitment",
     "promiseTitle": "Our Promise",
-    "promiseText": "We will never deliver a project we wouldn't be proud to sign. Your space will carry our invisible signature: that obsession with details, that pursuit of perfection, that refusal to compromise that defines everything we do.",
+    "promiseText": "Your space will carry our invisible signature: the care for details and the pursuit of perfection that define everything we do.",
     "ctaTitle": "Begin the Transformation",
     "ctaText": "The first step toward the home you've always imagined is a simple conversation. Contact us to discover which experience is perfect for you.",
     "ctaButton": "Request Information",

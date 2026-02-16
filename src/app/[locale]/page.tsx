@@ -223,9 +223,11 @@ export default async function Home({
                 <p className="text-spaced text-laxmi-bronze">
                   {dict.hero.tagline1}
                 </p>
-                <p className="text-spaced text-muted-foreground">
-                  {dict.hero.tagline2}
-                </p>
+                {dict.hero.tagline2 && (
+                  <p className="text-spaced text-muted-foreground">
+                    {dict.hero.tagline2}
+                  </p>
+                )}
               </div>
 
               <DecorativeLine className="w-32 text-laxmi-gold opacity-60" />

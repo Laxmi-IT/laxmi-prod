@@ -25,8 +25,8 @@
   },
   "hero": {
     "tagline1": "Consulenza Arredamento di Lusso",
-    "tagline2": "& Boutique",
-    "description": "Creato per intenditori.",
+    "tagline2": "",
+    "description": "Arredare la tua vita, un dettaglio alla volta.",
     "madeInItaly": "Made in Italy.",
     "cta": "Richiedi una Consulenza",
     "imageAlt": "Soggiorno di lusso italiano con divani in velluto verde salvia e finestre ad arco",
@@ -58,7 +58,7 @@
     },
     "service2": {
       "title": "Boutique Reselling",
-      "description": "Collezione curata di autentici mobili italiani di lusso."
+      "description": "Collezione curata di autentici mobili artigianali di lusso."
     },
     "service3": {
       "title": "Interior Styling",
@@ -111,7 +111,7 @@
     "button": "Prenota una Consulenza"
   },
   "footer": {
-    "description": "Consulenza Arredamento di Lusso & Boutique. Creato per intenditori. Made in Italy.",
+    "description": "Consulenza Arredamento di Lusso. Arredare la tua vita, un dettaglio alla volta. Made in Italy.",
     "navigation": "Navigazione",
     "contact": "Contatti",
     "quote": "\"Dea della ricchezza, della fortuna, della prosperità, della bellezza e della luce\"",
@@ -183,7 +183,7 @@
   "collections": {
     "heroTitle": "Collezioni",
     "heroSubtitle": "L'eccellenza italiana nel design d'interni",
-    "heroDescription": "Ogni cucina racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano lo spazio in un'opera d'arte.",
+    "heroDescription": "Ogni pezzo di arredamento racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano il tuo spazio in un luogo da vivere ogni giorno.",
     "filterLabel": "Filtra per ambiente",
     "showingCount": "Mostrando {count} pezzi",
     "noResults": "Nessun pezzo trovato in questa categoria",
@@ -310,7 +310,7 @@
     },
     "commitmentLabel": "Il Nostro Impegno",
     "promiseTitle": "La Nostra Promessa",
-    "promiseText": "Non ti consegneremo mai un progetto che non ci renderebbe orgogliosi di firmare. Il tuo spazio porterà la nostra firma invisibile: quella ossessione per i dettagli, quella ricerca della perfezione, quel rifiuto del compromesso che definisce tutto ciò che facciamo.",
+    "promiseText": "Il tuo spazio porterà la nostra firma invisibile: la cura per i dettagli e la ricerca della perfezione che definiscono tutto ciò che facciamo.",
     "ctaTitle": "Inizia la Trasformazione",
     "ctaText": "Il primo passo verso la casa che hai sempre immaginato è una semplice conversazione. Contattaci per scoprire quale percorso è perfetto per te.",
     "ctaButton": "Richiedi Informazioni",
