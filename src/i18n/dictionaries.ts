@@ -268,6 +268,9 @@ export interface Dictionary {
     newsletterDescription: string;
     newsletterPlaceholder: string;
     subscribe: string;
+    newsletterSuccess: string;
+    newsletterAlready: string;
+    newsletterError: string;
     articleNotFound: string;
     faqTitle: string;
     continueReading: string;

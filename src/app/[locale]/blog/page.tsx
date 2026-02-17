@@ -15,6 +15,7 @@ import {
 } from "@/lib/blog/queries";
 import type { Metadata } from "next";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
+import { NewsletterForm } from "@/components/newsletter-form";
 import { blurDataMap, DYNAMIC_BLUR_DATA_URL } from "@/lib/image/blur-data";
 
 // Enable ISR for blog pages
@@ -362,16 +363,14 @@ export default async function BlogPage({
               {dict.blog.newsletterDescription}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder={dict.blog.newsletterPlaceholder}
-                className="flex-1 px-4 py-3 bg-white/10 border border-laxmi-gold/30 rounded-lg text-laxmi-cream placeholder:text-laxmi-champagne/50 focus:outline-none focus:border-laxmi-gold transition-colors"
-              />
-              <button className="px-6 py-3 bg-laxmi-gold text-laxmi-espresso text-sm tracking-wider uppercase font-medium rounded-lg hover:bg-white transition-colors">
-                {dict.blog.subscribe}
-              </button>
-            </div>
+            <NewsletterForm
+              locale={locale}
+              placeholder={dict.blog.newsletterPlaceholder}
+              submitLabel={dict.blog.subscribe}
+              successMessage={dict.blog.newsletterSuccess}
+              alreadyMessage={dict.blog.newsletterAlready}
+              errorMessage={dict.blog.newsletterError}
+            />
           </div>
         </div>
       </section>
