@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
-import { type Locale } from "@/i18n/config";
+import { type Locale, siteUrl } from "@/i18n/config";
 import {
   getPostBySlug,
   getPublishedPosts,
@@ -161,7 +161,7 @@ export default async function BlogArticlePage({
     "@type": post.schemaType,
     headline: title,
     description: excerpt,
-    image: `https://laxmi-prod.vercel.app${post.featuredImage}`,
+    image: `${siteUrl}${post.featuredImage}`,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     author: {
@@ -173,12 +173,12 @@ export default async function BlogArticlePage({
       name: "LAXMI",
       logo: {
         "@type": "ImageObject",
-        url: "https://laxmi-prod.vercel.app/logo.png",
+        url: `${siteUrl}/logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://laxmi-prod.vercel.app/${locale}/blog/${post.slug}`,
+      "@id": `${siteUrl}/${locale}/blog/${post.slug}`,
     },
   };
 

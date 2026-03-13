@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import {
+  initWithRefreshToken,
+  createEvent,
+  isCalendarConfigured,
+} from '@/lib/google/calendar'
 
 // Configuration - Set these in .env.local
 const CONCIERGE_EMAIL = process.env.CONCIERGE_EMAIL || 'thelaxmii07@gmail.com'
@@ -253,6 +258,49 @@ export async function POST(request: NextRequest) {
       }
     } else {
       console.log('Email notifications disabled (SMTP not configured)')
+    }
+
+    // Create Google Calendar event
+    if (isCalendarConfigured()) {
+      try {
+        initWithRefreshToken()
+
+        const [hours, minutes] = body.time.split(':')
+        const startDate = new Date(body.date)
+        startDate.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+        const endDate = new Date(startDate.getTime() + 60 * 60 * 1000) // 1 hour
+
+        const description = [
+          `Client: ${body.name}`,
+          `Email: ${body.email}`,
+          body.phone ? `Phone: ${body.phone}` : null,
+          body.message ? `\nProject Details:\n${body.message}` : null,
+        ].filter(Boolean).join('\n')
+
+        await createEvent(process.env.GOOGLE_CALENDAR_ID!, {
+          summary: `LAXMI Consultation — ${body.name}`,
+          description,
+          start: {
+            dateTime: startDate.toISOString(),
+            timeZone: 'Europe/Rome',
+          },
+          end: {
+            dateTime: endDate.toISOString(),
+            timeZone: 'Europe/Rome',
+          },
+          reminders: {
+            useDefault: false,
+            overrides: [
+              { method: 'popup', minutes: 30 },
+              { method: 'email', minutes: 60 },
+            ],
+          },
+        })
+        console.log('Calendar event created successfully')
+      } catch (calendarError) {
+        console.error('Calendar event creation failed:', calendarError)
+        // Continue — booking is still confirmed via email
+      }
     }
 
     // Return success

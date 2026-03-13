@@ -6,6 +6,30 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_REDIRECT_URI
 )
 
+/**
+ * Initialize the OAuth client with the stored refresh token.
+ * Call this before any calendar operation in server-side contexts.
+ */
+export function initWithRefreshToken() {
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN
+  if (!refreshToken) {
+    throw new Error('GOOGLE_REFRESH_TOKEN is not configured')
+  }
+  oauth2Client.setCredentials({ refresh_token: refreshToken })
+}
+
+/**
+ * Check if Google Calendar integration is configured
+ */
+export function isCalendarConfigured(): boolean {
+  return !!(
+    process.env.GOOGLE_CLIENT_ID &&
+    process.env.GOOGLE_CLIENT_SECRET &&
+    process.env.GOOGLE_REFRESH_TOKEN &&
+    process.env.GOOGLE_CALENDAR_ID
+  )
+}
+
 export function getAuthUrl() {
   const scopes = [
     'https://www.googleapis.com/auth/calendar.readonly',
