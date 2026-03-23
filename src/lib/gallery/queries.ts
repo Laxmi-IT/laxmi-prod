@@ -10,7 +10,7 @@ import type { GalleryImage, DBGalleryImage } from './types';
 /**
  * Transform database image to frontend format
  */
-function transformDBImageToFrontend(dbImage: DBGalleryImage): GalleryImage {
+export function transformDBImageToFrontend(dbImage: DBGalleryImage): GalleryImage {
   return {
     id: dbImage.id,
     src: dbImage.image_url,

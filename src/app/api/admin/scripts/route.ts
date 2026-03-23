@@ -35,8 +35,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  // Read and return the script file
-  const filePath = path.join(process.cwd(), ALLOWED_SCRIPTS[fileName]);
+  // Path traversal protection: resolve and verify path stays within scripts/
+  const basePath = path.resolve(process.cwd(), "scripts");
+  const filePath = path.resolve(process.cwd(), ALLOWED_SCRIPTS[fileName]);
+
+  if (!filePath.startsWith(basePath + path.sep) && filePath !== basePath) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 
   try {
     const fileContent = await readFile(filePath);

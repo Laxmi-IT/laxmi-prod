@@ -60,7 +60,7 @@ interface DBFAQ {
 /**
  * Transform database post to frontend BlogPost format
  */
-function transformDBPostToFrontend(dbPost: DBBlogPost, faqs: DBFAQ[] = []): BlogPost {
+export function transformDBPostToFrontend(dbPost: DBBlogPost, faqs: DBFAQ[] = []): BlogPost {
   return {
     id: dbPost.id,
     slug: dbPost.slug,

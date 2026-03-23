@@ -3,7 +3,7 @@ import { updateSession, createMiddlewareClient } from '@/lib/supabase/middleware
 import { locales, defaultLocale, type Locale } from '@/i18n/config'
 
 // Get the preferred locale from Accept-Language header
-function getPreferredLocale(request: NextRequest): Locale {
+export function getPreferredLocale(request: NextRequest): Locale {
   const acceptLanguage = request.headers.get('accept-language')
   if (!acceptLanguage) return defaultLocale
 
@@ -30,7 +30,7 @@ function getPreferredLocale(request: NextRequest): Locale {
 }
 
 // Check if the pathname already has a locale prefix
-function pathnameHasLocale(pathname: string): boolean {
+export function pathnameHasLocale(pathname: string): boolean {
   return locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )

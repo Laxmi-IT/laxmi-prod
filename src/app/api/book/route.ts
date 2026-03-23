@@ -5,13 +5,22 @@ import {
   createEvent,
   isCalendarConfigured,
 } from '@/lib/google/calendar'
+import {
+  escapeHtml,
+  stripCRLF,
+  truncate,
+  checkRateLimit,
+  getClientIp,
+  isValidFutureDate,
+  isValidTime,
+} from '@/lib/security'
 
-// Configuration - Set these in .env.local
+// Configuration
 const CONCIERGE_EMAIL = process.env.CONCIERGE_EMAIL || 'thelaxmii07@gmail.com'
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com'
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587')
 const SMTP_USER = process.env.SMTP_USER
-const SMTP_PASS = process.env.SMTP_PASS // Gmail App Password
+const SMTP_PASS = process.env.SMTP_PASS
 
 interface ConsultationRequest {
   name: string
@@ -59,8 +68,13 @@ function createTransporter() {
   })
 }
 
-// Generate HTML email for concierge
+// Generate HTML email for concierge (all user inputs escaped)
 function generateConciergeEmail(request: ConsultationRequest): string {
+  const safeName = escapeHtml(request.name)
+  const safeEmail = escapeHtml(request.email)
+  const safePhone = request.phone ? escapeHtml(request.phone) : ''
+  const safeMessage = request.message ? escapeHtml(request.message) : ''
+
   return `
 <!DOCTYPE html>
 <html>
@@ -91,18 +105,18 @@ function generateConciergeEmail(request: ConsultationRequest): string {
 
     <div class="section">
       <div class="label">Client Name</div>
-      <div class="value">${request.name}</div>
+      <div class="value">${safeName}</div>
     </div>
 
     <div class="section">
       <div class="label">Email</div>
-      <div class="value"><a href="mailto:${request.email}">${request.email}</a></div>
+      <div class="value"><a href="mailto:${safeEmail}">${safeEmail}</a></div>
     </div>
 
-    ${request.phone ? `
+    ${safePhone ? `
     <div class="section">
       <div class="label">Phone</div>
-      <div class="value"><a href="tel:${request.phone}">${request.phone}</a></div>
+      <div class="value"><a href="tel:${safePhone}">${safePhone}</a></div>
     </div>
     ` : ''}
 
@@ -113,14 +127,14 @@ function generateConciergeEmail(request: ConsultationRequest): string {
       </div>
     </div>
 
-    ${request.message ? `
+    ${safeMessage ? `
     <div class="section">
       <div class="label">Project Details</div>
-      <div class="value" style="white-space: pre-wrap;">${request.message}</div>
+      <div class="value" style="white-space: pre-wrap;">${safeMessage}</div>
     </div>
     ` : ''}
 
-    <a href="mailto:${request.email}?subject=Your%20LAXMI%20Consultation%20Request&body=Dear%20${encodeURIComponent(request.name)},%0A%0AThank%20you%20for%20your%20interest%20in%20LAXMI.%0A%0A" class="action-btn">
+    <a href="mailto:${safeEmail}?subject=Your%20LAXMI%20Consultation%20Request&body=Dear%20${encodeURIComponent(request.name)},%0A%0AThank%20you%20for%20your%20interest%20in%20LAXMI.%0A%0A" class="action-btn">
       Reply to Client
     </a>
 
@@ -129,7 +143,7 @@ function generateConciergeEmail(request: ConsultationRequest): string {
         dateStyle: 'full',
         timeStyle: 'short'
       })}</p>
-      <p>LAXMI — Italian Luxury Interiors</p>
+      <p>LAXMI &mdash; Italian Luxury Interiors</p>
     </div>
   </div>
 </body>
@@ -137,8 +151,10 @@ function generateConciergeEmail(request: ConsultationRequest): string {
   `.trim()
 }
 
-// Generate confirmation email for client
+// Generate confirmation email for client (name escaped)
 function generateClientEmail(request: ConsultationRequest): string {
+  const safeName = escapeHtml(request.name)
+
   return `
 <!DOCTYPE html>
 <html>
@@ -166,7 +182,7 @@ function generateClientEmail(request: ConsultationRequest): string {
     </div>
 
     <div class="content">
-      <h1>Thank You, ${request.name}</h1>
+      <h1>Thank You, ${safeName}</h1>
 
       <p>We have received your consultation request and are delighted by your interest in LAXMI.</p>
 
@@ -185,7 +201,7 @@ function generateClientEmail(request: ConsultationRequest): string {
     </div>
 
     <div class="footer">
-      <p>LAXMI — By Appointment Only</p>
+      <p>LAXMI &mdash; By Appointment Only</p>
       <p>Milan, Italy</p>
       <p><a href="mailto:thelaxmii07@gmail.com" style="color: #8b7355;">thelaxmii07@gmail.com</a></p>
     </div>
@@ -197,9 +213,19 @@ function generateClientEmail(request: ConsultationRequest): string {
 
 export async function POST(request: NextRequest) {
   try {
+    // ── Rate Limiting: 5 requests per hour per IP ──
+    const clientIp = getClientIp(request)
+    const rl = checkRateLimit(`book:${clientIp}`, 5, 60 * 60 * 1000)
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429, headers: { 'Retry-After': String(rl.retryAfterSeconds) } }
+      )
+    }
+
     const body: ConsultationRequest = await request.json()
 
-    // Validate required fields
+    // ── Validate required fields ──
     if (!body.name || !body.email || !body.date || !body.time) {
       return NextResponse.json(
         { error: 'Please complete all required fields' },
@@ -207,8 +233,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    // ── Input length limits ──
+    body.name = truncate(stripCRLF(body.name.trim()), 100)
+    body.email = body.email.trim().slice(0, 254)
+    if (body.phone) body.phone = truncate(stripCRLF(body.phone.trim()), 30)
+    if (body.message) body.message = truncate(body.message.trim(), 2000)
+
+    // ── Validate email (reject CRLF injection) ──
+    const emailRegex = /^[^\s@\r\n]+@[^\s@\r\n]+\.[^\s@\r\n]+$/
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
         { error: 'Please provide a valid email address' },
@@ -216,32 +248,43 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Log the request (always, for backup)
-    console.log('='.repeat(50))
-    console.log('NEW CONSULTATION REQUEST')
-    console.log('='.repeat(50))
-    console.log(`Name: ${body.name}`)
-    console.log(`Email: ${body.email}`)
-    console.log(`Phone: ${body.phone || 'Not provided'}`)
-    console.log(`Preferred Date: ${formatDate(body.date)}`)
-    console.log(`Preferred Time: ${formatTime(body.time)}`)
-    console.log(`Message: ${body.message || 'None'}`)
-    console.log(`Submitted: ${new Date().toISOString()}`)
-    console.log('='.repeat(50))
+    // ── Validate date and time ──
+    if (!isValidFutureDate(body.date)) {
+      return NextResponse.json(
+        { error: 'Please select a valid future date' },
+        { status: 400 }
+      )
+    }
+
+    if (!isValidTime(body.time)) {
+      return NextResponse.json(
+        { error: 'Please select a valid time' },
+        { status: 400 }
+      )
+    }
+
+    // Log the request (redacted for privacy)
+    console.log('NEW CONSULTATION REQUEST',
+      `| Name: ${body.name}`,
+      `| Date: ${body.date} ${body.time}`,
+      `| ${new Date().toISOString()}`
+    )
 
     // Try to send email notifications
     const transporter = createTransporter()
 
     if (transporter) {
       try {
+        // Sanitize subject line (strip CRLF to prevent header injection)
+        const safeSubjectName = stripCRLF(body.name).slice(0, 50)
+
         // Send notification to concierge
         await transporter.sendMail({
           from: `"LAXMI Website" <${SMTP_USER}>`,
           to: CONCIERGE_EMAIL,
-          subject: `New Consultation Request — ${body.name}`,
+          subject: `New Consultation Request — ${safeSubjectName}`,
           html: generateConciergeEmail(body),
         })
-        console.log('Concierge notification sent successfully')
 
         // Send confirmation to client
         await transporter.sendMail({
@@ -250,14 +293,10 @@ export async function POST(request: NextRequest) {
           subject: 'Your LAXMI Consultation Request',
           html: generateClientEmail(body),
         })
-        console.log('Client confirmation sent successfully')
 
       } catch (emailError) {
-        console.error('Email sending failed:', emailError)
-        // Continue even if email fails - request is logged
+        console.error('Email sending failed:', emailError instanceof Error ? emailError.message : 'Unknown error')
       }
-    } else {
-      console.log('Email notifications disabled (SMTP not configured)')
     }
 
     // Create Google Calendar event
@@ -268,7 +307,7 @@ export async function POST(request: NextRequest) {
         const [hours, minutes] = body.time.split(':')
         const startDate = new Date(body.date)
         startDate.setHours(parseInt(hours), parseInt(minutes), 0, 0)
-        const endDate = new Date(startDate.getTime() + 60 * 60 * 1000) // 1 hour
+        const endDate = new Date(startDate.getTime() + 60 * 60 * 1000)
 
         const description = [
           `Client: ${body.name}`,
@@ -278,7 +317,7 @@ export async function POST(request: NextRequest) {
         ].filter(Boolean).join('\n')
 
         await createEvent(process.env.GOOGLE_CALENDAR_ID!, {
-          summary: `LAXMI Consultation — ${body.name}`,
+          summary: `LAXMI Consultation — ${stripCRLF(body.name).slice(0, 50)}`,
           description,
           start: {
             dateTime: startDate.toISOString(),
@@ -296,21 +335,18 @@ export async function POST(request: NextRequest) {
             ],
           },
         })
-        console.log('Calendar event created successfully')
       } catch (calendarError) {
-        console.error('Calendar event creation failed:', calendarError)
-        // Continue — booking is still confirmed via email
+        console.error('Calendar event creation failed:', calendarError instanceof Error ? calendarError.message : 'Unknown error')
       }
     }
 
-    // Return success
     return NextResponse.json({
       success: true,
       message: 'Your consultation request has been received. Our design concierge will contact you within 24 hours.',
     })
 
   } catch (error) {
-    console.error('Request processing error:', error)
+    console.error('Booking request error:', error instanceof Error ? error.message : 'Unknown error')
     return NextResponse.json(
       { error: 'We could not process your request. Please try again or contact us directly.' },
       { status: 500 }
