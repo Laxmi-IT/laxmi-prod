@@ -17,6 +17,7 @@ import {
 
 // Configuration
 const CONCIERGE_EMAIL = process.env.CONCIERGE_EMAIL || 'thelaxmii07@gmail.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thelaxmii.com'
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com'
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587')
 const SMTP_USER = process.env.SMTP_USER
@@ -29,12 +30,37 @@ interface ConsultationRequest {
   date: string
   time: string
   message?: string
+  locale?: string
+}
+
+// Client email translations
+const clientEmailStrings = {
+  en: {
+    subject: 'Your LAXMI Consultation Request',
+    greeting: (name: string) => `Thank You, ${name}`,
+    received: 'We have received your consultation request and are delighted by your interest in LAXMI.',
+    preferredTime: 'Your Preferred Time',
+    conciergeNote: 'Our design concierge will contact you within 24 hours to confirm.',
+    explore: 'In the meantime, we invite you to explore our curated collection of exceptional Italian craftsmanship.',
+    closing: 'We look forward to creating something beautiful together.',
+    byAppointment: 'By Appointment Only',
+  },
+  it: {
+    subject: 'La Tua Richiesta di Consulenza LAXMI',
+    greeting: (name: string) => `Grazie, ${name}`,
+    received: 'Abbiamo ricevuto la tua richiesta di consulenza e siamo lieti del tuo interesse per LAXMI.',
+    preferredTime: 'La Tua Preferenza di Orario',
+    conciergeNote: 'Il nostro concierge ti contatterà entro 24 ore per confermare.',
+    explore: 'Nel frattempo, ti invitiamo a scoprire la nostra collezione curata di eccellenza artigianale italiana.',
+    closing: 'Non vediamo l\'ora di creare qualcosa di bello insieme.',
+    byAppointment: 'Solo su Appuntamento',
+  },
 }
 
 // Format date for display
-function formatDate(dateStr: string): string {
+function formatDate(dateStr: string, locale = 'en'): string {
   const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -97,6 +123,7 @@ function generateConciergeEmail(request: ConsultationRequest): string {
 <body>
   <div class="container">
     <div class="header">
+      <img src="${SITE_URL}/logo.png" alt="LAXMI" width="80" height="80" style="display: block; margin-bottom: 12px;" />
       <div class="logo">LAXMI</div>
       <div class="badge">NEW CONSULTATION REQUEST</div>
     </div>
@@ -151,13 +178,15 @@ function generateConciergeEmail(request: ConsultationRequest): string {
   `.trim()
 }
 
-// Generate confirmation email for client (name escaped)
+// Generate confirmation email for client (name escaped, locale-aware)
 function generateClientEmail(request: ConsultationRequest): string {
   const safeName = escapeHtml(request.name)
+  const lang = request.locale === 'it' ? 'it' : 'en'
+  const t = clientEmailStrings[lang]
 
   return `
 <!DOCTYPE html>
-<html>
+<html lang="${lang}">
 <head>
   <meta charset="utf-8">
   <style>
@@ -177,32 +206,33 @@ function generateClientEmail(request: ConsultationRequest): string {
 <body>
   <div class="container">
     <div class="header">
+      <img src="${SITE_URL}/logo.png" alt="LAXMI" width="80" height="80" style="display: block; margin: 0 auto 12px;" />
       <div class="logo">LAXMI</div>
       <div class="tagline">ITALIAN LUXURY INTERIORS</div>
     </div>
 
     <div class="content">
-      <h1>Thank You, ${safeName}</h1>
+      <h1>${t.greeting(safeName)}</h1>
 
-      <p>We have received your consultation request and are delighted by your interest in LAXMI.</p>
+      <p>${t.received}</p>
 
       <div class="highlight">
         <div class="date">
-          <strong>Your Preferred Time</strong><br>
-          ${formatDate(request.date)}<br>
+          <strong>${t.preferredTime}</strong><br>
+          ${formatDate(request.date, lang)}<br>
           ${formatTime(request.time)}
         </div>
-        <div class="note">Our design concierge will contact you within 24 hours to confirm.</div>
+        <div class="note">${t.conciergeNote}</div>
       </div>
 
-      <p>In the meantime, we invite you to explore our curated collection of exceptional Italian craftsmanship.</p>
+      <p>${t.explore}</p>
 
-      <p style="color: #8b7355; font-style: italic;">We look forward to creating something beautiful together.</p>
+      <p style="color: #8b7355; font-style: italic;">${t.closing}</p>
     </div>
 
     <div class="footer">
-      <p>LAXMI &mdash; By Appointment Only</p>
-      <p>Milan, Italy</p>
+      <p>LAXMI &mdash; ${t.byAppointment}</p>
+      <p>${lang === 'it' ? 'Milano, Italia' : 'Milan, Italy'}</p>
       <p><a href="mailto:thelaxmii07@gmail.com" style="color: #8b7355;">thelaxmii07@gmail.com</a></p>
     </div>
   </div>
@@ -290,11 +320,12 @@ export async function POST(request: NextRequest) {
           html: generateConciergeEmail(body),
         })
 
-        // Send confirmation to client
+        // Send confirmation to client (in their language)
+        const lang = body.locale === 'it' ? 'it' : 'en'
         await transporter.sendMail({
           from: `"LAXMI" <${SMTP_USER}>`,
           to: body.email,
-          subject: 'Your LAXMI Consultation Request',
+          subject: clientEmailStrings[lang].subject,
           html: generateClientEmail(body),
         })
 
@@ -321,10 +352,11 @@ export async function POST(request: NextRequest) {
       try {
         initWithRefreshToken()
 
-        const [hours, minutes] = body.time.split(':')
-        const startDate = new Date(body.date)
-        startDate.setHours(parseInt(hours), parseInt(minutes), 0, 0)
-        const endDate = new Date(startDate.getTime() + 60 * 60 * 1000)
+        // Build datetime strings without Z suffix so Google interprets them in Europe/Rome
+        const startDateTime = `${body.date}T${body.time}:00`
+        const [h, m] = body.time.split(':').map(Number)
+        const endH = String(h + 1).padStart(2, '0')
+        const endDateTime = `${body.date}T${endH}:${String(m).padStart(2, '0')}:00`
 
         const description = [
           `Client: ${body.name}`,
@@ -340,11 +372,11 @@ export async function POST(request: NextRequest) {
             description,
             status: 'tentative',
             start: {
-              dateTime: startDate.toISOString(),
+              dateTime: startDateTime,
               timeZone: 'Europe/Rome',
             },
             end: {
-              dateTime: endDate.toISOString(),
+              dateTime: endDateTime,
               timeZone: 'Europe/Rome',
             },
             attendees: [
