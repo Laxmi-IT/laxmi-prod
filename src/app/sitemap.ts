@@ -5,15 +5,20 @@ import { getPublishedPosts } from '@/lib/blog/queries'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteUrl
 
-  // Static pages
-  const pages = [
-    '',           // Home
-    '/consulting',
-    '/collections',
-    '/about',
-    '/contact',
-    '/blog',
-    '/book',
+  // Static pages with stable lastModified dates
+  // Update these dates only when the page content actually changes
+  const pages: { path: string; changeFrequency: MetadataRoute.Sitemap[0]['changeFrequency']; priority: number; lastModified: string }[] = [
+    { path: '',             changeFrequency: 'weekly',   priority: 1.0,  lastModified: '2026-03-27' },
+    { path: '/consulting',  changeFrequency: 'monthly',  priority: 0.9,  lastModified: '2026-03-27' },
+    { path: '/book',        changeFrequency: 'monthly',  priority: 0.9,  lastModified: '2026-03-27' },
+    { path: '/collections', changeFrequency: 'weekly',   priority: 0.8,  lastModified: '2026-03-27' },
+    { path: '/about',       changeFrequency: 'monthly',  priority: 0.7,  lastModified: '2026-03-27' },
+    { path: '/contact',     changeFrequency: 'monthly',  priority: 0.7,  lastModified: '2026-03-27' },
+    { path: '/blog',           changeFrequency: 'weekly',   priority: 0.8,  lastModified: '2026-03-27' },
+    { path: '/privacy-policy',  changeFrequency: 'yearly',   priority: 0.3,  lastModified: '2026-03-01' },
+    { path: '/terms-of-service',changeFrequency: 'yearly',   priority: 0.3,  lastModified: '2026-03-01' },
+    { path: '/legal-notice',    changeFrequency: 'yearly',   priority: 0.3,  lastModified: '2026-03-01' },
+    { path: '/cookie-policy',   changeFrequency: 'yearly',   priority: 0.3,  lastModified: '2026-03-01' },
   ]
 
   // Generate sitemap entries for each locale and page
@@ -21,18 +26,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const locale of locales) {
     for (const page of pages) {
-      const url = `${baseUrl}/${locale}${page}`
+      const url = `${baseUrl}/${locale}${page.path}`
 
       sitemapEntries.push({
         url,
-        lastModified: new Date(),
-        changeFrequency: page === '' ? 'weekly' : page === '/blog' ? 'weekly' : 'monthly',
-        priority: page === '' ? 1.0 : page === '/book' ? 0.9 : page === '/consulting' ? 0.9 : 0.8,
+        lastModified: page.lastModified,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
         alternates: {
           languages: {
-            'it-IT': `${baseUrl}/it${page}`,
-            'en-GB': `${baseUrl}/en${page}`,
-            'x-default': `${baseUrl}/it${page}`,
+            'it-IT': `${baseUrl}/it${page.path}`,
+            'en-GB': `${baseUrl}/en${page.path}`,
+            'x-default': `${baseUrl}/it${page.path}`,
           },
         },
       })

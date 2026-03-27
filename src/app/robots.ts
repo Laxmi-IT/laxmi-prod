@@ -1,6 +1,7 @@
+import { MetadataRoute } from 'next';
 import { siteUrl } from '@/i18n/config';
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
@@ -10,5 +11,6 @@ export default function robots() {
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 import {
   getPublishedPosts,
   getFeaturedPosts,
@@ -35,6 +36,7 @@ export async function generateMetadata({
   const description = dict.blog.metaDescription;
 
   return {
+    ...getPageAlternates(locale as Locale, 'blog'),
     title,
     description,
     openGraph: {

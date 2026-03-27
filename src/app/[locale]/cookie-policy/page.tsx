@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,6 +14,7 @@ export async function generateMetadata({
   const isItalian = locale === "it";
 
   return {
+    ...getPageAlternates((isItalian ? 'it' : 'en') as Locale, 'cookie-policy'),
     title: isItalian ? "Cookie Policy | LAXMI" : "Cookie Policy | LAXMI",
     description: isItalian
       ? "Informativa sui cookie utilizzati dal sito LAXMI secondo la normativa italiana ed europea"

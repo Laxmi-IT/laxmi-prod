@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
 import { blurDataMap } from "@/lib/image/blur-data";
 
@@ -19,6 +20,7 @@ export async function generateMetadata({
   const dict = await getDictionary(locale);
 
   return {
+    ...getPageAlternates(locale, 'contact'),
     title: dict.metadata.contactTitle,
     description: dict.metadata.contactDescription,
     openGraph: {

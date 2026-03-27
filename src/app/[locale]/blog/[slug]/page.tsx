@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { type Locale, siteUrl } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 import {
   getPostBySlug,
   getPublishedPosts,
@@ -62,6 +63,7 @@ export async function generateMetadata({
   const keywords = locale === "it" ? post.seoKeywordsIT : post.seoKeywords;
 
   return {
+    ...getPageAlternates(locale as Locale, `blog/${slug}`),
     title,
     description,
     keywords: keywords.join(", "),

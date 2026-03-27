@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { PremiumGallery } from "@/components/collections";
 import { getDictionary } from "@/i18n/dictionaries";
 import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 import { getGalleryImages } from "@/lib/gallery/queries";
 import { LogoText } from "@/components/laxmi-logo";
 import { DYNAMIC_BLUR_DATA_URL } from "@/lib/image/blur-data";
@@ -21,6 +22,7 @@ export async function generateMetadata({
   const dict = await getDictionary(locale);
 
   return {
+    ...getPageAlternates(locale, 'collections'),
     title: dict.metadata.collectionsTitle,
     description: dict.metadata.collectionsDescription,
     openGraph: {

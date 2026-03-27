@@ -23,4 +23,4 @@ export const hreflangCodes: Record<Locale, string> = {
 };
 
 // Base URL for canonical and hreflang tags
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://laxmi.it';
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thelaxmii.com';

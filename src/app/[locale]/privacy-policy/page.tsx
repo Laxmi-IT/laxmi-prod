@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
+import { getPageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,6 +14,7 @@ export async function generateMetadata({
   const isItalian = locale === "it";
 
   return {
+    ...getPageAlternates((isItalian ? 'it' : 'en') as Locale, 'privacy-policy'),
     title: isItalian ? "Informativa Privacy | LAXMI" : "Privacy Policy | LAXMI",
     description: isItalian
       ? "Informativa sulla privacy e protezione dei dati personali di LAXMI secondo il GDPR"
