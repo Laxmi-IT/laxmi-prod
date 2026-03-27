@@ -2,8 +2,6 @@
  * Gallery Types
  */
 
-export type GalleryCategory = 'all' | 'Kitchen' | 'Living' | 'Pantry' | 'Details';
-
 export interface GalleryImage {
   id: string;
   src: string;

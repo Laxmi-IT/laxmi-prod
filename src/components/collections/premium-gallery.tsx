@@ -3,8 +3,9 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data';
-import { CategoryFilter } from './category-filter';
+import { CategoryFilter, type CategoryOption } from './category-filter';
 import { CollectionSlideshow } from './collection-slideshow';
+import { getCategoryByKey } from '@/lib/gallery/categories';
 
 // Types for gallery images from database
 export interface GalleryImageData {
@@ -191,18 +192,38 @@ function StandardCard({
   );
 }
 
-// Category type for filtering
-type Category = 'all' | 'Kitchen' | 'Living' | 'Pantry' | 'Details';
-
 // Helper to filter images by category
-function filterByCategory(images: ImageType[], category: Category): ImageType[] {
+function filterByCategory(images: ImageType[], category: string): ImageType[] {
   if (category === 'all') return images;
   return images.filter((img) => img.category === category);
 }
 
+// Build dynamic category options from the actual image data
+function buildCategoryOptions(images: ImageType[]): CategoryOption[] {
+  const seen = new Set<string>();
+  const options: CategoryOption[] = [
+    { value: 'all', label: { en: 'All Collections', it: 'Tutte le Collezioni' } },
+  ];
+
+  for (const img of images) {
+    if (seen.has(img.category)) continue;
+    seen.add(img.category);
+
+    const cat = getCategoryByKey(img.category);
+    options.push({
+      value: img.category,
+      label: cat ? { en: cat.en, it: cat.it } : { en: img.category, it: img.category },
+    });
+  }
+
+  return options;
+}
+
 export function PremiumGallery({ locale, images, translations }: PremiumGalleryProps) {
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  const categoryOptions = useMemo(() => buildCategoryOptions(images), [images]);
 
   const filteredImages = useMemo(
     () => filterByCategory(images, activeCategory),
@@ -225,6 +246,7 @@ export function PremiumGallery({ locale, images, translations }: PremiumGalleryP
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
           locale={locale}
+          categories={categoryOptions}
         />
 
         {/* Results count with decorative elements */}

@@ -1,24 +1,18 @@
 'use client';
 
-// Category type matching database categories
-type Category = 'all' | 'Kitchen' | 'Living' | 'Pantry' | 'Details';
-
-// Categories with bilingual labels
-const categories: { value: Category; label: { en: string; it: string } }[] = [
-  { value: 'all', label: { en: 'All Collections', it: 'Tutte le Collezioni' } },
-  { value: 'Kitchen', label: { en: 'Kitchen', it: 'Cucina' } },
-  { value: 'Living', label: { en: 'Living', it: 'Living' } },
-  { value: 'Pantry', label: { en: 'Pantry', it: 'Dispensa' } },
-  { value: 'Details', label: { en: 'Details', it: 'Dettagli' } },
-];
-
-interface CategoryFilterProps {
-  activeCategory: Category;
-  onCategoryChange: (category: Category) => void;
-  locale: string;
+export interface CategoryOption {
+  value: string;
+  label: { en: string; it: string };
 }
 
-export function CategoryFilter({ activeCategory, onCategoryChange, locale }: CategoryFilterProps) {
+interface CategoryFilterProps {
+  activeCategory: string;
+  onCategoryChange: (category: string) => void;
+  locale: string;
+  categories: CategoryOption[];
+}
+
+export function CategoryFilter({ activeCategory, onCategoryChange, locale, categories }: CategoryFilterProps) {
   return (
     <div className="relative">
       {/* Desktop: Elegant centered tabs */}
