@@ -64,14 +64,24 @@ describe('POST /api/book', () => {
     expect(mockSendMail.mock.calls[1][0].to).toBe('maria@example.com')
   })
 
-  it('creates a Google Calendar event', async () => {
+  it('creates a Google Calendar event with attendees and tentative status', async () => {
     await POST(makeBookingRequest(validBody))
     expect(mockInitWithRefreshToken).toHaveBeenCalled()
     expect(mockCreateEvent).toHaveBeenCalledWith(
       'test-calendar-id',
       expect.objectContaining({
         summary: expect.stringContaining('Maria Rossi'),
-      })
+        status: 'tentative',
+        attendees: expect.arrayContaining([
+          expect.objectContaining({
+            email: 'maria@example.com',
+            displayName: 'Maria Rossi',
+            responseStatus: 'needsAction',
+          }),
+        ]),
+        guestsCanModify: false,
+      }),
+      'all'
     )
   })
 
@@ -95,12 +105,21 @@ describe('POST /api/book', () => {
     expect(res.status).toBe(400)
   })
 
+  it('returns notification status in response', async () => {
+    const res = await POST(makeBookingRequest(validBody))
+    const data = await res.json()
+    expect(data.confirmationEmailSent).toBe(true)
+    expect(data.calendarInviteSent).toBe(true)
+  })
+
   it('succeeds even when email sending fails', async () => {
     mockSendMail.mockRejectedValue(new Error('SMTP down'))
     const res = await POST(makeBookingRequest(validBody))
     const data = await res.json()
     expect(res.status).toBe(200)
     expect(data.success).toBe(true)
+    expect(data.confirmationEmailSent).toBe(false)
+    expect(data.calendarInviteSent).toBe(true)
   })
 
   it('succeeds even when calendar creation fails', async () => {
@@ -109,6 +128,8 @@ describe('POST /api/book', () => {
     const data = await res.json()
     expect(res.status).toBe(200)
     expect(data.success).toBe(true)
+    expect(data.confirmationEmailSent).toBe(true)
+    expect(data.calendarInviteSent).toBe(false)
   })
 
   it('skips calendar when not configured', async () => {

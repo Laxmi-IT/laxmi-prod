@@ -270,6 +270,10 @@ export async function POST(request: NextRequest) {
       `| ${new Date().toISOString()}`
     )
 
+    // Track notification outcomes
+    let emailSuccess = false
+    let calendarSuccess = false
+
     // Try to send email notifications
     const transporter = createTransporter()
 
@@ -294,12 +298,25 @@ export async function POST(request: NextRequest) {
           html: generateClientEmail(body),
         })
 
+        emailSuccess = true
       } catch (emailError) {
-        console.error('Email sending failed:', emailError instanceof Error ? emailError.message : 'Unknown error')
+        console.error(
+          'EMAIL_SEND_FAILED',
+          `| Client: ${body.name}`,
+          `| To: ${body.email}`,
+          `| Error: ${emailError instanceof Error ? emailError.message : 'Unknown error'}`,
+          `| ${new Date().toISOString()}`
+        )
       }
+    } else {
+      console.warn(
+        'EMAIL_SKIPPED: SMTP credentials not configured',
+        `| Client: ${body.name}`,
+        `| ${new Date().toISOString()}`
+      )
     }
 
-    // Create Google Calendar event
+    // Create Google Calendar event with attendees
     if (isCalendarConfigured()) {
       try {
         initWithRefreshToken()
@@ -316,25 +333,44 @@ export async function POST(request: NextRequest) {
           body.message ? `\nProject Details:\n${body.message}` : null,
         ].filter(Boolean).join('\n')
 
-        await createEvent(process.env.GOOGLE_CALENDAR_ID!, {
-          summary: `LAXMI Consultation — ${stripCRLF(body.name).slice(0, 50)}`,
-          description,
-          start: {
-            dateTime: startDate.toISOString(),
-            timeZone: 'Europe/Rome',
-          },
-          end: {
-            dateTime: endDate.toISOString(),
-            timeZone: 'Europe/Rome',
-          },
-          reminders: {
-            useDefault: false,
-            overrides: [
-              { method: 'popup', minutes: 30 },
-              { method: 'email', minutes: 60 },
+        await createEvent(
+          process.env.GOOGLE_CALENDAR_ID!,
+          {
+            summary: `LAXMI Consultation — ${stripCRLF(body.name).slice(0, 50)}`,
+            description,
+            status: 'tentative',
+            start: {
+              dateTime: startDate.toISOString(),
+              timeZone: 'Europe/Rome',
+            },
+            end: {
+              dateTime: endDate.toISOString(),
+              timeZone: 'Europe/Rome',
+            },
+            attendees: [
+              {
+                email: body.email,
+                displayName: body.name,
+                responseStatus: 'needsAction',
+              },
+              {
+                email: CONCIERGE_EMAIL,
+                responseStatus: 'accepted',
+              },
             ],
+            guestsCanModify: false,
+            reminders: {
+              useDefault: false,
+              overrides: [
+                { method: 'popup', minutes: 30 },
+                { method: 'email', minutes: 60 },
+              ],
+            },
           },
-        })
+          'all'
+        )
+
+        calendarSuccess = true
       } catch (calendarError) {
         console.error('Calendar event creation failed:', calendarError instanceof Error ? calendarError.message : 'Unknown error')
       }
@@ -343,6 +379,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Your consultation request has been received. Our design concierge will contact you within 24 hours.',
+      confirmationEmailSent: emailSuccess,
+      calendarInviteSent: calendarSuccess,
     })
 
   } catch (error) {

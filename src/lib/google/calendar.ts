@@ -81,13 +81,15 @@ export async function listEvents(
 
 export async function createEvent(
   calendarId = 'primary',
-  event: calendar_v3.Schema$Event
+  event: calendar_v3.Schema$Event,
+  sendUpdates?: 'all' | 'externalOnly' | 'none'
 ): Promise<calendar_v3.Schema$Event> {
   const calendar = getCalendarClient()
 
   const response = await calendar.events.insert({
     calendarId,
     requestBody: event,
+    ...(sendUpdates && { sendUpdates }),
   })
 
   return response.data
@@ -96,7 +98,8 @@ export async function createEvent(
 export async function updateEvent(
   calendarId = 'primary',
   eventId: string,
-  event: calendar_v3.Schema$Event
+  event: calendar_v3.Schema$Event,
+  sendUpdates?: 'all' | 'externalOnly' | 'none'
 ): Promise<calendar_v3.Schema$Event> {
   const calendar = getCalendarClient()
 
@@ -104,6 +107,7 @@ export async function updateEvent(
     calendarId,
     eventId,
     requestBody: event,
+    ...(sendUpdates && { sendUpdates }),
   })
 
   return response.data
@@ -111,13 +115,15 @@ export async function updateEvent(
 
 export async function deleteEvent(
   calendarId = 'primary',
-  eventId: string
+  eventId: string,
+  sendUpdates?: 'all' | 'externalOnly' | 'none'
 ): Promise<void> {
   const calendar = getCalendarClient()
 
   await calendar.events.delete({
     calendarId,
     eventId,
+    ...(sendUpdates && { sendUpdates }),
   })
 }
 

@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { LanguageSwitcher } from '@/components/language-switcher'
+import { Navigation } from '@/components/navigation'
 import { type Locale } from '@/i18n/config'
 
 const CONTACT_EMAIL = 'thelaxmii07@gmail.com'
@@ -187,24 +185,7 @@ export default function BookPage() {
 
   return (
     <main className="min-h-screen bg-laxmi-cream dark:bg-background transition-colors duration-300">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-laxmi-cream/95 dark:bg-background/95 backdrop-blur-md border-b border-laxmi-gold/10">
-        <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
-          <Link href={`/${locale}`} className="text-lg md:text-xl tracking-[0.25em] md:tracking-[0.3em] font-serif font-light text-foreground">
-            LAXMI
-          </Link>
-          <div className="flex items-center gap-3 md:gap-6">
-            <Link
-              href={`/${locale}`}
-              className="text-sm tracking-wider text-muted-foreground hover:text-foreground transition-colors min-h-[44px] flex items-center"
-            >
-              {t.back}
-            </Link>
-            <LanguageSwitcher locale={locale} />
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <Navigation locale={locale} activeLink="consulting" />
 
       <div className="pt-24 md:pt-28 lg:pt-32 pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-12">
         <div className="max-w-5xl mx-auto">

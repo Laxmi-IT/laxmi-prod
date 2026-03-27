@@ -1,10 +1,13 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // Hoist mocks so they're available when vi.mock factory runs
-const { mockGenerateAuthUrl, mockGetToken, mockSetCredentials } = vi.hoisted(() => ({
+const { mockGenerateAuthUrl, mockGetToken, mockSetCredentials, mockInsert, mockUpdate, mockDelete } = vi.hoisted(() => ({
   mockGenerateAuthUrl: vi.fn(),
   mockGetToken: vi.fn(),
   mockSetCredentials: vi.fn(),
+  mockInsert: vi.fn(),
+  mockUpdate: vi.fn(),
+  mockDelete: vi.fn(),
 }))
 
 vi.mock('googleapis', () => {
@@ -22,9 +25,9 @@ vi.mock('googleapis', () => {
       calendar: vi.fn(() => ({
         events: {
           list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn(),
-          delete: vi.fn(),
+          insert: mockInsert,
+          update: mockUpdate,
+          delete: mockDelete,
         },
         calendarList: { list: vi.fn() },
       })),
@@ -32,7 +35,7 @@ vi.mock('googleapis', () => {
   }
 })
 
-import { isCalendarConfigured, getAuthUrl, getTokens, initWithRefreshToken } from '@/lib/google/calendar'
+import { isCalendarConfigured, getAuthUrl, getTokens, initWithRefreshToken, createEvent, updateEvent, deleteEvent } from '@/lib/google/calendar'
 
 describe('isCalendarConfigured', () => {
   it('returns true when all env vars are set', () => {
@@ -92,5 +95,91 @@ describe('initWithRefreshToken', () => {
     delete process.env.GOOGLE_REFRESH_TOKEN
     expect(() => initWithRefreshToken()).toThrow('GOOGLE_REFRESH_TOKEN is not configured')
     process.env.GOOGLE_REFRESH_TOKEN = original
+  })
+})
+
+describe('createEvent', () => {
+  beforeEach(() => {
+    mockInsert.mockResolvedValue({ data: { id: 'evt-1' } })
+    mockSetCredentials.mockClear()
+    mockInsert.mockClear()
+  })
+
+  it('passes sendUpdates to events.insert when provided', async () => {
+    initWithRefreshToken()
+    await createEvent('primary', { summary: 'Test' }, 'all')
+    expect(mockInsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        calendarId: 'primary',
+        requestBody: { summary: 'Test' },
+        sendUpdates: 'all',
+      })
+    )
+  })
+
+  it('omits sendUpdates when not provided', async () => {
+    initWithRefreshToken()
+    await createEvent('primary', { summary: 'Test' })
+    const callArgs = mockInsert.mock.calls[0][0]
+    expect(callArgs).not.toHaveProperty('sendUpdates')
+  })
+
+  it('returns event data from response', async () => {
+    initWithRefreshToken()
+    const result = await createEvent('primary', { summary: 'Test' })
+    expect(result).toEqual({ id: 'evt-1' })
+  })
+})
+
+describe('updateEvent', () => {
+  beforeEach(() => {
+    mockUpdate.mockResolvedValue({ data: { id: 'evt-1' } })
+    mockUpdate.mockClear()
+  })
+
+  it('passes sendUpdates to events.update when provided', async () => {
+    initWithRefreshToken()
+    await updateEvent('primary', 'evt-1', { summary: 'Updated' }, 'all')
+    expect(mockUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        calendarId: 'primary',
+        eventId: 'evt-1',
+        requestBody: { summary: 'Updated' },
+        sendUpdates: 'all',
+      })
+    )
+  })
+
+  it('omits sendUpdates when not provided', async () => {
+    initWithRefreshToken()
+    await updateEvent('primary', 'evt-1', { summary: 'Updated' })
+    const callArgs = mockUpdate.mock.calls[0][0]
+    expect(callArgs).not.toHaveProperty('sendUpdates')
+  })
+})
+
+describe('deleteEvent', () => {
+  beforeEach(() => {
+    mockDelete.mockResolvedValue({})
+    mockDelete.mockClear()
+  })
+
+  it('passes sendUpdates to events.delete when provided', async () => {
+    initWithRefreshToken()
+    await deleteEvent('primary', 'evt-1', 'all')
+    expect(mockDelete).toHaveBeenCalledWith(
+      expect.objectContaining({
+        calendarId: 'primary',
+        eventId: 'evt-1',
+        sendUpdates: 'all',
+      })
+    )
+  })
+
+  it('omits sendUpdates when not provided', async () => {
+    initWithRefreshToken()
+    await deleteEvent('primary', 'evt-1')
+    const callArgs = mockDelete.mock.calls[0][0]
+    expect(callArgs).not.toHaveProperty('sendUpdates')
   })
 })
