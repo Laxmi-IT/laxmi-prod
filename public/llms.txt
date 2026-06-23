@@ -1,8 +1,8 @@
-# LAXMI — Italian Luxury Furniture Consulting
+# LAXMI — Bespoke Italian Luxury Furniture
 
-> Exclusive luxury Italian furniture consulting and boutique reselling. By appointment only. Based in Milan, Italy.
+> Bespoke, made-to-measure luxury Italian furniture and boutique reselling. By appointment only. Based in Milan, Italy.
 
-LAXMI is a luxury furniture consulting service specializing in authentic Made in Italy furniture. We offer personalized design consultations, curated collections from top Italian manufacturers, and a white-glove delivery experience.
+LAXMI offers bespoke, made-to-measure luxury furniture specializing in authentic Made in Italy pieces. We provide personalized design consultations, curated collections from top Italian manufacturers, and a white-glove delivery experience.
 
 ## Services
 

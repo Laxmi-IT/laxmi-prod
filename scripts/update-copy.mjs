@@ -19,36 +19,77 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// NOTE: the live site loads the static JSON dictionaries as a base and merges
+// these site_content rows on top (DB wins for non-empty values). Run this
+// script to push the copy below to the DB; keys missing from the DB simply
+// fall back to the (already updated) static JSON.
 const updates = [
+  // Point 1 — replace the "luxury furniture consulting" positioning with the
+  // new "tailor-made / bespoke" tagline across the home hero, footer and SEO.
   {
-    content_key: 'hero.tagline2',
-    content_it: '',
-    content_en: '',
-  },
-  {
-    content_key: 'hero.description',
-    content_it: 'Arredare la tua vita, un dettaglio alla volta.',
-    content_en: 'Furnishing your life, one detail at a time.',
-  },
-  {
-    content_key: 'services.service2.description',
-    content_it: 'Collezione curata di autentici mobili artigianali di lusso.',
-    content_en: 'Curated collection of authentic artisanal Italian luxury furniture.',
-  },
-  {
-    content_key: 'collections.heroDescription',
-    content_it: 'Ogni pezzo di arredamento racconta una storia di passione artigianale, materiali pregiati e design senza tempo. Scopri le creazioni che trasformano il tuo spazio in un luogo da vivere ogni giorno.',
-    content_en: 'Each piece of furniture tells a story of artisanal passion, premium materials, and timeless design. Discover creations that transform your space into a place to live every day.',
-  },
-  {
-    content_key: 'consulting.promiseText',
-    content_it: 'Il tuo spazio porterà la nostra firma invisibile: la cura per i dettagli e la ricerca della perfezione che definiscono tutto ciò che facciamo.',
-    content_en: 'Your space will carry our invisible signature: the care for details and the pursuit of perfection that define everything we do.',
+    content_key: 'hero.tagline1',
+    content_it: 'Il tuo arredamento su misura',
+    content_en: 'Your Bespoke Furniture',
   },
   {
     content_key: 'footer.description',
-    content_it: 'Consulenza Arredamento di Lusso. Arredare la tua vita, un dettaglio alla volta. Made in Italy.',
-    content_en: 'Luxury Furniture Consulting. Furnishing your life, one detail at a time. Made in Italy.',
+    content_it: 'Il tuo arredamento su misura. Arredare la tua vita, un dettaglio alla volta. Made in Italy.',
+    content_en: 'Your bespoke furniture. Furnishing your life, one detail at a time. Made in Italy.',
+  },
+  {
+    content_key: 'metadata.title',
+    content_it: 'LAXMI | Arredamento di Lusso su Misura Made in Italy',
+    content_en: 'LAXMI | Bespoke Luxury Italian Furniture Made in Italy',
+  },
+  {
+    content_key: 'metadata.titleTemplate',
+    content_it: '%s | LAXMI Arredamento su Misura',
+    content_en: '%s | LAXMI Bespoke Furniture',
+  },
+  {
+    content_key: 'metadata.description',
+    content_it: 'Arredamento di lusso italiano su misura. LAXMI guida i connoisseur nella selezione di mobili Made in Italy: qualità artigianale, design unico, eleganza senza tempo. Milano.',
+    content_en: 'Bespoke luxury Italian furniture, made to measure. LAXMI guides discerning connoisseurs in selecting Made in Italy pieces: artisanal quality, unique design, timeless elegance. Milan.',
+  },
+  {
+    content_key: 'metadata.ogTitle',
+    content_it: 'LAXMI — Arredamento di Lusso su Misura Made in Italy',
+    content_en: 'LAXMI — Bespoke Luxury Italian Furniture Made in Italy',
+  },
+  {
+    content_key: 'metadata.consultingTitle',
+    content_it: 'Consulenza Arredamento su Misura Online',
+    content_en: 'Bespoke Furniture Consulting Online',
+  },
+  {
+    content_key: 'metadata.contactTitle',
+    content_it: 'Contatti LAXMI — Arredamento di Lusso su Misura Milano',
+    content_en: 'Contact LAXMI — Bespoke Luxury Furniture in Milan',
+  },
+  {
+    content_key: 'metadata.contactDescription',
+    content_it: 'Contatta LAXMI per il tuo arredamento di lusso su misura. Prenota il tuo appuntamento a Milano. Rispondiamo entro 24–48 ore.',
+    content_en: 'Get in touch with LAXMI for your bespoke luxury furniture. Schedule your appointment in Milan, Italy. We respond within 24–48 hours.',
+  },
+  // Point 2 — remove the "additional rooms" price line from the Full House tier.
+  {
+    content_key: 'consulting.services.fullHouse.features',
+    content_it: JSON.stringify([
+      'Tutto incluso in Ambiente Singolo, più:',
+      'Progettazione fino a 3 ambienti',
+      'Render 3D fotorealistici',
+      'Coordinamento stilistico totale',
+      'Proposte arredo complete',
+      '2 revisioni incluse',
+    ]),
+    content_en: JSON.stringify([
+      'Everything in Single Room, plus:',
+      'Design for up to 3 rooms',
+      'Photorealistic 3D renders',
+      'Total style coordination',
+      'Complete furniture proposals',
+      '2 revisions included',
+    ]),
   },
 ];
 

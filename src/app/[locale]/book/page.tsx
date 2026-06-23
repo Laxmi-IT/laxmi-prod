@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { Navigation } from '@/components/navigation'
 import { type Locale } from '@/i18n/config'
+import { processSteps } from '@/data/process'
 
 const CONTACT_EMAIL = 'thelaxmii07@gmail.com'
 
@@ -41,13 +42,6 @@ const translations = {
     },
     experience: {
       title: 'L\'Esperienza',
-      steps: [
-        { step: 'Richiesta', desc: 'Condividi la tua visione e preferenze' },
-        { step: 'Contatto', desc: 'Chiamata personale dal nostro design concierge' },
-        { step: 'Consulenza', desc: 'Sessione privata su misura per te' },
-        { step: 'Selezione', desc: 'Selezione di mobili italiani su misura' },
-        { step: 'Consegna', desc: 'Servizio di installazione esclusivo' },
-      ],
     },
     contact: {
       title: 'Contatto Diretto',
@@ -91,13 +85,6 @@ const translations = {
     },
     experience: {
       title: 'The Experience',
-      steps: [
-        { step: 'Request', desc: 'Share your vision and preferences' },
-        { step: 'Connect', desc: 'Personal call from our design concierge' },
-        { step: 'Consult', desc: 'Private session tailored to you' },
-        { step: 'Curate', desc: 'Bespoke Italian furniture selection' },
-        { step: 'Deliver', desc: 'White-glove installation service' },
-      ],
     },
     contact: {
       title: 'Direct Contact',
@@ -359,14 +346,14 @@ export default function BookPage() {
               <div className="bg-laxmi-gold/5 dark:bg-card/50 rounded-xl p-5 sm:p-6 md:p-8 border border-laxmi-gold/10">
                 <h3 className="font-serif text-xl mb-6 text-foreground">{t.experience.title}</h3>
                 <ul className="space-y-5">
-                  {t.experience.steps.map((item, i) => (
+                  {processSteps[locale].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="w-6 h-6 rounded-full bg-laxmi-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-laxmi-bronze text-xs font-normal">{i + 1}</span>
                       </span>
                       <div>
-                        <span className="text-foreground font-normal">{item.step}</span>
-                        <p className="text-muted-foreground text-sm">{item.desc}</p>
+                        <span className="text-foreground font-normal">{item.title}</span>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
                       </div>
                     </li>
                   ))}

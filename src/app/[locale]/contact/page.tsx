@@ -9,6 +9,7 @@ import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { getPageAlternates } from "@/lib/seo";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
 import { blurDataMap } from "@/lib/image/blur-data";
+import { processSteps } from "@/data/process";
 
 export async function generateMetadata({
   params,
@@ -351,6 +352,42 @@ export default async function ContactPage({
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Experience / Process Section - shared canonical journey */}
+      <section className="py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-serif font-light text-3xl md:text-4xl">
+              {dict.booking.experience.title}
+            </h2>
+            <div className="gold-line w-24 mx-auto mt-8" />
+          </div>
+
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8 xl:gap-6">
+            {processSteps[locale].map((step, idx) => (
+              <div
+                key={idx}
+                className={`relative animate-fade-in-up${idx === 4 ? " sm:col-span-2 sm:max-w-[calc(50%-0.75rem)] sm:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                <div className="card-luxury text-center h-full">
+                  <div className="w-14 h-14 mx-auto mb-5 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
+                    <span className="text-lg font-light text-laxmi-bronze">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg xl:text-xl text-laxmi-espresso dark:text-foreground mb-3">
+                    {step.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import { locales, defaultLocale, siteUrl, type Locale } from "@/i18n/config";
 import { getPageAlternates } from "@/lib/seo";
 import { SunburstLogo, LogoText } from "@/components/laxmi-logo";
 import { blurDataMap } from "@/lib/image/blur-data";
+import { processSteps } from "@/data/process";
 
 export async function generateMetadata({
   params,
@@ -40,13 +41,9 @@ export default async function ConsultingPage({
   const locale = (localeParam === "it" || localeParam === "en" ? localeParam : "it") as Locale;
   const dict = await getDictionary(locale);
 
-  const steps = [
-    dict.consulting.steps.questionnaire,
-    dict.consulting.steps.materials,
-    dict.consulting.steps.consultation,
-    dict.consulting.steps.creation,
-    dict.consulting.steps.refinement,
-  ];
+  // Canonical client journey ("L'Esperienza"), shared across Consulting,
+  // Booking and Contact pages so the process reads identically everywhere.
+  const steps = processSteps[locale];
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
@@ -236,7 +233,7 @@ export default async function ConsultingPage({
                   {/* Number circle */}
                   <div className="w-14 h-14 mx-auto mb-5 rounded-full border-2 border-laxmi-gold/40 bg-background flex items-center justify-center">
                     <span className="text-lg font-light text-laxmi-bronze">
-                      {step.number}
+                      {String(idx + 1).padStart(2, "0")}
                     </span>
                   </div>
 
@@ -283,15 +280,9 @@ export default async function ConsultingPage({
                 </span>
               </div>
 
-              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-2">
+              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-6">
                 {dict.consulting.services.express.name}
               </h3>
-
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl md:text-5xl font-light text-laxmi-espresso dark:text-foreground">
-                  &euro;{dict.consulting.services.express.price}
-                </span>
-              </div>
 
               <div className="w-full h-px bg-laxmi-champagne mb-6" />
 
@@ -331,15 +322,9 @@ export default async function ConsultingPage({
                   </span>
                 </div>
 
-                <h3 className="font-serif text-2xl md:text-3xl text-laxmi-cream mb-2">
+                <h3 className="font-serif text-2xl md:text-3xl text-laxmi-cream mb-6">
                   {dict.consulting.services.singleRoom.name}
                 </h3>
-
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl md:text-5xl font-light text-laxmi-gold">
-                    &euro;{dict.consulting.services.singleRoom.price}
-                  </span>
-                </div>
 
                 <div className="w-full h-px bg-laxmi-gold/30 mb-6" />
 
@@ -373,17 +358,9 @@ export default async function ConsultingPage({
                 </span>
               </div>
 
-              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-2">
+              <h3 className="font-serif text-2xl md:text-3xl text-laxmi-espresso dark:text-foreground mb-6">
                 {dict.consulting.services.fullHouse.name}
               </h3>
-
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-4xl md:text-5xl font-light text-laxmi-espresso dark:text-foreground">
-                  &euro;{dict.consulting.services.fullHouse.price}
-                </span>
-                <span className="text-sm text-muted-foreground">+</span>
-              </div>
-              <p className="text-xs text-muted-foreground mb-6">{dict.consulting.services.fullHouse.priceNote}</p>
 
               <div className="w-full h-px bg-laxmi-champagne mb-6" />
 

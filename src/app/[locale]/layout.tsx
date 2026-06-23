@@ -105,8 +105,8 @@ function StructuredData({ locale }: { locale: Locale }) {
     "@type": "Organization",
     name: "LAXMI",
     description: isItalian
-      ? "Consulenza esclusiva per arredamento di lusso italiano Made in Italy"
-      : "Exclusive luxury Italian furniture consulting Made in Italy",
+      ? "Arredamento di lusso italiano su misura, Made in Italy"
+      : "Bespoke luxury Italian furniture, Made in Italy",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     sameAs: [
@@ -131,8 +131,8 @@ function StructuredData({ locale }: { locale: Locale }) {
     "@type": "FurnitureStore",
     name: "LAXMI",
     description: isItalian
-      ? "Consulenza arredamento di lusso e boutique di mobili italiani Made in Italy"
-      : "Luxury furniture consulting and boutique of Italian Made in Italy furniture",
+      ? "Arredamento di lusso su misura e boutique di mobili italiani Made in Italy"
+      : "Bespoke luxury furniture and boutique of Italian Made in Italy furniture",
     url: siteUrl,
     email: "thelaxmii07@gmail.com",
     address: {
