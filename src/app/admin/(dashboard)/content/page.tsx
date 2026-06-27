@@ -99,21 +99,21 @@ export default async function ContentPage() {
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-light text-white mb-2">Content Management</h1>
-        <p className="text-zinc-500">
+        <h1 className="text-2xl font-light text-foreground mb-2">Content Management</h1>
+        <p className="text-muted-foreground">
           Edit website copy and translations for both English and Italian.
         </p>
       </div>
 
       {/* Info Banner */}
-      <div className="mb-8 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+      <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg">
         <div className="flex items-start gap-3">
-          <svg className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div>
-            <p className="text-sm text-amber-500 font-medium">Initial Setup Required</p>
-            <p className="text-sm text-amber-500/80 mt-1">
+            <p className="text-sm text-primary font-medium">Initial Setup Required</p>
+            <p className="text-sm text-primary/80 mt-1">
               Content needs to be seeded from the existing translation files. Run the seed script to populate the database with initial content.
             </p>
           </div>
@@ -127,36 +127,36 @@ export default async function ContentPage() {
             <Link
               key={section.id}
               href={`/admin/content/${section.section_key}`}
-              className="block p-6 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors group"
+              className="block p-6 bg-card border border-border rounded-lg hover:border-border transition-colors group"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-amber-500/10 text-amber-500 rounded-lg border border-amber-500/20">
+                <div className="p-3 bg-primary/10 text-primary rounded-lg border border-primary/20">
                   {sectionIcons[section.section_key] || (
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   )}
                 </div>
-                <span className="text-xs text-zinc-500 px-2 py-1 bg-zinc-800 rounded">
+                <span className="text-xs text-muted-foreground px-2 py-1 bg-muted rounded">
                   {countsBySection[section.section_key] || 0} keys
                 </span>
               </div>
-              <h3 className="text-lg font-medium text-white mb-1 group-hover:text-amber-500 transition-colors">
+              <h3 className="text-lg font-medium text-foreground mb-1 group-hover:text-primary transition-colors">
                 {section.display_name_en}
               </h3>
-              <p className="text-sm text-zinc-500 line-clamp-2">
+              <p className="text-sm text-muted-foreground line-clamp-2">
                 {section.description || section.display_name_it}
               </p>
             </Link>
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-zinc-900 border border-zinc-800 rounded-lg">
-          <svg className="w-16 h-16 text-zinc-700 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-12 bg-card border border-border rounded-lg">
+          <svg className="w-16 h-16 text-muted-foreground mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h3 className="text-lg font-medium text-white mb-2">No Content Sections</h3>
-          <p className="text-sm text-zinc-500 mb-6">
+          <h3 className="text-lg font-medium text-foreground mb-2">No Content Sections</h3>
+          <p className="text-sm text-muted-foreground mb-6">
             Content sections will appear here after running the database migrations.
           </p>
         </div>

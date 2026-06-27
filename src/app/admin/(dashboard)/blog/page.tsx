@@ -5,9 +5,9 @@ import { BlogDeleteButton } from "@/components/admin/BlogDeleteButton";
 // Status badge component
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    published: "bg-green-500/10 text-green-500 border-green-500/20",
-    draft: "bg-amber-500/10 text-amber-500 border-amber-500/20",
-    archived: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
+    published: "bg-accent/15 text-accent border-accent/20",
+    draft: "bg-primary/10 text-primary border-primary/20",
+    archived: "bg-muted text-muted-foreground border-border",
   };
 
   return (
@@ -66,14 +66,14 @@ export default async function BlogPage({
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-light text-white mb-2">Blog Posts</h1>
-          <p className="text-zinc-500">
+          <h1 className="text-2xl font-light text-foreground mb-2">Blog Posts</h1>
+          <p className="text-muted-foreground">
             Manage your blog posts in both English and Italian.
           </p>
         </div>
         <Link
           href="/admin/blog/new"
-          className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -88,8 +88,8 @@ export default async function BlogPage({
           href="/admin/blog"
           className={`px-4 py-2 text-sm rounded-lg transition-colors ${
             !params.status
-              ? "bg-amber-500/10 text-amber-500 border border-amber-500/20"
-              : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+              ? "bg-primary/10 text-primary border border-primary/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted"
           }`}
         >
           All ({totalCount || 0})
@@ -98,8 +98,8 @@ export default async function BlogPage({
           href="/admin/blog?status=published"
           className={`px-4 py-2 text-sm rounded-lg transition-colors ${
             params.status === "published"
-              ? "bg-green-500/10 text-green-500 border border-green-500/20"
-              : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+              ? "bg-accent/15 text-accent border border-accent/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted"
           }`}
         >
           Published ({publishedCount || 0})
@@ -108,8 +108,8 @@ export default async function BlogPage({
           href="/admin/blog?status=draft"
           className={`px-4 py-2 text-sm rounded-lg transition-colors ${
             params.status === "draft"
-              ? "bg-amber-500/10 text-amber-500 border border-amber-500/20"
-              : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+              ? "bg-primary/10 text-primary border border-primary/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted"
           }`}
         >
           Drafts ({draftCount || 0})
@@ -118,37 +118,37 @@ export default async function BlogPage({
 
       {/* Posts Table */}
       {posts && posts.length > 0 ? (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+        <div className="bg-card border border-border rounded-lg overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+              <tr className="border-b border-border">
+                <th className="text-left px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Title
                 </th>
-                <th className="text-left px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <th className="text-left px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Category
                 </th>
-                <th className="text-left px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <th className="text-left px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Author
                 </th>
-                <th className="text-left px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <th className="text-left px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Status
                 </th>
-                <th className="text-left px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <th className="text-left px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Date
                 </th>
-                <th className="text-right px-6 py-4 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <th className="text-right px-6 py-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-800">
+            <tbody className="divide-y divide-border">
               {posts.map((post) => (
-                <tr key={post.id} className="hover:bg-zinc-800/50 transition-colors">
+                <tr key={post.id} className="hover:bg-muted/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       {post.featured_image && (
-                        <div className="w-10 h-10 rounded bg-zinc-800 flex-shrink-0 overflow-hidden">
+                        <div className="w-10 h-10 rounded bg-muted flex-shrink-0 overflow-hidden">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={post.featured_image}
@@ -158,27 +158,27 @@ export default async function BlogPage({
                         </div>
                       )}
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-white truncate">
+                        <p className="text-sm font-medium text-foreground truncate">
                           {post.title_en}
                         </p>
-                        <p className="text-xs text-zinc-500 truncate">
+                        <p className="text-xs text-muted-foreground truncate">
                           {post.title_it}
                         </p>
                       </div>
                       {post.featured && (
-                        <span className="px-2 py-0.5 text-xs bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded">
+                        <span className="px-2 py-0.5 text-xs bg-primary/10 text-primary border border-primary/20 rounded">
                           Featured
                         </span>
                       )}
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-zinc-400">
+                    <span className="text-sm text-muted-foreground">
                       {post.blog_categories?.name_en || "—"}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-zinc-400">
+                    <span className="text-sm text-muted-foreground">
                       {post.blog_authors?.name || "—"}
                     </span>
                   </td>
@@ -186,7 +186,7 @@ export default async function BlogPage({
                     <StatusBadge status={post.status} />
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-zinc-400">
+                    <span className="text-sm text-muted-foreground">
                       {new Date(post.created_at).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
@@ -198,7 +198,7 @@ export default async function BlogPage({
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/blog/${post.id}/edit`}
-                        className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-700 rounded transition-colors"
+                        className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
                         title="Edit"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -208,7 +208,7 @@ export default async function BlogPage({
                       <Link
                         href={`/en/blog/${post.slug}`}
                         target="_blank"
-                        className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-700 rounded transition-colors"
+                        className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
                         title="View"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,19 +224,19 @@ export default async function BlogPage({
           </table>
         </div>
       ) : (
-        <div className="text-center py-12 bg-zinc-900 border border-zinc-800 rounded-lg">
-          <svg className="w-16 h-16 text-zinc-700 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-12 bg-card border border-border rounded-lg">
+          <svg className="w-16 h-16 text-muted-foreground mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
           </svg>
-          <h3 className="text-lg font-medium text-white mb-2">No Blog Posts</h3>
-          <p className="text-sm text-zinc-500 mb-6">
+          <h3 className="text-lg font-medium text-foreground mb-2">No Blog Posts</h3>
+          <p className="text-sm text-muted-foreground mb-6">
             {params.status
               ? `No ${params.status} posts found.`
               : "Get started by creating your first blog post."}
           </p>
           <Link
             href="/admin/blog/new"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

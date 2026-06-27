@@ -56,19 +56,19 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
   const displayKey = keyParts[keyParts.length - 1];
 
   return (
-    <div className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700/50">
+    <div className="bg-muted rounded-lg p-4 border border-border">
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div>
-          <h4 className="text-sm font-medium text-white">{displayKey}</h4>
-          <p className="text-xs text-zinc-500 font-mono">{item.content_key}</p>
+          <h4 className="text-sm font-medium text-foreground">{displayKey}</h4>
+          <p className="text-xs text-muted-foreground font-mono">{item.content_key}</p>
         </div>
         <div className="flex items-center gap-2">
           {error && (
-            <span className="text-xs text-red-400">{error}</span>
+            <span className="text-xs text-destructive">{error}</span>
           )}
           {saved && (
-            <span className="text-xs text-emerald-400 flex items-center gap-1">
+            <span className="text-xs text-accent flex items-center gap-1">
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
@@ -80,8 +80,8 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
             disabled={saving || !hasChanges}
             className={`px-3 py-1.5 text-xs font-medium rounded transition-colors ${
               hasChanges && !saving
-                ? "bg-amber-600 hover:bg-amber-500 text-white"
-                : "bg-zinc-700 text-zinc-500 cursor-not-allowed"
+                ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                : "bg-muted text-muted-foreground cursor-not-allowed"
             }`}
           >
             {saving ? (
@@ -103,7 +103,7 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
       <div className="grid grid-cols-2 gap-4">
         {/* English */}
         <div>
-          <label className="block text-xs font-medium text-zinc-400 mb-1.5">
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">
             English (EN)
           </label>
           {isLongContent ? (
@@ -111,21 +111,21 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
               value={contentEn}
               onChange={(e) => setContentEn(e.target.value)}
               rows={4}
-              className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded text-sm text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 resize-y min-h-[100px]"
+              className="w-full px-3 py-2 bg-card border border-border rounded text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/20 resize-y min-h-[100px]"
             />
           ) : (
             <input
               type="text"
               value={contentEn}
               onChange={(e) => setContentEn(e.target.value)}
-              className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded text-sm text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20"
+              className="w-full px-3 py-2 bg-card border border-border rounded text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/20"
             />
           )}
         </div>
 
         {/* Italian */}
         <div>
-          <label className="block text-xs font-medium text-zinc-400 mb-1.5">
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">
             Italian (IT)
           </label>
           {isLongContent ? (
@@ -133,14 +133,14 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
               value={contentIt}
               onChange={(e) => setContentIt(e.target.value)}
               rows={4}
-              className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded text-sm text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 resize-y min-h-[100px]"
+              className="w-full px-3 py-2 bg-card border border-border rounded text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/20 resize-y min-h-[100px]"
             />
           ) : (
             <input
               type="text"
               value={contentIt}
               onChange={(e) => setContentIt(e.target.value)}
-              className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded text-sm text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20"
+              className="w-full px-3 py-2 bg-card border border-border rounded text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/20"
             />
           )}
         </div>
@@ -148,7 +148,7 @@ export function ContentItemEditor({ item, userId, onSaved }: ContentItemEditorPr
 
       {/* Description if available */}
       {item.description && (
-        <p className="mt-2 text-xs text-zinc-500 italic">{item.description}</p>
+        <p className="mt-2 text-xs text-muted-foreground italic">{item.description}</p>
       )}
     </div>
   );

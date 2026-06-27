@@ -41,7 +41,7 @@ export default async function ContentSectionPage({ params }: ContentSectionPageP
         <div className="mb-6">
           <a
             href="/admin/content"
-            className="inline-flex items-center text-sm text-zinc-400 hover:text-amber-500 transition-colors"
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -49,9 +49,9 @@ export default async function ContentSectionPage({ params }: ContentSectionPageP
             Back to Content
           </a>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-12 text-center">
-          <h2 className="text-lg font-medium text-white mb-2">{sectionInfo.display_name_en}</h2>
-          <p className="text-zinc-400">No content items found for this section.</p>
+        <div className="bg-card border border-border rounded-lg p-12 text-center">
+          <h2 className="text-lg font-medium text-foreground mb-2">{sectionInfo.display_name_en}</h2>
+          <p className="text-muted-foreground">No content items found for this section.</p>
         </div>
       </div>
     );

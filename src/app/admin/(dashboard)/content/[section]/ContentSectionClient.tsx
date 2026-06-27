@@ -118,7 +118,7 @@ export function ContentSectionClient({
       <div className="mb-6">
         <Link
           href="/admin/content"
-          className="inline-flex items-center text-sm text-zinc-400 hover:text-amber-500 transition-colors mb-4"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
         >
           <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -128,16 +128,16 @@ export function ContentSectionClient({
 
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-light text-white">{sectionInfo.display_name_en}</h1>
+            <h1 className="text-2xl font-light text-foreground">{sectionInfo.display_name_en}</h1>
             {sectionInfo.description && (
-              <p className="text-zinc-400 text-sm mt-1">{sectionInfo.description}</p>
+              <p className="text-muted-foreground text-sm mt-1">{sectionInfo.description}</p>
             )}
-            <p className="text-xs text-zinc-500 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               {filteredItems === totalItems
                 ? `${totalItems} items`
                 : `Showing ${filteredItems} of ${totalItems} items`}
               {saveCount > 0 && (
-                <span className="ml-2 text-emerald-400">
+                <span className="ml-2 text-accent">
                   {saveCount} saved
                 </span>
               )}
@@ -150,7 +150,7 @@ export function ContentSectionClient({
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <div className="relative flex-1 min-w-[250px] max-w-md">
           <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -167,12 +167,12 @@ export function ContentSectionClient({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search content keys or values..."
-            className="w-full pl-10 pr-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20"
+            className="w-full pl-10 pr-4 py-2 bg-muted border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/20"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -184,7 +184,7 @@ export function ContentSectionClient({
         <div className="flex gap-2">
           <button
             onClick={allExpanded ? collapseAll : expandAll}
-            className="px-3 py-2 text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors"
+            className="px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground bg-muted hover:bg-muted rounded-lg transition-colors"
           >
             {allExpanded ? "Collapse All" : "Expand All"}
           </button>
@@ -194,9 +194,9 @@ export function ContentSectionClient({
       {/* Content Groups */}
       <div className="space-y-4">
         {filteredGroups.length === 0 ? (
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center">
+          <div className="bg-card border border-border rounded-lg p-8 text-center">
             <svg
-              className="w-12 h-12 mx-auto text-zinc-600 mb-4"
+              className="w-12 h-12 mx-auto text-muted-foreground mb-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -208,10 +208,10 @@ export function ContentSectionClient({
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <p className="text-zinc-400">No content items match your search.</p>
+            <p className="text-muted-foreground">No content items match your search.</p>
             <button
               onClick={() => setSearchQuery("")}
-              className="mt-2 text-sm text-amber-500 hover:text-amber-400"
+              className="mt-2 text-sm text-primary hover:text-primary"
             >
               Clear search
             </button>
@@ -224,16 +224,16 @@ export function ContentSectionClient({
             return (
               <div
                 key={group.prefix}
-                className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"
+                className="bg-card border border-border rounded-lg overflow-hidden"
               >
                 {/* Group Header */}
                 <button
                   onClick={() => toggleGroup(group.prefix)}
-                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-zinc-800/50 transition-colors"
+                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-muted transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <svg
-                      className={`w-4 h-4 text-zinc-500 transition-transform ${
+                      className={`w-4 h-4 text-muted-foreground transition-transform ${
                         isExpanded ? "rotate-90" : ""
                       }`}
                       fill="none"
@@ -247,8 +247,8 @@ export function ContentSectionClient({
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                    <span className="font-medium text-white">{displayPrefix}</span>
-                    <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">
+                    <span className="font-medium text-foreground">{displayPrefix}</span>
+                    <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">
                       {group.items.length} {group.items.length === 1 ? "item" : "items"}
                     </span>
                   </div>
@@ -274,10 +274,10 @@ export function ContentSectionClient({
       </div>
 
       {/* Info Note */}
-      <div className="mt-8 p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg">
+      <div className="mt-8 p-4 bg-primary/5 border border-primary/20 rounded-lg">
         <div className="flex items-start gap-3">
           <svg
-            className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5"
+            className="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -290,8 +290,8 @@ export function ContentSectionClient({
             />
           </svg>
           <div className="text-sm">
-            <p className="text-amber-200/90 font-medium mb-1">Live Content Updates</p>
-            <p className="text-zinc-400">
+            <p className="text-primary/90 font-medium mb-1">Live Content Updates</p>
+            <p className="text-muted-foreground">
               Changes are saved immediately and will be visible on the live website after a brief cache refresh
               (up to 1 hour for cached pages, instant for uncached pages).
             </p>

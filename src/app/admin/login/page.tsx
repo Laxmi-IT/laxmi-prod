@@ -82,7 +82,7 @@ function LoginForm() {
     <>
       {/* Error Messages */}
       {(error || urlError) && (
-        <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-sm text-center">
+        <div className="mb-6 p-3 bg-destructive/10 border border-destructive/30 rounded text-destructive text-sm text-center">
           {error ||
             (urlError === "unauthorized"
               ? "You are not authorized to access this area"
@@ -92,7 +92,7 @@ function LoginForm() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-zinc-400 text-sm">
+          <Label htmlFor="email" className="text-muted-foreground text-sm">
             Email Address
           </Label>
           <Input
@@ -103,12 +103,12 @@ function LoginForm() {
             placeholder="admin@laxmi.it"
             required
             disabled={loading}
-            className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-amber-500/20"
+            className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-zinc-400 text-sm">
+          <Label htmlFor="password" className="text-muted-foreground text-sm">
             Password
           </Label>
           <Input
@@ -119,14 +119,14 @@ function LoginForm() {
             placeholder="Enter your password"
             required
             disabled={loading}
-            className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-amber-500 focus:ring-amber-500/20"
+            className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
           />
         </div>
 
         <Button
           type="submit"
           disabled={loading}
-          className="w-full bg-amber-600 hover:bg-amber-500 text-white font-medium py-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">
@@ -166,35 +166,35 @@ function LoginFormSkeleton() {
   return (
     <div className="space-y-5 animate-pulse">
       <div className="space-y-2">
-        <div className="h-4 w-24 bg-zinc-800 rounded" />
-        <div className="h-10 bg-zinc-800 rounded" />
+        <div className="h-4 w-24 bg-muted rounded" />
+        <div className="h-10 bg-muted rounded" />
       </div>
       <div className="space-y-2">
-        <div className="h-4 w-20 bg-zinc-800 rounded" />
-        <div className="h-10 bg-zinc-800 rounded" />
+        <div className="h-4 w-20 bg-muted rounded" />
+        <div className="h-10 bg-muted rounded" />
       </div>
-      <div className="h-12 bg-zinc-800 rounded" />
+      <div className="h-12 bg-muted rounded" />
     </div>
   );
 }
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-950 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
         {/* Logo/Branding */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center">
             <LogoText className="h-10 w-auto" />
-            <span className="text-xs tracking-widest text-zinc-500 mt-1 uppercase">
+            <span className="text-xs tracking-widest text-muted-foreground mt-1 uppercase">
               Admin Dashboard
             </span>
           </div>
         </div>
 
         {/* Login Form */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 shadow-xl">
-          <h1 className="text-xl font-light text-white mb-6 text-center">
+        <div className="bg-card border border-border rounded-lg p-8 shadow-xl">
+          <h1 className="text-xl font-light text-foreground mb-6 text-center">
             Sign In
           </h1>
 
@@ -204,7 +204,7 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Security Notice */}
-        <p className="text-center text-xs text-zinc-600 mt-6">
+        <p className="text-center text-xs text-muted-foreground mt-6">
           This is a protected area. Unauthorized access attempts are logged.
         </p>
       </div>

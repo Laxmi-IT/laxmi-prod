@@ -116,15 +116,15 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
       />
 
       {/* Modal */}
-      <div className="relative bg-zinc-900 border border-zinc-800 rounded-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-card border border-border rounded-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-zinc-800">
-          <h2 className="text-xl font-medium text-white">
+        <div className="flex items-center justify-between p-6 border-b border-border">
+          <h2 className="text-xl font-medium text-foreground">
             {mode === 'create' ? 'Add Category' : 'Edit Category'}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
+            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -136,20 +136,20 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
         {showDeleteConfirm ? (
           <div className="p-6">
             <div className="text-center">
-              <div className="mx-auto w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mx-auto w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-destructive" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white mb-2">Delete Category?</h3>
-              <p className="text-zinc-400 mb-6">
+              <h3 className="text-lg font-medium text-foreground mb-2">Delete Category?</h3>
+              <p className="text-muted-foreground mb-6">
                 Are you sure you want to delete &quot;{category?.name_en}&quot;? This action cannot be undone.
                 Posts using this category will become uncategorized.
               </p>
               <div className="flex items-center justify-center gap-3">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
-                  className="px-4 py-2 text-zinc-400 hover:text-white transition-colors"
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
                   disabled={isPending}
                 >
                   Cancel
@@ -157,7 +157,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                 <button
                   onClick={handleDelete}
                   disabled={isPending}
-                  className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg transition-colors disabled:opacity-50"
+                  className="px-4 py-2 bg-destructive hover:bg-destructive/90 text-white rounded-lg transition-colors disabled:opacity-50"
                 >
                   {isPending ? 'Deleting...' : 'Delete Category'}
                 </button>
@@ -170,7 +170,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
               {/* Names */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Name (English) *
                   </label>
                   <input
@@ -178,12 +178,12 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                     name="name_en"
                     value={formData.name_en}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Design Tips"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Name (Italian) *
                   </label>
                   <input
@@ -191,7 +191,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                     name="name_it"
                     value={formData.name_it}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Consigli di Design"
                   />
                 </div>
@@ -199,7 +199,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
 
               {/* Slug */}
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   URL Slug *
                 </label>
                 <div className="flex gap-2">
@@ -208,13 +208,13 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                     name="slug"
                     value={formData.slug}
                     onChange={handleChange}
-                    className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="design-tips"
                   />
                   <button
                     type="button"
                     onClick={generateSlug}
-                    className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors text-sm"
+                    className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg transition-colors text-sm"
                   >
                     Generate
                   </button>
@@ -224,7 +224,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
               {/* Descriptions */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Description (English)
                   </label>
                   <textarea
@@ -232,12 +232,12 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                     value={formData.description_en}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                     placeholder="Brief description..."
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Description (Italian)
                   </label>
                   <textarea
@@ -245,7 +245,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                     value={formData.description_it}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                     placeholder="Breve descrizione..."
                   />
                 </div>
@@ -253,7 +253,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
 
               {/* Sort Order */}
               <div className="max-w-xs">
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Sort Order
                 </label>
                 <input
@@ -262,20 +262,20 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                   value={formData.sort_order}
                   onChange={handleChange}
                   min={0}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
-                <p className="text-xs text-zinc-500 mt-1">Lower numbers appear first</p>
+                <p className="text-xs text-muted-foreground mt-1">Lower numbers appear first</p>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between p-6 border-t border-zinc-800">
+            <div className="flex items-center justify-between p-6 border-t border-border">
               <div>
                 {mode === 'edit' && (
                   <button
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
-                    className="px-4 py-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors"
+                    className="px-4 py-2 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
                   >
                     Delete Category
                   </button>
@@ -285,7 +285,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 text-zinc-400 hover:text-white transition-colors"
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
                   disabled={isPending}
                 >
                   Cancel
@@ -293,7 +293,7 @@ export function CategoryEditor({ category, mode, onClose }: CategoryEditorProps)
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="px-6 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors disabled:opacity-50"
+                  className="px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors disabled:opacity-50"
                 >
                   {isPending ? 'Saving...' : mode === 'create' ? 'Create Category' : 'Save Changes'}
                 </button>

@@ -107,12 +107,12 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
 
   return (
     <aside
-      className={`fixed left-0 top-0 z-50 h-screen w-64 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col transform transition-transform duration-300 ease-in-out ${
+      className={`fixed left-0 top-0 z-50 h-screen w-64 bg-card border-r border-border flex flex-col transform transition-transform duration-300 ease-in-out ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0`}
     >
       {/* Logo */}
-      <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
+      <div className="p-6 border-b border-border">
         <div className="flex items-center justify-between">
           <Link
             href="/admin/dashboard"
@@ -120,14 +120,14 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
             className="flex flex-col items-center group flex-1"
           >
             <LogoText className="h-8 w-auto mb-2 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-xs tracking-widest text-zinc-500 dark:text-zinc-500 uppercase">
+            <span className="text-xs tracking-widest text-muted-foreground uppercase">
               Admin
             </span>
           </Link>
           {/* Mobile Close Button */}
           <button
             onClick={onClose}
-            className="md:hidden p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors absolute right-4 top-4"
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors absolute right-4 top-4"
             aria-label="Close menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,8 +148,8 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
               onClick={handleNavClick}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-500 border border-amber-500/20"
-                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                  ? "bg-primary/10 text-primary border border-primary/20"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               {item.icon}
@@ -160,16 +160,16 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
       </nav>
 
       {/* Theme Toggle */}
-      <div className="px-4 py-3 border-t border-zinc-200 dark:border-zinc-800">
+      <div className="px-4 py-3 border-t border-border">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-zinc-600 dark:text-zinc-400">Theme</span>
-          <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1">
+          <span className="text-sm text-muted-foreground">Theme</span>
+          <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
             <button
               onClick={() => setTheme("light")}
               className={`p-2 rounded-md transition-colors ${
                 theme === "light"
-                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                  ? "bg-primary/20 text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               title="Light mode"
             >
@@ -181,8 +181,8 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
               onClick={() => setTheme("dark")}
               className={`p-2 rounded-md transition-colors ${
                 theme === "dark"
-                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                  ? "bg-primary/20 text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               title="Dark mode"
             >
@@ -194,8 +194,8 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
               onClick={() => setTheme("system")}
               className={`p-2 rounded-md transition-colors ${
                 theme === "system"
-                  ? "bg-amber-500/20 text-amber-600 dark:text-amber-500"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                  ? "bg-primary/20 text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               title="System preference"
             >
@@ -208,14 +208,14 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
       </div>
 
       {/* User section */}
-      <div className="p-4 border-t border-zinc-200 dark:border-zinc-800">
+      <div className="p-4 border-t border-border">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-500 font-medium">
+          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium">
             {adminName.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">{adminName}</p>
-            <p className="text-xs text-zinc-500 capitalize">{adminRole.replace("_", " ")}</p>
+            <p className="text-sm font-medium text-foreground truncate">{adminName}</p>
+            <p className="text-xs text-muted-foreground capitalize">{adminRole.replace("_", " ")}</p>
           </div>
         </div>
 
@@ -223,13 +223,13 @@ export function AdminSidebar({ adminName, adminRole, isOpen = false, onClose }: 
           <Link
             href="/it"
             onClick={handleNavClick}
-            className="flex-1 px-3 py-2 text-xs text-center text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded transition-colors"
+            className="flex-1 px-3 py-2 text-xs text-center text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
           >
             View Site
           </Link>
           <button
             onClick={handleLogout}
-            className="flex-1 px-3 py-2 text-xs text-center text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
+            className="flex-1 px-3 py-2 text-xs text-center text-destructive hover:bg-destructive/10 rounded transition-colors"
           >
             Sign Out
           </button>

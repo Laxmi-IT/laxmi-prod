@@ -275,10 +275,10 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-light text-white">
+          <h1 className="text-2xl font-light text-foreground">
             {isEditing ? 'Edit Post' : 'Create New Post'}
           </h1>
-          <p className="text-zinc-500 mt-1">
+          <p className="text-muted-foreground mt-1">
             {isEditing ? `Editing: ${post?.title_en}` : 'Create a new bilingual blog post'}
           </p>
         </div>
@@ -289,7 +289,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-4 py-2 text-zinc-400 hover:text-white transition-colors"
+            className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             Cancel
           </button>
@@ -297,7 +297,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
             type="button"
             onClick={() => handleSave(false)}
             disabled={saving}
-            className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors disabled:opacity-50"
+            className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg transition-colors disabled:opacity-50"
           >
             {saving ? 'Saving...' : 'Save Draft'}
           </button>
@@ -305,7 +305,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
             type="button"
             onClick={() => handleSave(true)}
             disabled={saving}
-            className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors disabled:opacity-50"
+            className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors disabled:opacity-50"
           >
             {saving ? 'Publishing...' : 'Publish'}
           </button>
@@ -313,15 +313,15 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-zinc-800 pb-2">
+      <div className="flex gap-2 border-b border-border pb-2">
         {(['content', 'seo', 'faqs'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 text-sm rounded-t-lg transition-colors ${
               activeTab === tab
-                ? 'bg-zinc-800 text-white'
-                : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                ? 'bg-muted text-foreground'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
             }`}
           >
             {tab === 'content' && 'Content'}
@@ -335,12 +335,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
       {activeTab === 'content' && (
         <div className="space-y-6">
           {/* Slug and Basic Info */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 space-y-4">
-            <h2 className="text-lg font-medium text-white mb-4">Basic Information</h2>
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <h2 className="text-lg font-medium text-foreground mb-4">Basic Information</h2>
 
             {/* Slug */}
             <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 URL Slug
               </label>
               <div className="flex gap-2">
@@ -349,18 +349,18 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="slug"
                   value={formData.slug}
                   onChange={handleChange}
-                  className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="my-blog-post-title"
                 />
                 <button
                   type="button"
                   onClick={generateSlug}
-                  className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors text-sm"
+                  className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg transition-colors text-sm"
                 >
                   Generate from Title
                 </button>
               </div>
-              <p className="text-xs text-zinc-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 URL: /blog/{formData.slug || 'your-slug-here'}
               </p>
             </div>
@@ -368,14 +368,14 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
             {/* Category and Author */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Category
                 </label>
                 <select
                   name="category_id"
                   value={formData.category_id}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Select category...</option>
                   {categories.map((cat) => (
@@ -386,14 +386,14 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Author
                 </label>
                 <select
                   name="author_id"
                   value={formData.author_id}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Select author...</option>
                   {authors.map((author) => (
@@ -408,14 +408,14 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
             {/* Status and Featured */}
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Status
                 </label>
                 <select
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                 >
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
@@ -423,7 +423,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Reading Time (minutes)
                 </label>
                 <input
@@ -433,7 +433,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   onChange={handleChange}
                   min={1}
                   max={60}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div className="flex items-center pt-8">
@@ -443,20 +443,20 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     name="featured"
                     checked={formData.featured}
                     onChange={handleChange}
-                    className="w-4 h-4 bg-zinc-800 border-zinc-700 rounded text-amber-500 focus:ring-amber-500"
+                    className="w-4 h-4 bg-muted border-border rounded text-primary focus:ring-primary"
                   />
-                  <span className="text-sm text-white">Featured Post</span>
+                  <span className="text-sm text-foreground">Featured Post</span>
                 </label>
               </div>
             </div>
           </div>
 
           {/* Titles */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Title</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Title</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English
                 </label>
                 <input
@@ -464,12 +464,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="title_en"
                   value={formData.title_en}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                   placeholder="Post title in English"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian
                 </label>
                 <input
@@ -477,7 +477,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="title_it"
                   value={formData.title_it}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                   placeholder="Titolo del post in italiano"
                 />
               </div>
@@ -485,11 +485,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* Excerpts */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Excerpt</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Excerpt</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English
                 </label>
                 <textarea
@@ -497,12 +497,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.excerpt_en}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 resize-none"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Brief description of the post..."
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian
                 </label>
                 <textarea
@@ -510,7 +510,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.excerpt_it}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 resize-none"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Breve descrizione del post..."
                 />
               </div>
@@ -518,11 +518,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* Content */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Content (Markdown)</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Content (Markdown)</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English
                 </label>
                 <textarea
@@ -530,12 +530,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.content_en}
                   onChange={handleChange}
                   rows={20}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white font-mono text-sm focus:ring-2 focus:ring-amber-500 resize-y"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground font-mono text-sm focus:ring-2 focus:ring-primary resize-y"
                   placeholder="## Your content here..."
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian
                 </label>
                 <textarea
@@ -543,7 +543,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.content_it}
                   onChange={handleChange}
                   rows={20}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white font-mono text-sm focus:ring-2 focus:ring-amber-500 resize-y"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground font-mono text-sm focus:ring-2 focus:ring-primary resize-y"
                   placeholder="## Il tuo contenuto qui..."
                 />
               </div>
@@ -551,11 +551,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* Tags */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Tags</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Tags</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English Tags
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -564,13 +564,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     value={tagInputEN}
                     onChange={(e) => setTagInputEN(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag('en', tagInputEN))}
-                    className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Add tag and press Enter"
                   />
                   <button
                     type="button"
                     onClick={() => addTag('en', tagInputEN)}
-                    className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg"
                   >
                     Add
                   </button>
@@ -579,13 +579,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   {formData.tags_en.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-zinc-800 text-zinc-300 rounded text-sm"
+                      className="inline-flex items-center gap-1 px-2 py-1 bg-muted text-foreground rounded text-sm"
                     >
                       {tag}
                       <button
                         type="button"
                         onClick={() => removeTag('en', tag)}
-                        className="text-zinc-500 hover:text-white"
+                        className="text-muted-foreground hover:text-foreground"
                       >
                         x
                       </button>
@@ -594,7 +594,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian Tags
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -603,13 +603,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     value={tagInputIT}
                     onChange={(e) => setTagInputIT(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag('it', tagInputIT))}
-                    className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Aggiungi tag e premi Invio"
                   />
                   <button
                     type="button"
                     onClick={() => addTag('it', tagInputIT)}
-                    className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg"
                   >
                     Aggiungi
                   </button>
@@ -618,13 +618,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   {formData.tags_it.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-zinc-800 text-zinc-300 rounded text-sm"
+                      className="inline-flex items-center gap-1 px-2 py-1 bg-muted text-foreground rounded text-sm"
                     >
                       {tag}
                       <button
                         type="button"
                         onClick={() => removeTag('it', tag)}
-                        className="text-zinc-500 hover:text-white"
+                        className="text-muted-foreground hover:text-foreground"
                       >
                         x
                       </button>
@@ -636,11 +636,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* Featured Image */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Featured Image</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Featured Image</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Image URL
                 </label>
                 <input
@@ -648,12 +648,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="featured_image"
                   value={formData.featured_image}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                   placeholder="/images/my-image.jpg or https://..."
                 />
               </div>
               {formData.featured_image && (
-                <div className="w-48 h-32 rounded-lg overflow-hidden bg-zinc-800">
+                <div className="w-48 h-32 rounded-lg overflow-hidden bg-muted">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={formData.featured_image}
@@ -667,7 +667,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
               )}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Alt Text (English)
                   </label>
                   <input
@@ -675,12 +675,12 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     name="featured_image_alt_en"
                     value={formData.featured_image_alt_en}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Describe the image..."
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Alt Text (Italian)
                   </label>
                   <input
@@ -688,7 +688,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     name="featured_image_alt_it"
                     value={formData.featured_image_alt_it}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Descrivi l'immagine..."
                   />
                 </div>
@@ -701,13 +701,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
       {/* SEO Tab */}
       {activeTab === 'seo' && (
         <div className="space-y-6">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">Schema Type</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">Schema Type</h2>
             <select
               name="schema_type"
               value={formData.schema_type}
               onChange={handleChange}
-              className="w-full max-w-xs px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+              className="w-full max-w-xs px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
             >
               <option value="BlogPosting">Blog Posting</option>
               <option value="Article">Article</option>
@@ -717,11 +717,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* SEO Titles */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">SEO Title</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">SEO Title</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English
                 </label>
                 <input
@@ -729,15 +729,15 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="seo_title_en"
                   value={formData.seo_title_en}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                   placeholder="SEO optimized title..."
                 />
-                <p className="text-xs text-zinc-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.seo_title_en?.length || 0}/60 characters
                 </p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian
                 </label>
                 <input
@@ -745,10 +745,10 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   name="seo_title_it"
                   value={formData.seo_title_it}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                   placeholder="Titolo ottimizzato per SEO..."
                 />
-                <p className="text-xs text-zinc-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.seo_title_it?.length || 0}/60 characters
                 </p>
               </div>
@@ -756,11 +756,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* SEO Descriptions */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">SEO Description</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">SEO Description</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English
                 </label>
                 <textarea
@@ -768,15 +768,15 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.seo_description_en}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 resize-none"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Meta description for search engines..."
                 />
-                <p className="text-xs text-zinc-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.seo_description_en?.length || 0}/160 characters
                 </p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian
                 </label>
                 <textarea
@@ -784,10 +784,10 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   value={formData.seo_description_it}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500 resize-none"
+                  className="w-full px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Meta description per i motori di ricerca..."
                 />
-                <p className="text-xs text-zinc-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.seo_description_it?.length || 0}/160 characters
                 </p>
               </div>
@@ -795,11 +795,11 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
           </div>
 
           {/* SEO Keywords */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-            <h2 className="text-lg font-medium text-white mb-4">SEO Keywords</h2>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-lg font-medium text-foreground mb-4">SEO Keywords</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   English Keywords
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -808,13 +808,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     value={keywordInputEN}
                     onChange={(e) => setKeywordInputEN(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addKeyword('en', keywordInputEN))}
-                    className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Add keyword..."
                   />
                   <button
                     type="button"
                     onClick={() => addKeyword('en', keywordInputEN)}
-                    className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg"
                   >
                     Add
                   </button>
@@ -823,13 +823,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   {formData.seo_keywords_en.map((kw) => (
                     <span
                       key={kw}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded text-sm"
+                      className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-sm"
                     >
                       {kw}
                       <button
                         type="button"
                         onClick={() => removeKeyword('en', kw)}
-                        className="text-amber-400 hover:text-white"
+                        className="text-primary hover:text-foreground"
                       >
                         x
                       </button>
@@ -838,7 +838,7 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Italian Keywords
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -847,13 +847,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     value={keywordInputIT}
                     onChange={(e) => setKeywordInputIT(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addKeyword('it', keywordInputIT))}
-                    className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:ring-2 focus:ring-amber-500"
+                    className="flex-1 px-4 py-2 bg-muted border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary"
                     placeholder="Aggiungi parola chiave..."
                   />
                   <button
                     type="button"
                     onClick={() => addKeyword('it', keywordInputIT)}
-                    className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg"
                   >
                     Aggiungi
                   </button>
@@ -862,13 +862,13 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                   {formData.seo_keywords_it.map((kw) => (
                     <span
                       key={kw}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded text-sm"
+                      className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-sm"
                     >
                       {kw}
                       <button
                         type="button"
                         onClick={() => removeKeyword('it', kw)}
-                        className="text-amber-400 hover:text-white"
+                        className="text-primary hover:text-foreground"
                       >
                         x
                       </button>
@@ -884,18 +884,18 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
       {/* FAQs Tab */}
       {activeTab === 'faqs' && (
         <div className="space-y-6">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+          <div className="bg-card border border-border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-lg font-medium text-white">FAQ Section</h2>
-                <p className="text-sm text-zinc-500">
+                <h2 className="text-lg font-medium text-foreground">FAQ Section</h2>
+                <p className="text-sm text-muted-foreground">
                   Add FAQs for rich snippets and featured snippets in search results
                 </p>
               </div>
               <button
                 type="button"
                 onClick={addFaq}
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors flex items-center gap-2"
+                className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors flex items-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -905,9 +905,9 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
             </div>
 
             {loadingFaqs ? (
-              <div className="text-center py-8 text-zinc-500">Loading FAQs...</div>
+              <div className="text-center py-8 text-muted-foreground">Loading FAQs...</div>
             ) : faqs.length === 0 ? (
-              <div className="text-center py-8 text-zinc-500">
+              <div className="text-center py-8 text-muted-foreground">
                 No FAQs added yet. Click &quot;Add FAQ&quot; to get started.
               </div>
             ) : (
@@ -915,14 +915,14 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                 {faqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4 space-y-4"
+                    className="bg-muted/50 border border-border rounded-lg p-4 space-y-4"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-zinc-400">FAQ #{index + 1}</span>
+                      <span className="text-sm font-medium text-muted-foreground">FAQ #{index + 1}</span>
                       <button
                         type="button"
                         onClick={() => removeFaq(index)}
-                        className="text-red-400 hover:text-red-300 text-sm"
+                        className="text-destructive hover:text-destructive text-sm"
                       >
                         Remove
                       </button>
@@ -931,26 +931,26 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     {/* Questions */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-medium text-zinc-500 mb-1">
+                        <label className="block text-xs font-medium text-muted-foreground mb-1">
                           Question (English)
                         </label>
                         <input
                           type="text"
                           value={faq.question_en}
                           onChange={(e) => updateFaq(index, 'question_en', e.target.value)}
-                          className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white text-sm focus:ring-2 focus:ring-amber-500"
+                          className="w-full px-3 py-2 bg-muted border border-border rounded-lg text-foreground text-sm focus:ring-2 focus:ring-primary"
                           placeholder="What is...?"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-zinc-500 mb-1">
+                        <label className="block text-xs font-medium text-muted-foreground mb-1">
                           Question (Italian)
                         </label>
                         <input
                           type="text"
                           value={faq.question_it}
                           onChange={(e) => updateFaq(index, 'question_it', e.target.value)}
-                          className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white text-sm focus:ring-2 focus:ring-amber-500"
+                          className="w-full px-3 py-2 bg-muted border border-border rounded-lg text-foreground text-sm focus:ring-2 focus:ring-primary"
                           placeholder="Cos'e...?"
                         />
                       </div>
@@ -959,26 +959,26 @@ export function BlogPostEditor({ post, authors, categories, userId }: BlogPostEd
                     {/* Answers */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-medium text-zinc-500 mb-1">
+                        <label className="block text-xs font-medium text-muted-foreground mb-1">
                           Answer (English)
                         </label>
                         <textarea
                           value={faq.answer_en}
                           onChange={(e) => updateFaq(index, 'answer_en', e.target.value)}
                           rows={3}
-                          className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white text-sm focus:ring-2 focus:ring-amber-500 resize-none"
+                          className="w-full px-3 py-2 bg-muted border border-border rounded-lg text-foreground text-sm focus:ring-2 focus:ring-primary resize-none"
                           placeholder="The answer is..."
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-zinc-500 mb-1">
+                        <label className="block text-xs font-medium text-muted-foreground mb-1">
                           Answer (Italian)
                         </label>
                         <textarea
                           value={faq.answer_it}
                           onChange={(e) => updateFaq(index, 'answer_it', e.target.value)}
                           rows={3}
-                          className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white text-sm focus:ring-2 focus:ring-amber-500 resize-none"
+                          className="w-full px-3 py-2 bg-muted border border-border rounded-lg text-foreground text-sm focus:ring-2 focus:ring-primary resize-none"
                           placeholder="La risposta e..."
                         />
                       </div>

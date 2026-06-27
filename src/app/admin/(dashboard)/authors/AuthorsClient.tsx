@@ -46,14 +46,14 @@ export function AuthorsClient({ authors }: AuthorsClientProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-light text-white mb-2">Authors</h1>
-          <p className="text-zinc-500">
+          <h1 className="text-2xl font-light text-foreground mb-2">Authors</h1>
+          <p className="text-muted-foreground">
             Manage blog post authors. Changes are reflected immediately on the live site.
           </p>
         </div>
         <button
           onClick={openCreateModal}
-          className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -68,7 +68,7 @@ export function AuthorsClient({ authors }: AuthorsClientProps) {
           {authors.map((author) => (
             <div
               key={author.id}
-              className="p-6 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors"
+              className="p-6 bg-card border border-border rounded-lg hover:border-border transition-colors"
             >
               <div className="flex items-center gap-4 mb-4">
                 {author.avatar_url ? (
@@ -81,21 +81,21 @@ export function AuthorsClient({ authors }: AuthorsClientProps) {
                     />
                   </div>
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 font-medium text-lg">
+                  <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center text-accent font-medium text-lg">
                     {author.name.charAt(0).toUpperCase()}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-medium text-white truncate">
+                  <h3 className="text-lg font-medium text-foreground truncate">
                     {author.name}
                   </h3>
-                  <p className="text-sm text-zinc-500 truncate">
+                  <p className="text-sm text-muted-foreground truncate">
                     {author.role_en}
                   </p>
                 </div>
                 <button
                   onClick={() => openEditModal(author)}
-                  className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-700 rounded transition-colors flex-shrink-0"
+                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors flex-shrink-0"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -103,28 +103,28 @@ export function AuthorsClient({ authors }: AuthorsClientProps) {
                 </button>
               </div>
               {author.bio_en && (
-                <p className="text-sm text-zinc-400 line-clamp-3 mb-3">
+                <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
                   {author.bio_en}
                 </p>
               )}
-              <p className="text-xs text-zinc-600">
+              <p className="text-xs text-muted-foreground">
                 Slug: {author.slug}
               </p>
             </div>
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-zinc-900 border border-zinc-800 rounded-lg">
-          <svg className="w-16 h-16 text-zinc-700 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-12 bg-card border border-border rounded-lg">
+          <svg className="w-16 h-16 text-muted-foreground mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
-          <h3 className="text-lg font-medium text-white mb-2">No Authors</h3>
-          <p className="text-sm text-zinc-500 mb-6">
+          <h3 className="text-lg font-medium text-foreground mb-2">No Authors</h3>
+          <p className="text-sm text-muted-foreground mb-6">
             Get started by adding your first author.
           </p>
           <button
             onClick={openCreateModal}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
