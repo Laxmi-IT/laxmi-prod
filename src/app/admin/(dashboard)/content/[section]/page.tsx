@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getAdminUser, getSiteContentBySection, getContentSections } from "@/lib/admin/queries";
@@ -39,7 +40,7 @@ export default async function ContentSectionPage({ params }: ContentSectionPageP
     return (
       <div className="p-6">
         <div className="mb-6">
-          <a
+          <Link
             href="/admin/content"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
           >
@@ -47,7 +48,7 @@ export default async function ContentSectionPage({ params }: ContentSectionPageP
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
             </svg>
             Back to Content
-          </a>
+          </Link>
         </div>
         <div className="bg-card border border-border rounded-lg p-12 text-center">
           <h2 className="text-lg font-medium text-foreground mb-2">{sectionInfo.display_name_en}</h2>

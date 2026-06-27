@@ -89,8 +89,10 @@ export default async function SettingsPage() {
                   <p className="text-sm font-medium text-foreground">ArrexLab Image Downloader</p>
                   <p className="text-xs text-muted-foreground">Python script for downloading product images from ArrexLab</p>
                 </div>
+                {/* File download from an API route (not a page navigation) */}
                 <a
                   href="/api/admin/scripts?file=arrexlab_full_downloader.py"
+                  download
                   className="flex items-center gap-2 px-3 py-1.5 text-sm bg-primary hover:bg-primary/90 text-primary-foreground rounded transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
