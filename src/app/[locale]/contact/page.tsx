@@ -417,7 +417,13 @@ export default async function ContactPage({
                 placeholder="blur"
                 blurDataURL={blurDataMap["/images/hero-italian.jpg"]}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-laxmi-espresso/80 via-laxmi-espresso/40 to-transparent" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(46,30,24,0.95) 0%, rgba(46,30,24,0.7) 38%, rgba(46,30,24,0.15) 100%)",
+                }}
+              />
 
               {/* Location Pin */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -436,8 +442,8 @@ export default async function ContactPage({
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                   <div>
-                    <h3 className="font-serif text-2xl text-white mb-2">{dict.common.location}</h3>
-                    <p className="text-white/80 font-light">
+                    <h3 className="font-serif text-2xl text-white mb-2 [text-shadow:_0_2px_12px_rgba(0,0,0,0.5)]">{dict.common.location}</h3>
+                    <p className="text-white/90 font-light [text-shadow:_0_1px_8px_rgba(0,0,0,0.5)]">
                       {dict.common.byAppointmentOnly}
                     </p>
                   </div>
