@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { DYNAMIC_BLUR_DATA_URL } from '@/lib/image/blur-data';
 import { CategoryFilter, type CategoryOption } from './category-filter';
 import { CollectionSlideshow } from './collection-slideshow';
-import { getCategoryByKey } from '@/lib/gallery/categories';
+import { GALLERY_CATEGORIES, getCategoryByKey } from '@/lib/gallery/categories';
 
 // Types for gallery images from database
 export interface GalleryImageData {
@@ -192,10 +192,19 @@ function StandardCard({
   );
 }
 
-// Helper to filter images by category
-function filterByCategory(images: ImageType[], category: string): ImageType[] {
-  if (category === 'all') return images;
-  return images.filter((img) => img.category === category);
+// Section header shown above each album
+function AlbumHeading({ label, count, locale }: { label: { en: string; it: string }; count: number; locale: string }) {
+  return (
+    <div className="flex items-center gap-4 mb-6 md:mb-8">
+      <span className="text-xs md:text-sm tracking-[0.25em] uppercase text-laxmi-gold font-medium whitespace-nowrap">
+        {locale === 'it' ? label.it : label.en}
+      </span>
+      <div className="flex-1 h-px bg-gradient-to-r from-laxmi-gold/40 to-transparent" />
+      <span className="text-xs text-laxmi-espresso/50 dark:text-foreground/50 whitespace-nowrap">
+        {count}
+      </span>
+    </div>
+  );
 }
 
 // Build dynamic category options from the actual image data
@@ -219,24 +228,56 @@ function buildCategoryOptions(images: ImageType[]): CategoryOption[] {
   return options;
 }
 
+interface AlbumSection {
+  key: string;
+  label: { en: string; it: string };
+  items: ImageType[];
+}
+
 export function PremiumGallery({ locale, images, translations }: PremiumGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const categoryOptions = useMemo(() => buildCategoryOptions(images), [images]);
 
-  const filteredImages = useMemo(
-    () => filterByCategory(images, activeCategory),
-    [images, activeCategory]
-  );
+  // Album sections in the canonical category order, including only albums that
+  // have images. Any image whose category isn't in the canonical list is
+  // collected into a trailing "Other" section so nothing is ever hidden.
+  const albumSections = useMemo<AlbumSection[]>(() => {
+    const sections: AlbumSection[] = [];
+    const known = new Set<string>();
 
-  const handleImageClick = (index: number) => {
-    setSelectedImageIndex(index);
-  };
+    for (const cat of GALLERY_CATEGORIES) {
+      const items = images.filter((img) => img.category === cat.key);
+      known.add(cat.key);
+      if (items.length > 0) {
+        sections.push({ key: cat.key, label: { en: cat.en, it: cat.it }, items });
+      }
+    }
 
-  const handleCloseSlideshow = () => {
-    setSelectedImageIndex(null);
-  };
+    const otherItems = images.filter((img) => !known.has(img.category));
+    if (otherItems.length > 0) {
+      sections.push({ key: '__other', label: { en: 'More', it: 'Altro' }, items: otherItems });
+    }
+
+    return sections;
+  }, [images]);
+
+  // The single album currently selected (when not viewing "all")
+  const selectedSectionItems = useMemo<ImageType[]>(() => {
+    if (activeCategory === 'all') return [];
+    return images.filter((img) => img.category === activeCategory);
+  }, [images, activeCategory]);
+
+  // Flat, render-ordered list backing the slideshow so indices line up with
+  // what is actually shown on screen.
+  const slideshowImages = useMemo<ImageType[]>(() => {
+    return activeCategory === 'all'
+      ? albumSections.flatMap((s) => s.items)
+      : selectedSectionItems;
+  }, [activeCategory, albumSections, selectedSectionItems]);
+
+  const handleCloseSlideshow = () => setSelectedImageIndex(null);
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -252,30 +293,61 @@ export function PremiumGallery({ locale, images, translations }: PremiumGalleryP
         {/* Results count with decorative elements */}
         <div className="flex items-center justify-center gap-4">
           <div className="w-8 h-px bg-laxmi-gold/30" />
-          <p className="text-sm text-laxmi-espresso/60 tracking-wide">
-            {translations.showingCount.replace('{count}', String(filteredImages.length))}
+          <p className="text-sm text-laxmi-espresso/60 dark:text-foreground/60 tracking-wide">
+            {translations.showingCount.replace('{count}', String(slideshowImages.length))}
           </p>
           <div className="w-8 h-px bg-laxmi-gold/30" />
         </div>
       </div>
 
-      {/* Gallery grid - Simple uniform layout that works */}
-      {filteredImages.length > 0 ? (
+      {slideshowImages.length === 0 ? (
+        <div className="text-center py-24">
+          <div className="w-16 h-px bg-laxmi-gold/30 mx-auto mb-6" />
+          <p className="text-laxmi-espresso/50 dark:text-foreground/50 italic font-serif text-lg">{translations.noResults}</p>
+          <div className="w-16 h-px bg-laxmi-gold/30 mx-auto mt-6" />
+        </div>
+      ) : activeCategory === 'all' ? (
+        /* ALL: render each album as its own labelled section */
+        <div className="space-y-16 md:space-y-24">
+          {(() => {
+            let running = 0;
+            return albumSections.map((section) => {
+              const sectionStart = running;
+              running += section.items.length;
+              return (
+                <div key={section.key} className="space-y-6 md:space-y-8">
+                  <AlbumHeading label={section.label} count={section.items.length} locale={locale} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    {section.items.map((image, idx) => {
+                      const globalIndex = sectionStart + idx;
+                      return (
+                        <StandardCard
+                          key={image.id}
+                          image={image}
+                          index={idx}
+                          locale={locale}
+                          onClick={() => setSelectedImageIndex(globalIndex)}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            });
+          })()}
+        </div>
+      ) : (
+        /* SINGLE ALBUM: hero featured card + grid */
         <div className="space-y-6 md:space-y-8">
-          {/* First row: Featured large image */}
-          {filteredImages.length > 0 && (
-            <FeaturedCard
-              image={filteredImages[0]}
-              index={0}
-              locale={locale}
-              onClick={() => handleImageClick(0)}
-            />
-          )}
-
-          {/* Remaining images in a clean grid */}
-          {filteredImages.length > 1 && (
+          <FeaturedCard
+            image={selectedSectionItems[0]}
+            index={0}
+            locale={locale}
+            onClick={() => setSelectedImageIndex(0)}
+          />
+          {selectedSectionItems.length > 1 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {filteredImages.slice(1).map((image, idx) => {
+              {selectedSectionItems.slice(1).map((image, idx) => {
                 const actualIndex = idx + 1;
                 return (
                   <StandardCard
@@ -283,25 +355,19 @@ export function PremiumGallery({ locale, images, translations }: PremiumGalleryP
                     image={image}
                     index={actualIndex}
                     locale={locale}
-                    onClick={() => handleImageClick(actualIndex)}
+                    onClick={() => setSelectedImageIndex(actualIndex)}
                   />
                 );
               })}
             </div>
           )}
         </div>
-      ) : (
-        <div className="text-center py-24">
-          <div className="w-16 h-px bg-laxmi-gold/30 mx-auto mb-6" />
-          <p className="text-laxmi-espresso/50 italic font-serif text-lg">{translations.noResults}</p>
-          <div className="w-16 h-px bg-laxmi-gold/30 mx-auto mt-6" />
-        </div>
       )}
 
       {/* Slideshow modal */}
       {selectedImageIndex !== null && (
         <CollectionSlideshow
-          images={filteredImages}
+          images={slideshowImages}
           initialIndex={selectedImageIndex}
           locale={locale}
           onClose={handleCloseSlideshow}
