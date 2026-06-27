@@ -47,10 +47,16 @@ const translations = {
 
 interface FooterProps {
   locale: "it" | "en";
+  /** Company phone (falls back to placeholder if not provided) */
+  phone?: string;
+  /** Company VAT / P.IVA (hidden when empty) */
+  vat?: string;
 }
 
-export function Footer({ locale }: FooterProps) {
+export function Footer({ locale, phone, vat }: FooterProps) {
   const t = translations[locale];
+  const phoneNumber = phone || "+39 000 000 0000";
+  const telHref = `tel:${phoneNumber.replace(/[^\d+]/g, "")}`;
 
   return (
     <footer className="py-10 md:py-12 lg:py-16 border-t border-border/30 bg-background">
@@ -108,11 +114,12 @@ export function Footer({ locale }: FooterProps) {
                 </a>
               </li>
               <li className="py-1">
-                <a href="tel:+390000000000" className="hover:text-foreground transition-colors">
-                  +39 000 000 0000
+                <a href={telHref} className="hover:text-foreground transition-colors">
+                  {phoneNumber}
                 </a>
               </li>
               <li className="py-1">{t.location}</li>
+              {vat && <li className="py-1">P.IVA {vat}</li>}
             </ul>
           </div>
 

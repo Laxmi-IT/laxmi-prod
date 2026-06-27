@@ -122,6 +122,10 @@ export interface Dictionary {
     learnMore: string;
     contactUs: string;
     location: string;
+    phone: string;
+    email: string;
+    vat: string;
+    companyName: string;
   };
   collections: {
     heroTitle: string;

@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
 import { getPageAlternates } from "@/lib/seo";
+import { getDictionary } from "@/i18n/dictionaries";
 
 export async function generateMetadata({
   params,
@@ -163,6 +164,7 @@ export default async function LegalNoticePage({
   const { locale: localeParam } = await params;
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
   const t = translations[locale];
+  const dict = await getDictionary(locale);
 
   return (
     <div className="min-h-screen bg-laxmi-cream">
@@ -192,10 +194,15 @@ export default async function LegalNoticePage({
                 <p className="text-gray-700">{t.owner.type}</p>
                 <p className="text-gray-700">{t.owner.address}</p>
                 <p className="text-gray-700">{t.owner.email}</p>
+                {dict.common.vat && (
+                  <p className="text-gray-700">P.IVA / VAT: {dict.common.vat}</p>
+                )}
               </div>
-              <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                <p className="text-amber-800 text-sm">{t.owner.note}</p>
-              </div>
+              {!dict.common.vat && (
+                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <p className="text-amber-800 text-sm">{t.owner.note}</p>
+                </div>
+              )}
             </section>
 
             {/* Services */}
@@ -297,7 +304,7 @@ export default async function LegalNoticePage({
         </div>
       </main>
 
-      <Footer locale={locale} />
+      <Footer locale={locale} phone={dict.common.phone} vat={dict.common.vat} />
     </div>
   );
 }

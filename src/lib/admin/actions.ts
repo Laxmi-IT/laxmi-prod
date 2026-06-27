@@ -63,6 +63,86 @@ export async function updateContentItem(
 }
 
 /**
+ * Upsert a single site_content row by its content_key (insert if missing,
+ * update if it already exists). Both locales get the same value — used for
+ * locale-agnostic values like phone number and VAT.
+ */
+async function upsertContentByKey(
+  key: string,
+  section: string,
+  value: string,
+  userId: string,
+  sortOrder: number,
+): Promise<{ error?: string }> {
+  const supabase = await createClient();
+
+  const { data: existing } = await supabase
+    .from('site_content')
+    .select('id')
+    .eq('content_key', key)
+    .maybeSingle();
+
+  if (existing) {
+    const { error } = await supabase
+      .from('site_content')
+      .update({
+        content_en: value,
+        content_it: value,
+        updated_by: userId,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', existing.id);
+    return { error: error?.message };
+  }
+
+  const { error } = await supabase.from('site_content').insert({
+    content_key: key,
+    section,
+    content_type: 'text',
+    content_en: value,
+    content_it: value,
+    is_array: false,
+    sort_order: sortOrder,
+    updated_by: userId,
+  });
+  return { error: error?.message };
+}
+
+/**
+ * Update the editable company contact fields (phone + VAT / P.IVA).
+ * Stored in site_content under common.phone / common.vat so the values flow
+ * through the dictionary merge and appear across the public site.
+ */
+export async function updateCompanyContact(
+  phone: string,
+  vat: string,
+  userId: string,
+): Promise<UpdateContentResult> {
+  try {
+    const phoneResult = await upsertContentByKey('common.phone', 'common', phone.trim(), userId, 10);
+    if (phoneResult.error) {
+      return { success: false, error: phoneResult.error };
+    }
+
+    const vatResult = await upsertContentByKey('common.vat', 'common', vat.trim(), userId, 11);
+    if (vatResult.error) {
+      return { success: false, error: vatResult.error };
+    }
+
+    // Revalidate dictionary cache AND all locale pages so the new values show
+    revalidateAllPages();
+
+    return { success: true };
+  } catch (err) {
+    console.error('Error updating company contact:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Unknown error occurred',
+    };
+  }
+}
+
+/**
  * Batch update multiple content items
  */
 export async function updateMultipleContentItems(

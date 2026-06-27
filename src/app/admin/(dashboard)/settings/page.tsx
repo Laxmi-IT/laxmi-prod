@@ -1,4 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
+import { getDictionary } from "@/i18n/dictionaries";
+import { CompanyInfoForm } from "@/components/admin/CompanyInfoForm";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -10,6 +12,9 @@ export default async function SettingsPage() {
     .select("*")
     .eq("id", user?.id)
     .single();
+
+  // Current company contact values (DB overrides merged over static defaults)
+  const dict = await getDictionary("en");
 
   // Get all admin users (only visible to super_admin)
   const { data: allAdmins } = await supabase
@@ -25,6 +30,22 @@ export default async function SettingsPage() {
         <p className="text-muted-foreground">
           Manage your admin account and system settings.
         </p>
+      </div>
+
+      {/* Company Information */}
+      <div className="p-6 bg-card border border-border rounded-lg mb-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">Company Information</h2>
+        <p className="text-sm text-muted-foreground mb-6">
+          Public company contact details. Phone and P.IVA are editable and sync to the live site.
+        </p>
+        <CompanyInfoForm
+          userId={user?.id ?? ""}
+          companyName={dict.common.companyName}
+          email={dict.common.email}
+          address={dict.common.location}
+          initialPhone={dict.common.phone}
+          initialVat={dict.common.vat}
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

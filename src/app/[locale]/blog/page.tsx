@@ -403,8 +403,9 @@ export default async function BlogPage({
               <h4 className="text-spaced text-xs mb-4 md:mb-6 text-laxmi-bronze">{dict.footer.contact}</h4>
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
-                <li className="py-1">+39 000 000 0000</li>
+                <li className="py-1">{dict.common.phone}</li>
                 <li className="py-1">{dict.common.location}</li>
+                {dict.common.vat && <li className="py-1">P.IVA {dict.common.vat}</li>}
               </ul>
             </div>
           </div>

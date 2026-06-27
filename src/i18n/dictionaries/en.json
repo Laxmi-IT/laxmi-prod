@@ -178,7 +178,11 @@
     "byAppointmentOnly": "By Appointment Only",
     "learnMore": "Learn More",
     "contactUs": "Contact Us",
-    "location": "Milan, Italy"
+    "location": "Milan, Italy",
+    "phone": "+39 000 000 0000",
+    "email": "thelaxmii07@gmail.com",
+    "vat": "",
+    "companyName": "LAXMI"
   },
   "collections": {
     "heroTitle": "Collections",

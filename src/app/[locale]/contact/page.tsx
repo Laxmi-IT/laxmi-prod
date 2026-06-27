@@ -185,11 +185,26 @@ export default async function ContactPage({
                     <h4 className="font-serif text-lg mb-1">
                       {dict.contactPage.phone}
                     </h4>
-                    <a href="tel:+390000000000" className="text-muted-foreground hover:text-laxmi-bronze transition-colors">
-                      +39 000 000 0000
+                    <a href={`tel:${dict.common.phone.replace(/[^\d+]/g, "")}`} className="text-muted-foreground hover:text-laxmi-bronze transition-colors">
+                      {dict.common.phone}
                     </a>
                   </div>
                 </div>
+
+                {/* VAT / P.IVA (shown only when set) */}
+                {dict.common.vat && (
+                  <div className="card-luxury p-6 flex items-start gap-5 group">
+                    <div className="w-12 h-12 rounded-full bg-laxmi-champagne/50 flex items-center justify-center flex-shrink-0 group-hover:bg-laxmi-gold/20 transition-colors duration-300">
+                      <svg className="w-5 h-5 text-laxmi-bronze" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m-6 4h6m-4 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-serif text-lg mb-1">P.IVA</h4>
+                      <p className="text-muted-foreground">{dict.common.vat}</p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Location */}
                 <div className="card-luxury p-6 flex items-start gap-5 group">
@@ -487,8 +502,9 @@ export default async function ContactPage({
               <h4 className="text-spaced text-xs mb-4 md:mb-6 text-laxmi-bronze">{dict.footer.contact}</h4>
               <ul className="space-y-2 text-muted-foreground font-light">
                 <li className="py-1">thelaxmii07@gmail.com</li>
-                <li className="py-1">+39 000 000 0000</li>
+                <li className="py-1">{dict.common.phone}</li>
                 <li className="py-1">{dict.common.location}</li>
+                {dict.common.vat && <li className="py-1">P.IVA {dict.common.vat}</li>}
               </ul>
             </div>
           </div>

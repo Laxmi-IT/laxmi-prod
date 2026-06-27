@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
 import { getPageAlternates } from "@/lib/seo";
+import { getDictionary } from "@/i18n/dictionaries";
 
 export async function generateMetadata({
   params,
@@ -352,6 +353,7 @@ export default async function PrivacyPolicyPage({
 }) {
   const { locale: localeParam } = await params;
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+  const dict = await getDictionary(locale);
   const t = translations[locale];
 
   return (
@@ -517,7 +519,7 @@ export default async function PrivacyPolicyPage({
         </div>
       </main>
 
-      <Footer locale={locale} />
+      <Footer locale={locale} phone={dict.common.phone} vat={dict.common.vat} />
     </div>
   );
 }
