@@ -1,8 +1,8 @@
 {
-  "name": "LAXMI — Luxury Italian Furniture Consulting",
+  "name": "LAXMI — Bespoke Italian Luxury Furniture",
   "short_name": "LAXMI",
-  "description": "Exclusive luxury Italian furniture consulting. Made in Italy.",
-  "start_url": "/it",
+  "description": "Bespoke, made-to-measure luxury Italian furniture. Made in Italy.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#FAF7F2",
   "theme_color": "#39241d",

@@ -68,8 +68,33 @@ export default async function CollectionsPage({
   const craftImage = galleryImages.find(img => img.category === 'Details') || galleryImages[2] || fallbackImage;
   const livingImage = galleryImages.find(img => img.category === 'Living') || galleryImages[5] || fallbackImage;
 
+  // Structured data: surface the gallery as an ImageGallery for rich indexing
+  const gallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: dict.metadata.collectionsTitle,
+    description: dict.metadata.collectionsDescription,
+    url: `${siteUrl}/${locale}/collections`,
+    inLanguage: locale,
+    mainEntity: {
+      "@type": "ImageGallery",
+      name: dict.collections.galleryTitle,
+      image: galleryImages.slice(0, 50).map((img) => ({
+        "@type": "ImageObject",
+        contentUrl: img.src.startsWith("http") ? img.src : `${siteUrl}${img.src}`,
+        name: locale === "it" ? img.title.it : img.title.en,
+        caption: locale === "it" ? img.description.it : img.description.en,
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gallerySchema) }}
+      />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
         <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-12">
